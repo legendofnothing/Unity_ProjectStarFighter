@@ -325,7 +325,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ShipVariantEnemy2: 457659703
+      ShipVariant4: 710731962
       ShipVariant2: -391644064
       ShipVariant5: 159822699
       ShipVariant6: -118885334
@@ -333,7 +333,7 @@ TextureImporter:
       ShipVariantEnemy4: -914446321
       ShipVariantEnemy1: -127291831
       ShipVariant3: -1366064121
-      ShipVariant4: 710731962
+      ShipVariantEnemy2: 457659703
       ShipVariant1: -598123551
   spritePackingTag: 
   pSDRemoveMatte: 0
