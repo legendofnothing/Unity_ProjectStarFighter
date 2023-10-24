@@ -5,7 +5,6 @@ using UnityEngine;
 namespace Combat.WeaponScript {
     public abstract class Weapon : MonoBehaviour {
         [TitleGroup("Config")] 
-        public float damage = 10f;
         public float fireDelay = 1f;
 
         [TitleGroup("Readonly")]
