@@ -8,6 +8,11 @@ namespace EnemyScript {
         public float hp = 100;
         [ReadOnly] public float currentHp;
         [ReadOnly] public bool hasDied;
+        [Space] 
+        public float speed;
+        public float minimumSpeed;
+        public float angularSpeed;
+        [ReadOnly] public float currentSpeed;
 
         [TitleGroup("Options")]
         public bool useExplosionEffect = true;
@@ -18,6 +23,7 @@ namespace EnemyScript {
 
         private void Start() {
             currentHp = hp;
+            currentSpeed = speed;
         }
 
         public void TakeDamage(float amount) {

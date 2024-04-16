@@ -109,8 +109,9 @@ GameObject:
   - component: {fileID: 7394489358034142130}
   - component: {fileID: 1385832427}
   - component: {fileID: 697824697}
+  - component: {fileID: 1928798891}
   m_Layer: 7
-  m_Name: EnemyBase
+  m_Name: EasyEnemyShooter1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -195,6 +196,10 @@ MonoBehaviour:
   hp: 100
   currentHp: 0
   hasDied: 0
+  speed: 5
+  minimumSpeed: 3
+  angularSpeed: 1.8
+  currentSpeed: 0
   useExplosionEffect: 1
   explosionEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
   explosionSize: {x: 1, y: 1, z: 1}
@@ -239,6 +244,21 @@ MonoBehaviour:
     useImpactEffect: 1
     impactEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
     impactSize: {x: 0.2, y: 0.2, z: 0.2}
+--- !u!114 &1928798891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394489358034142158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8f8b029a55556c4c9b0ac524d0bc44a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyBehaviors: {fileID: 0}
+  enemy: {fileID: 0}
+  minimumDistance: 3.5
 --- !u!1 &7394489358069991528
 GameObject:
   m_ObjectHideFlags: 0
