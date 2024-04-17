@@ -1,19 +1,34 @@
-﻿using StateMachine;
+﻿using System.Collections;
+using StateMachine;
+using UnityEngine;
 
 namespace EnemyScript.Easy.EnemyShoot.States {
     public class EnemyCircle : EnemyState {
+        private float _distanceThreshold;
+        private int _circlingDirection;
+        
         public EnemyCircle(EnemyStateMachine.EnemyState key, StateMachine<EnemyStateMachine.EnemyState> stateMachine) : base(key, stateMachine) {
         }
 
         public override void OnEnter() {
+            _circlingDirection = Random.Range(0, 2);
+            _distanceThreshold = Random.Range(_enemyStateMachine.minimumCirclingDistance,
+                _enemyStateMachine.maximumCirclingDistance);
         }
 
         public override void OnExit() {
         }
 
         public override void OnUpdate() {
-            _enemyStateMachine.enemyBehaviors.LookAt(_enemyStateMachine.transform.right + _enemyStateMachine.transform.position, _enemyStateMachine.enemy.angularSpeed);
-            _enemyStateMachine.enemyBehaviors.FlyForward(1f);
+            var dir = _circlingDirection == 0 ? _enemyStateMachine.transform.right : -_enemyStateMachine.transform.right;
+            _enemyStateMachine
+                .enemyBehaviors
+                .LookAt(_enemyStateMachine.transform.right + _enemyStateMachine.transform.position, _enemyStateMachine.enemy.minimumAngularSpeed);
+            _enemyStateMachine.enemyBehaviors.FlyForward(_enemyStateMachine.enemy.speed);
+
+            if (_enemyStateMachine.enemy.GetDistanceToPlayer >= _distanceThreshold) {
+                _enemyStateMachine.SwitchState(EnemyStateMachine.EnemyState.Attacking);
+            }
         }
     }
 }

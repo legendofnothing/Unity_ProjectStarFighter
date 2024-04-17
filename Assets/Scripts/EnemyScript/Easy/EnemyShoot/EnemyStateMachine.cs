@@ -6,23 +6,27 @@ using UnityEngine.Serialization;
 
 namespace EnemyScript.Easy.EnemyShoot {
     public class EnemyStateMachine : StateMachine<EnemyStateMachine.EnemyState> {
-        public EnemyBehaviors enemyBehaviors;
-        public Enemy enemy;
+        [ReadOnly] public EnemyBehaviors enemyBehaviors;
+        [ReadOnly] public Enemy enemy;
         
         [TitleGroup("Config")] 
         public float minimumDistance;
+
+        [Space] 
+        public float minimumCirclingDistance;
+        public float maximumCirclingDistance;
         
         public enum EnemyState {
             Idle,
-            Maneuvering,
+            Attacking,
             Circling,
         }
             
         protected override EnemyState SetupState() {
             states[EnemyState.Idle] = new EnemyIdle(EnemyState.Idle, this);
-            states[EnemyState.Maneuvering] = new EnemyAttack(EnemyState.Maneuvering, this);
+            states[EnemyState.Attacking] = new EnemyAttack(EnemyState.Attacking, this);
             states[EnemyState.Circling] = new EnemyCircle(EnemyState.Circling, this);
-            return EnemyState.Maneuvering;
+            return EnemyState.Attacking;
         }
 
         protected override void SetupRef() {

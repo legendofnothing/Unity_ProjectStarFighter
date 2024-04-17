@@ -198,8 +198,10 @@ MonoBehaviour:
   hasDied: 0
   speed: 5
   minimumSpeed: 3
+  minimumAngularSpeed: 1
   angularSpeed: 1.8
   currentSpeed: 0
+  currentAngularSpeed: 0
   useExplosionEffect: 1
   explosionEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
   explosionSize: {x: 1, y: 1, z: 1}
@@ -258,7 +260,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBehaviors: {fileID: 0}
   enemy: {fileID: 0}
-  minimumDistance: 3.5
+  minimumDistance: 4.5
+  minimumCirclingDistance: 9
+  maximumCirclingDistance: 18
 --- !u!1 &7394489358069991528
 GameObject:
   m_ObjectHideFlags: 0

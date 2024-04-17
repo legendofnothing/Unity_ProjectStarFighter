@@ -15,8 +15,7 @@ namespace EnemyScript.Easy.EnemyShoot.States {
         public override void OnUpdate() {
             //1 full on
             //0.5 side profile
-            var dot = Vector2.Dot(_enemyStateMachine.transform.up,
-                (PlayerScript.Player.Instance.transform.position - _enemyStateMachine.transform.position).normalized);
+            var dot = _enemyStateMachine.enemy.GetDotToPlayer;
             
             if (dot > 0.98f) {
                 _enemyStateMachine.enemyBehaviors.FireWeapon();
