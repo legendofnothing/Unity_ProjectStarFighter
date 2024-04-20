@@ -3,10 +3,10 @@ using EnemyScript.Commander;
 using UnityEngine;
 
 namespace EnemyScript.Medium.MediumEnemyCommander.Actions {
-    public class MediumCommanderCommandAction : Action {
+    public class MediumCommanderCommandAction2 : Action {
         protected TroopManager _troopManager;
         
-        public MediumCommanderCommandAction(Blackboard blackboard) : base(blackboard) {
+        public MediumCommanderCommandAction2(Blackboard blackboard) : base(blackboard) {
             _troopManager = (TroopManager) base.blackboard.GetData("troopManager");
         }
         
@@ -15,13 +15,13 @@ namespace EnemyScript.Medium.MediumEnemyCommander.Actions {
             if (_troopManager.troopCount <= 0) {
                 _troopManager.LookingForAvailableTroop();
                 if (_troopManager.troopCount <= 0) {
-                    state = State.Failure;
+                    state = State.Success;
                 }
             }
         }
 
         protected override State OnUpdate() {
-            Debug.Log($"Running Command / state: {state}");
+            Debug.Log($"Running Command2 / state: {state}");
             return state;
         }
 

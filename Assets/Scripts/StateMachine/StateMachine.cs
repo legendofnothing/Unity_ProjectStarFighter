@@ -10,6 +10,11 @@ namespace StateMachine {
         protected Dictionary<TEState, State<TEState>> states = new();
         [ShowInInspector] [ReadOnly] protected State<TEState> currentState;
         protected TEState entryStateKey;
+        protected bool canRun = true;
+        public bool CanRun {
+            get => canRun;
+            set => canRun = value;
+        }
 
         private void Start() {
             SetupRef();
@@ -25,6 +30,7 @@ namespace StateMachine {
         }
 
         private void Update() {
+            if (!canRun) return;
             currentState?.OnUpdate();
         }
 
