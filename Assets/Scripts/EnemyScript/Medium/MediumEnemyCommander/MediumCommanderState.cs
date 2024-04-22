@@ -1,6 +1,6 @@
 ﻿using StateMachine;
 
-namespace EnemyScript.Medium.MediumEnemyCommander.States {
+namespace EnemyScript.Medium.MediumEnemyCommander {
     public abstract class MediumCommanderState : State<MediumCommanderAttackStateMachine.EnemyState> {
         protected MediumCommanderAttackStateMachine _esm;
 

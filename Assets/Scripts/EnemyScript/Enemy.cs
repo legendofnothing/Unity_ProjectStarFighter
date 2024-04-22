@@ -46,6 +46,11 @@ namespace EnemyScript {
 
         public float GetDotToPlayer => Vector2.Dot(transform.up,
             (PlayerScript.Player.Instance.transform.position - transform.position).normalized);
+
+        public float GetDotToPoint(Vector2 pos) {
+            return  Vector2.Dot(transform.up,
+                (pos - (Vector2) transform.position).normalized);
+        }
         
         public float GetDistanceToPlayer => Vector2.Distance(transform.position,
             PlayerScript.Player.Instance.transform.position);

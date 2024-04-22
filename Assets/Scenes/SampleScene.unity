@@ -169,7 +169,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBehaviors: {fileID: 0}
   enemy: {fileID: 0}
-  minimumSafeDistance: 0
+  minimumDistance: 2.5
+  predictedFrames: 4
+  minimumSafeDistance: 10
+  maximumSafeDistance: 15
 --- !u!1 &573314993
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,9 +419,9 @@ MonoBehaviour:
   hp: 400
   currentHp: 0
   hasDied: 0
-  speed: 9
+  speed: 10
   minimumSpeed: 2
-  minimumAngularSpeed: 1.5
+  minimumAngularSpeed: 0.8
   angularSpeed: 2
   currentSpeed: 0
   currentAngularSpeed: 0
@@ -460,8 +463,8 @@ GameObject:
   - component: {fileID: 1593062093830828804}
   - component: {fileID: 8107941045225860957}
   - component: {fileID: 8107941045141161231}
-  - component: {fileID: 8107941045225860958}
   - component: {fileID: 8107941045225860959}
+  - component: {fileID: 8107941045225860960}
   m_Layer: 7
   m_Name: MediumEnemyCommander
   m_TagString: Untagged
@@ -702,12 +705,12 @@ MonoBehaviour:
   fireDelay: 1.5
   firingPoints:
   - {fileID: 8107941046204657377}
-  - {fileID: 0}
+  - {fileID: 573314994}
   isFiring: 0
   projectile: {fileID: 4034899818029327129, guid: 2d27350df53423e408c01f3242888767, type: 3}
   setting:
     damage: 10
-    speed: 10
+    speed: 15
     lifeSpan: 8
     proxyModifier: 1
     interactLayer:
@@ -728,19 +731,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b7c8a3bc16fe64d8bbac9b21056be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8107941045225860958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593062093830828920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20bf2dc032f1461593cf53e51fb48cfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackSM: {fileID: 427801085}
 --- !u!114 &8107941045225860959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -754,6 +744,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   troops: []
+--- !u!114 &8107941045225860960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593062093830828920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22bf0339df9a4aba91df85591a04096d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  esm: {fileID: 427801085}
+  troopToCommand: []
 --- !u!1 &8107941046204657376
 GameObject:
   m_ObjectHideFlags: 0
