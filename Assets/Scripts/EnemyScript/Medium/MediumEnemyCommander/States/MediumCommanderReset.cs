@@ -23,7 +23,7 @@ namespace EnemyScript.Medium.MediumEnemyCommander.States {
         }
 
         public override void OnExit() {
-
+            
         }
 
         public override void OnUpdate() {
@@ -33,9 +33,9 @@ namespace EnemyScript.Medium.MediumEnemyCommander.States {
             _esm.enemyBehaviors.FlyForward(_esm.enemy.currentSpeed);
 
             _timePassed += Time.fixedDeltaTime;
-            if (_timePassed >= 6f) {
+            if (_timePassed >= _esm.timeUntilAccelerate) {
                 if (_speedIncreaseTween == null) {
-                    _speedIncreaseTween = DOVirtual.Float(_esm.enemy.currentSpeed, _esm.enemy.speed + 10f, 10f,
+                    _speedIncreaseTween = DOVirtual.Float(_esm.enemy.currentSpeed, _esm.enemy.speed * 2, _esm.accelerateTime,
                         value => {
                             _esm.enemy.currentSpeed = value;
                         });
@@ -44,7 +44,7 @@ namespace EnemyScript.Medium.MediumEnemyCommander.States {
             
             if (_esm.enemy.GetDistanceToPlayer >= _distanceThreshold) {
                 _locked = true;
-                DOVirtual.Float(_esm.enemy.currentSpeed, _esm.enemy.speed, 3.5f, value => {
+                DOVirtual.Float(_esm.enemy.currentSpeed, _esm.enemy.speed, _esm.deAccelerateTime, value => {
                     _esm.enemy.currentSpeed = value;
                 }).OnComplete(() => {
                     _speedIncreaseTween?.Kill();
