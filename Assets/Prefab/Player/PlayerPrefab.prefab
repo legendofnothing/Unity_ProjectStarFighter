@@ -442,7 +442,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -621,7 +621,7 @@ MonoBehaviour:
   m_Follow: {fileID: 2362499530059679998}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5
+    OrthographicSize: 10
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -736,6 +736,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0673e950b045f4741b1ac638b49fdecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
+  currentHp: 0
 --- !u!114 &2362499529778239104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,6 +989,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireDelay: 1
+  firingPoints:
+  - {fileID: 2362499530845720663}
+  - {fileID: 2362499529432561084}
   isFiring: 0
   projectile: {fileID: 4034899818029327129, guid: 2d27350df53423e408c01f3242888767, type: 3}
   setting:
@@ -1000,9 +1005,6 @@ MonoBehaviour:
     useImpactEffect: 1
     impactEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
     impactSize: {x: 0.3, y: 0.3, z: 0.3}
-  firingPoints:
-  - {fileID: 2362499530845720663}
-  - {fileID: 2362499529432561084}
 --- !u!1 &2362499530845720656
 GameObject:
   m_ObjectHideFlags: 0

@@ -298,18 +298,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 929783748017188332, guid: ff6d9b7b32c72c04eb7538fc64bbf3a2, type: 3}
-      propertyPath: accelerateTime
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 929783748017188332, guid: ff6d9b7b32c72c04eb7538fc64bbf3a2, type: 3}
-      propertyPath: deAccelerateTime
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 929783748017188332, guid: ff6d9b7b32c72c04eb7538fc64bbf3a2, type: 3}
-      propertyPath: timeUntilAccelerate
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 1944694036408067945, guid: ff6d9b7b32c72c04eb7538fc64bbf3a2, type: 3}
       propertyPath: m_Name
       value: MediumEnemyCommander

@@ -46,10 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBehaviors: {fileID: 0}
   enemy: {fileID: 0}
-  minimumDistance: 2.5
-  predictedFrames: 4
-  minimumSafeDistance: 10
-  maximumSafeDistance: 15
+  minimumDistance: 8
+  predictedFrames: 12
+  minimumSafeDistance: 12
+  maximumSafeDistance: 18
+  timeUntilAccelerate: 4
 --- !u!1 &929783748934583200
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,6 +187,7 @@ MonoBehaviour:
   hasDied: 0
   speed: 10
   minimumSpeed: 2
+  speedDampValue: 0.5
   minimumAngularSpeed: 0.8
   angularSpeed: 2
   currentSpeed: 0
@@ -205,6 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b7c8a3bc16fe64d8bbac9b21056be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedDampValue: 0.7
 --- !u!114 &8962849390841794846
 MonoBehaviour:
   m_ObjectHideFlags: 0

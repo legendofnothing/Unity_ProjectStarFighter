@@ -7,9 +7,12 @@ namespace EnemyScript {
         [TitleGroup("Config")] public float hp = 100;
         [ReadOnly] public float currentHp;
         [ReadOnly] public bool hasDied;
-        [Space] public float speed;
+        [Space] 
+        public float speed;
         public float minimumSpeed;
-        [Space] public float minimumAngularSpeed;
+        public float speedDampValue = 0.7f;
+        [Space] 
+        public float minimumAngularSpeed;
         public float angularSpeed;
 
         [ReadOnly] public float currentSpeed;
@@ -22,9 +25,13 @@ namespace EnemyScript {
 
         [ShowIf(nameof(useExplosionEffect))] public Vector3 explosionSize = Vector3.one;
 
-        private void Start() {
+        private EnemyBehaviors _enemyBehaviors;
+
+        private void Awake() {
             currentHp = hp;
             currentSpeed = speed;
+            _enemyBehaviors = GetComponent<EnemyBehaviors>();
+            _enemyBehaviors.speedDampValue = speedDampValue;
         }
 
         public void TakeDamage(float amount) {

@@ -21,8 +21,6 @@ namespace EnemyScript.Medium.MediumEnemyCommander {
         [Space] 
         //Accel to escape player chasing
         public float timeUntilAccelerate = 6f;
-        public float accelerateTime = 10f;
-        public float deAccelerateTime = 3.5f;
 
         public enum EnemyState {
             Idle,
@@ -36,7 +34,7 @@ namespace EnemyScript.Medium.MediumEnemyCommander {
             states[EnemyState.Strafing] = new MediumCommanderStrafe(EnemyState.Strafing, this);
             states[EnemyState.Resetting] = new MediumCommanderReset(EnemyState.Resetting, this);
             states[EnemyState.Circling] = new MediumCommanderCircling(EnemyState.Circling, this);
-            return EnemyState.Strafing;
+            return EnemyState.Circling;
         }
 
         protected override void SetupRef() {
