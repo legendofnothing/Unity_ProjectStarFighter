@@ -1,8 +1,8 @@
 ﻿using StateMachine;
 
 namespace EnemyScript.Easy.EnemyRam.States {
-    public class EnemyRam : EnemyState {
-        public EnemyRam(EnemyStateMachine.EnemyState key, StateMachine<EnemyStateMachine.EnemyState> stateMachine) : base(key, stateMachine) {
+    public class EnemyRam : EnemyRamState {
+        public EnemyRam(EnemyRamStateMachine.EnemyState key, StateMachine<EnemyRamStateMachine.EnemyState> stateMachine) : base(key, stateMachine) {
         }
 
         public override void OnEnter() {

@@ -7,7 +7,7 @@ namespace EnemyScript.Easy.EnemyShoot.States {
         private float _distanceThreshold;
         private int _circlingDirection;
         
-        public EnemyCircle(EnemyStateMachine.EnemyState key, StateMachine<EnemyStateMachine.EnemyState> stateMachine) : base(key, stateMachine) {
+        public EnemyCircle(EnemyShootStateMachine.EnemyState key, StateMachine<EnemyShootStateMachine.EnemyState> stateMachine) : base(key, stateMachine) {
         }
 
         public override void OnEnter() {
@@ -27,7 +27,7 @@ namespace EnemyScript.Easy.EnemyShoot.States {
             _enemyStateMachine.enemyBehaviors.FlyForward(_enemyStateMachine.enemy.speed);
 
             if (_enemyStateMachine.enemy.GetDistanceToPlayer >= _distanceThreshold) {
-                _enemyStateMachine.SwitchState(EnemyStateMachine.EnemyState.Attacking);
+                _enemyStateMachine.SwitchState(EnemyShootStateMachine.EnemyState.Attacking);
             }
         }
     }

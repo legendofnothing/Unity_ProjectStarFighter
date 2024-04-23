@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EnemyScript.Easy.EnemyShoot.States {
     public class EnemyIdle : EnemyState {
-        public EnemyIdle(EnemyStateMachine.EnemyState key, StateMachine<EnemyStateMachine.EnemyState> stateMachine) : base(key, stateMachine) {
+        public EnemyIdle(EnemyShootStateMachine.EnemyState key, StateMachine<EnemyShootStateMachine.EnemyState> stateMachine) : base(key, stateMachine) {
         }
 
         public override void OnEnter() {

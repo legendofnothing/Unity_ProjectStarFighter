@@ -5,7 +5,7 @@ using StateMachine;
 using UnityEngine;
 
 namespace EnemyScript.Easy.EnemyRam {
-    public class EnemyStateMachine : StateMachine<EnemyStateMachine.EnemyState> {
+    public class EnemyRamStateMachine : StateMachine<EnemyRamStateMachine.EnemyState> {
         [ReadOnly] public EnemyBehaviors enemyBehaviors;
         [ReadOnly] public Enemy enemy;
 

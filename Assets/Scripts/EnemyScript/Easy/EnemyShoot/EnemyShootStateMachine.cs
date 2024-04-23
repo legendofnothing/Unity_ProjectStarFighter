@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace EnemyScript.Easy.EnemyShoot {
-    public class EnemyStateMachine : StateMachine<EnemyStateMachine.EnemyState> {
+    public class EnemyShootStateMachine : StateMachine<EnemyShootStateMachine.EnemyState> {
         [ReadOnly] public EnemyBehaviors enemyBehaviors;
         [ReadOnly] public Enemy enemy;
         

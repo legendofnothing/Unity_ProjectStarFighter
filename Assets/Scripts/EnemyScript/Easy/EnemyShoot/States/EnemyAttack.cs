@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace EnemyScript.Easy.EnemyShoot.States {
     public class EnemyAttack : EnemyState {
-        public EnemyAttack(EnemyStateMachine.EnemyState key, StateMachine<EnemyStateMachine.EnemyState> stateMachine) : base(key, stateMachine) {
+        public EnemyAttack(EnemyShootStateMachine.EnemyState key, StateMachine<EnemyShootStateMachine.EnemyState> stateMachine) : base(key, stateMachine) {
         }
 
         public override void OnEnter() {
@@ -23,7 +23,7 @@ namespace EnemyScript.Easy.EnemyShoot.States {
 
             if (dot > 0.98f && Vector3.Distance(_enemyStateMachine.transform.position,
                     PlayerScript.Player.Instance.transform.position) <= _enemyStateMachine.minimumDistance) {
-                _enemyStateMachine.SwitchState(EnemyStateMachine.EnemyState.Circling);
+                _enemyStateMachine.SwitchState(EnemyShootStateMachine.EnemyState.Circling);
             }
             else {
                 _enemyStateMachine

@@ -129,9 +129,10 @@ GameObject:
   - component: {fileID: 3539584249148712590}
   - component: {fileID: 3539584249148712591}
   - component: {fileID: 6305499048753347286}
-  - component: {fileID: 6305499048753347287}
+  - component: {fileID: 1639349069826391703}
+  - component: {fileID: 8037084307669152805}
   m_Layer: 7
-  m_Name: EasyEnemyRammer
+  m_Name: MediumEnemyRammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,6 +218,7 @@ MonoBehaviour:
   hasDied: 0
   speed: 6
   minimumSpeed: 2
+  speedDampValue: 0.7
   minimumAngularSpeed: 1.2
   angularSpeed: 1.8
   currentSpeed: 0
@@ -236,7 +238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b7c8a3bc16fe64d8bbac9b21056be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6305499048753347287
+  speedDampValue: 0
+--- !u!114 &1639349069826391703
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,7 +248,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3539584249148712691}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9e5fcb0906845c1b346798b94a4cb81, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a88f7d7d49b1c64d9b1fe8fa7a4fe65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBehaviors: {fileID: 0}
@@ -254,3 +257,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   ramDamage: 10
+--- !u!114 &8037084307669152805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3539584249148712691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 745a52ba88f65ae44b3195f568570d34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackState: {fileID: 3539584249148712591}
