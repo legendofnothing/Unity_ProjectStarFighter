@@ -109,7 +109,9 @@ GameObject:
   - component: {fileID: 7394489358034142130}
   - component: {fileID: 1385832427}
   - component: {fileID: 697824697}
+  - component: {fileID: 8087784902965836536}
   - component: {fileID: 1928798891}
+  - component: {fileID: 4105918564656175210}
   m_Layer: 7
   m_Name: MediumEnemyShooter
   m_TagString: Untagged
@@ -198,6 +200,7 @@ MonoBehaviour:
   hasDied: 0
   speed: 5
   minimumSpeed: 3
+  speedDampValue: 0.7
   minimumAngularSpeed: 1
   angularSpeed: 1.8
   currentSpeed: 0
@@ -217,6 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b7c8a3bc16fe64d8bbac9b21056be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedDampValue: 0
 --- !u!114 &697824697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +250,20 @@ MonoBehaviour:
     useImpactEffect: 1
     impactEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
     impactSize: {x: 0.2, y: 0.2, z: 0.2}
+--- !u!114 &8087784902965836536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394489358034142158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd379caad6dd4609a05a76f96b022f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackState: {fileID: 1928798891}
+  underCommandState: {fileID: 4105918564656175210}
 --- !u!114 &1928798891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +281,20 @@ MonoBehaviour:
   minimumDistance: 2.5
   minimumCirclingDistance: 9
   maximumCirclingDistance: 18
+--- !u!114 &4105918564656175210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394489358034142158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 928be6882f174a0a8a1279c0882e5aa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyBehaviors: {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!1 &7394489358069991528
 GameObject:
   m_ObjectHideFlags: 0

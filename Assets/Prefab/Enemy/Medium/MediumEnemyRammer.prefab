@@ -129,8 +129,9 @@ GameObject:
   - component: {fileID: 3539584249148712590}
   - component: {fileID: 3539584249148712591}
   - component: {fileID: 6305499048753347286}
+  - component: {fileID: 7573543990141590463}
   - component: {fileID: 1639349069826391703}
-  - component: {fileID: 8037084307669152805}
+  - component: {fileID: 7997285157128908810}
   m_Layer: 7
   m_Name: MediumEnemyRammer
   m_TagString: Untagged
@@ -239,6 +240,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedDampValue: 0
+--- !u!114 &7573543990141590463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3539584249148712691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd379caad6dd4609a05a76f96b022f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackState: {fileID: 1639349069826391703}
+  underCommandState: {fileID: 7997285157128908810}
 --- !u!114 &1639349069826391703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,7 +272,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   ramDamage: 10
---- !u!114 &8037084307669152805
+--- !u!114 &7997285157128908810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -266,7 +281,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3539584249148712691}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 745a52ba88f65ae44b3195f568570d34, type: 3}
+  m_Script: {fileID: 11500000, guid: 928be6882f174a0a8a1279c0882e5aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackState: {fileID: 3539584249148712591}
+  enemyBehaviors: {fileID: 0}
+  enemy: {fileID: 0}
