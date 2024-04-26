@@ -7,9 +7,9 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace EnemyScript.Medium.MediumEnemyCommander {
-    public class MediumCommanderAttackStateMachine : StateMachine<MediumCommanderAttackStateMachine.EnemyState> {
-        [ReadOnly] public EnemyBehaviors enemyBehaviors;
-        [ReadOnly] public Enemy enemy;
+    public class MediumCommanderAttackStateMachine : StateMachine<MediumCommanderAttackStateMachine.EnemyState> { 
+        public EnemyBehaviors enemyBehaviors;
+        public Enemy enemy;
 
         [TitleGroup("Strafe Settings")] 
         public float minimumDistance;
@@ -38,8 +38,7 @@ namespace EnemyScript.Medium.MediumEnemyCommander {
         }
 
         protected override void SetupRef() {
-            enemy = GetComponentInParent<Enemy>();
-            enemyBehaviors = GetComponentInParent<EnemyBehaviors>();
+     
         }
         
         public Vector2 PredictPlayerPosition(float framePredicted = 1) {

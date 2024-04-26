@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace EnemyScript.Medium.MediumEnemyTroop {
     public class EnemyTroopStateMachine : StateMachine<EnemyTroopStateMachine.EnemyState> {
-        [ReadOnly] public EnemyBehaviors enemyBehaviors;
-        [ReadOnly] public Enemy enemy;
+        public EnemyBehaviors enemyBehaviors;
+        public Enemy enemy;
         
         public enum EnemyState {
         }
@@ -16,8 +16,6 @@ namespace EnemyScript.Medium.MediumEnemyTroop {
         }
 
         protected override void SetupRef() {
-            enemy = GetComponent<Enemy>();
-            enemyBehaviors = GetComponent<EnemyBehaviors>();
         }
     }
 }

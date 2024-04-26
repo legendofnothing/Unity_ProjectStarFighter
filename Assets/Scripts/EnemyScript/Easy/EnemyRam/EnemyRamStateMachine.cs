@@ -6,8 +6,8 @@ using UnityEngine;
 
 namespace EnemyScript.Easy.EnemyRam {
     public class EnemyRamStateMachine : StateMachine<EnemyRamStateMachine.EnemyState> {
-        [ReadOnly] public EnemyBehaviors enemyBehaviors;
-        [ReadOnly] public Enemy enemy;
+        public EnemyBehaviors enemyBehaviors;
+        public Enemy enemy;
 
         [TitleGroup("Config")] 
         public LayerMask playerLayer;
@@ -23,8 +23,6 @@ namespace EnemyScript.Easy.EnemyRam {
         }
 
         protected override void SetupRef() {
-            enemy = GetComponent<Enemy>();
-            enemyBehaviors = GetComponent<EnemyBehaviors>();
         }
 
         private void OnCollisionEnter2D(Collision2D other) {

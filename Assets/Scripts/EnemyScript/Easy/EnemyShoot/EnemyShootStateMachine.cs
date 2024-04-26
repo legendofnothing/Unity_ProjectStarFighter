@@ -6,8 +6,8 @@ using UnityEngine.Serialization;
 
 namespace EnemyScript.Easy.EnemyShoot {
     public class EnemyShootStateMachine : StateMachine<EnemyShootStateMachine.EnemyState> {
-        [ReadOnly] public EnemyBehaviors enemyBehaviors;
-        [ReadOnly] public Enemy enemy;
+        public EnemyBehaviors enemyBehaviors;
+        public Enemy enemy;
         
         [TitleGroup("Config")] 
         public float minimumDistance;
@@ -30,8 +30,6 @@ namespace EnemyScript.Easy.EnemyShoot {
         }
 
         protected override void SetupRef() {
-            enemy = GetComponent<Enemy>();
-            enemyBehaviors = GetComponent<EnemyBehaviors>();
         }
     }
 }

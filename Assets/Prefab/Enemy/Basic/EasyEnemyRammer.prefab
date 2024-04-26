@@ -250,8 +250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a88f7d7d49b1c64d9b1fe8fa7a4fe65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBehaviors: {fileID: 0}
-  enemy: {fileID: 0}
+  enemyBehaviors: {fileID: 6305499048753347286}
+  enemy: {fileID: 3539584249148712591}
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
