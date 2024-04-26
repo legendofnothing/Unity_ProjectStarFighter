@@ -1,5 +1,6 @@
 using EnemyScript.Easy.EnemyShoot.States;
 using EnemyScript.Medium.MediumEnemyCommander.States;
+using EnemyScript.Medium.MediumEnemyCommander.States.Attacking;
 using PlayerScript;
 using Sirenix.OdinInspector;
 using StateMachine;

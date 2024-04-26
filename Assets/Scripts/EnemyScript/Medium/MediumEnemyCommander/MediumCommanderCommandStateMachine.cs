@@ -12,10 +12,7 @@ namespace EnemyScript.Medium.MediumEnemyCommander {
         public Enemy enemy;
         
         public enum EnemyState {
-            Idle,
-            Strafing,
-            Resetting,
-            Circling,
+  
         }
         
         protected override EnemyState SetupState() {

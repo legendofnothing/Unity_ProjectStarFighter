@@ -1,15 +1,17 @@
-﻿using PlayerScript;
-using StateMachine;
+﻿using StateMachine;
 using UnityEngine;
 
-namespace EnemyScript.Medium.MediumEnemyCommander.States {
+namespace EnemyScript.Medium.MediumEnemyCommander.States.Attacking {
     public class MediumCommanderStrafe : MediumCommanderState {
+        private float _lastHp;
+        
         public MediumCommanderStrafe(MediumCommanderAttackStateMachine.EnemyState key, StateMachine<MediumCommanderAttackStateMachine.EnemyState> stateMachine) : base(key, stateMachine) {
         }
 
         public override void OnEnter() {
             _esm.enemy.currentAngularSpeed = _esm.enemy.angularSpeed;
             _esm.enemy.currentSpeed = _esm.enemy.minimumSpeed;
+            _lastHp = _esm.enemy.currentHp;
         }
 
         public override void OnExit() {
@@ -35,6 +37,10 @@ namespace EnemyScript.Medium.MediumEnemyCommander.States {
             _esm.enemy.currentSpeed = lerpedSpeed;
             _esm
                 .enemyBehaviors.FlyForward(_esm.enemy.currentSpeed); 
+            
+            if (_lastHp > _esm.enemy.currentHp) {
+                _esm.SwitchState(MediumCommanderAttackStateMachine.EnemyState.Resetting);
+            }
         }
     }
 }

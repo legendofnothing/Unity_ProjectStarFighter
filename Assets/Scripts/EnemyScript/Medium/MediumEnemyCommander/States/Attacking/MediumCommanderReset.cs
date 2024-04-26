@@ -1,8 +1,7 @@
-﻿using DG.Tweening;
-using StateMachine;
+﻿using StateMachine;
 using UnityEngine;
 
-namespace EnemyScript.Medium.MediumEnemyCommander.States {
+namespace EnemyScript.Medium.MediumEnemyCommander.States.Attacking {
     public class MediumCommanderReset : MediumCommanderState {
         private float _distanceThreshold;
         private int _circlingDirection;

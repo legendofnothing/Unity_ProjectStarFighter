@@ -1,7 +1,7 @@
 ﻿using StateMachine;
 using UnityEngine;
 
-namespace EnemyScript.Medium.MediumEnemyCommander.States {
+namespace EnemyScript.Medium.MediumEnemyCommander.States.Attacking {
     public class MediumCommanderCircling : MediumCommanderState {
         private float _lastHp;
         
