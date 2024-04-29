@@ -41,6 +41,7 @@ namespace EnemyScript.Medium.MediumEnemyCommander.States.Attacking {
                 _esm.enemy.currentSpeed = _esm.enemy.speed;
                 var choice = Random.Range(0, 2);
                 _esm.SwitchState(choice == 0 ? MediumCommanderAttackStateMachine.EnemyState.Strafing : MediumCommanderAttackStateMachine.EnemyState.Circling);
+                _esm.commander.SwitchState(Commander.Troop.State.Command);
             }
         }
     }

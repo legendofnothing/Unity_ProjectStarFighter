@@ -13,7 +13,7 @@ namespace EnemyScript.Medium.MediumEnemyTroop.States {
         }
 
         public override void OnUpdate() {
-            Debug.Log("idling");
+            
         }
     }
 }

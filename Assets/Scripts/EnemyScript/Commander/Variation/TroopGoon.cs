@@ -2,7 +2,7 @@
 
 namespace EnemyScript.Commander.Variation {
     public abstract class TroopGoon : Troop {
-        protected override void OnStart() {
+        protected override void OnAwake() {
             this.AddListener(EventType.SendCommand,param => RespondToCall((TroopCommand) param));
             if (!commander) {
                 SwitchState(State.Attack);

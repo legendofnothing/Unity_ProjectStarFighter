@@ -1,6 +1,7 @@
 using EnemyScript.Easy.EnemyShoot.States;
 using EnemyScript.Medium.MediumEnemyCommander.States;
 using EnemyScript.Medium.MediumEnemyCommander.States.Attacking;
+using EnemyScript.Medium.Troop;
 using PlayerScript;
 using Sirenix.OdinInspector;
 using StateMachine;
@@ -11,6 +12,7 @@ namespace EnemyScript.Medium.MediumEnemyCommander {
     public class MediumCommanderAttackStateMachine : StateMachine<MediumCommanderAttackStateMachine.EnemyState> { 
         public EnemyBehaviors enemyBehaviors;
         public Enemy enemy;
+        public MediumCommander commander;
 
         [TitleGroup("Strafe Settings")] 
         public float minimumDistance;

@@ -9,13 +9,20 @@ namespace EnemyScript.Medium.MediumEnemyTroop {
         public EnemyBehaviors enemyBehaviors;
         public Enemy enemy;
         
+        [TitleGroup("Observing Config")] 
+        public float minimumObservingDistance = 8f;
+        public float maximumObservingDistance = 12f;
+        public float dangerDistance = 5f;
+        
         public enum EnemyState {
             Idle,
+            Observing,
         }
             
         protected override EnemyState SetupState() {
             states[EnemyState.Idle] = new EnemyTroopIdle(EnemyState.Idle, this);
-            return EnemyState.Idle;
+            states[EnemyState.Observing] = new EnemyTroopObserving(EnemyState.Observing, this);
+            return EnemyState.Observing;
         }
 
         protected override void SetupRef() {

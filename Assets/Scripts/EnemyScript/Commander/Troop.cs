@@ -25,24 +25,30 @@ namespace EnemyScript.Commander {
         
         protected Troop commander;
         protected Enemy self;
+        protected State currentState;
 
         private void Start() {
-            attackState.enabled = false;
-            commandState.enabled = false;
             self = GetComponent<Enemy>();
             OnStart();
         }
 
+        private void Awake() {
+            OnAwake();
+        }
+
         protected abstract void OnStart();
+        protected abstract void OnAwake();
         public abstract void OnDeath();
 
-        protected void SwitchState(State state) {
+        public void SwitchState(State state) {
             switch (state) {
                 case State.Attack:
+                    currentState = State.Attack;
                     if (!attackState.enabled) attackState.enabled = true;
                     commandState.enabled = false;
                     break;
                 case State.Command:
+                    currentState = State.Command;
                     if (!commandState.enabled) commandState.enabled = true;
                     attackState.enabled = false;
                     break;

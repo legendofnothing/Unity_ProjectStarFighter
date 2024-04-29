@@ -13,7 +13,7 @@ namespace EnemyScript.Medium.MediumEnemyCommander.States.Commanding {
         }
 
         public override void OnUpdate() {
-            Debug.Log("idling");
+
         }
     }
 }

@@ -19,5 +19,9 @@ namespace EnemyScript.Medium.Troop {
                     break;
             }
         }
+
+        protected override void OnStart() {
+            
+        }
     }
 }

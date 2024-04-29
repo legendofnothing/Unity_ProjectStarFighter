@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBehaviors: {fileID: 8962849391832365900}
   enemy: {fileID: 1944694036408067861}
+  commander: {fileID: 8343989144743107542}
   minimumDistance: 4
   predictedFrames: 10
   minimumSafeDistance: 10
@@ -428,6 +429,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBehaviors: {fileID: 8962849391832365900}
   enemy: {fileID: 1944694036408067861}
+  commander: {fileID: 8343989144743107542}
+  minimumObservingDistance: 15
+  maximumObservingDistance: 25
+  dangerDistance: 5
 --- !u!1 &5779800318478737441
 GameObject:
   m_ObjectHideFlags: 0

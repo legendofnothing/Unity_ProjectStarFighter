@@ -1,13 +1,17 @@
-﻿using Core;
+﻿using System;
+using Core;
 using Core.Events;
 using DG.Tweening;
 using EnemyScript.Commander;
 using EnemyScript.Commander.Variation;
+using EnemyScript.Medium.MediumEnemyCommander;
+using EnemyScript.Medium.MediumEnemyTroop;
 using UnityEngine;
 
 namespace EnemyScript.Medium.Troop {
     public class MediumCommander : TroopCommander {
         private bool _isRunning;
+        private bool _locked;
         
         protected override void OnStart() {
             SendCommand(new TroopCommand {
@@ -28,6 +32,9 @@ namespace EnemyScript.Medium.Troop {
             }
         }
 
+        protected override void OnAwake() {
+        }
+
         public override void OnDeath() {
             
         }
@@ -46,12 +53,46 @@ namespace EnemyScript.Medium.Troop {
         }
 
         protected override void OnTroopAdded() {
+            _locked = false;
         }
 
         protected override void OnTroopRemoved() {
             if (troopCount <= 0) {
                 SwitchState(State.Attack);
             }
+
+            _locked = true;
+        }
+
+        public void MakeDecision(State requestState) {
+            if (_locked) return;
+            switch (requestState) {
+                case State.Attack:
+                    if (currentState == State.Attack) return;
+                    
+                    if (attackState is MediumCommanderAttackStateMachine esm) {
+                        esm.SwitchState(MediumCommanderAttackStateMachine.EnemyState.Resetting);
+                    }
+                    
+                    foreach (var troop in troops) {
+                        troop.SwitchState(State.Command);
+                        var casted = (EnemyTroopStateMachine) troop.commandState;
+                        casted.SwitchState(EnemyTroopStateMachine.EnemyState.Observing);
+                    }
+                    break;
+                case State.Command:
+                    if (currentState == State.Command) return;
+                    
+                    if (commandState is MediumCommanderCommandStateMachine esn) {
+                        esn.SwitchState(MediumCommanderCommandStateMachine.EnemyState.Observing);
+                    }
+                    
+                    foreach (var troop in troops) {
+                        troop.SwitchState(State.Attack);
+                    }
+                    break;
+            }
+            SwitchState(requestState);
         }
     }
 }

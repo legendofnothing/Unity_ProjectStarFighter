@@ -1,10 +1,20 @@
+using EnemyScript.Commander.Variation;
 using EnemyScript.Medium.MediumEnemyCommander.States.Commanding;
+using EnemyScript.Medium.Troop;
+using Sirenix.OdinInspector;
 using StateMachine;
 
 namespace EnemyScript.Medium.MediumEnemyCommander {
     public class MediumCommanderCommandStateMachine : StateMachine<MediumCommanderCommandStateMachine.EnemyState> {
         public EnemyBehaviors enemyBehaviors;
         public Enemy enemy;
+        public MediumCommander commander;
+
+        [TitleGroup("Observing Config")] 
+        public float minimumObservingDistance = 8f;
+        public float maximumObservingDistance = 12f;
+        public float dangerDistance = 5f;
+        
         
         public enum EnemyState {
             Idle,

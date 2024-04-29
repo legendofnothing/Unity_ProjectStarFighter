@@ -11,22 +11,26 @@ namespace StateMachine {
         [ShowInInspector] [ReadOnly] protected State<TEState> currentState;
         protected TEState entryStateKey;
         protected bool canRun = true;
+        protected bool hasDisabled = false;
         public bool CanRun {
             get => canRun;
             set => canRun = value;
         }
 
-        private void Start() {
+        private void Awake() {
             SetupRef();
             
             entryStateKey = SetupState();
             try {
                 currentState = states[entryStateKey];
-                currentState?.OnEnter();
             }
             catch (Exception e) {
                 NCLogger.Log(e.Message);
             }
+        }
+
+        private void Start() {
+            currentState?.OnEnter();
         }
 
         private void Update() {
@@ -42,7 +46,7 @@ namespace StateMachine {
             currentState = nextState;
             currentState.OnEnter();
         }
-        
+
         /// <summary>
         /// Setup tree, return the state that will be the entry
         /// </summary>

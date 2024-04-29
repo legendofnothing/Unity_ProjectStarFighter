@@ -2,9 +2,9 @@
 using StateMachine;
 using UnityEngine;
 
-namespace EnemyScript.Medium.MediumEnemyCommander.States.Commanding {
-    public class MediumCommanderObserving : MediumCommanderCommandState{
-        public MediumCommanderObserving(MediumCommanderCommandStateMachine.EnemyState key, StateMachine<MediumCommanderCommandStateMachine.EnemyState> stateMachine) : base(key, stateMachine) {
+namespace EnemyScript.Medium.MediumEnemyTroop.States {
+    public class EnemyTroopObserving : EnemyCommandState {
+        public EnemyTroopObserving(EnemyTroopStateMachine.EnemyState key, StateMachine<EnemyTroopStateMachine.EnemyState> stateMachine) : base(key, stateMachine) {
         }
 
         public override void OnEnter() {
@@ -13,11 +13,9 @@ namespace EnemyScript.Medium.MediumEnemyCommander.States.Commanding {
         }
 
         public override void OnExit() {
-            
         }
 
         public override void OnUpdate() {
-            _esm.enemy.currentSpeed = _esm.enemy.minimumSpeed;
             _esm.enemyBehaviors.LookAt(Player.Instance.transform.position, _esm.enemy.angularSpeed);
             var dist = _esm.enemy.GetDistanceToPlayer;
 
@@ -27,9 +25,10 @@ namespace EnemyScript.Medium.MediumEnemyCommander.States.Commanding {
             else if (dist <= _esm.minimumObservingDistance && dist > _esm.dangerDistance) {
                 _esm.enemyBehaviors.Fly(_esm.enemy.currentSpeed, -_esm.transform.up);
             } 
-            else if (dist <= _esm.dangerDistance) {
-                _esm.commander.MakeDecision(Commander.Troop.State.Attack);
-            }
+            
+            if (dist <= _esm.dangerDistance) {
+                _esm.enemy.currentSpeed = _esm.enemy.speed;
+            } else _esm.enemy.currentSpeed = _esm.enemy.minimumSpeed;
         }
     }
 }
