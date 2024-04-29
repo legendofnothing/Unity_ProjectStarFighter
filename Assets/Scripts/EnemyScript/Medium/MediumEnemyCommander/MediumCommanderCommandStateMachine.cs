@@ -1,10 +1,5 @@
-using EnemyScript.Easy.EnemyShoot.States;
-using EnemyScript.Medium.MediumEnemyCommander.States;
-using PlayerScript;
-using Sirenix.OdinInspector;
+using EnemyScript.Medium.MediumEnemyCommander.States.Commanding;
 using StateMachine;
-using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace EnemyScript.Medium.MediumEnemyCommander {
     public class MediumCommanderCommandStateMachine : StateMachine<MediumCommanderCommandStateMachine.EnemyState> {
@@ -12,11 +7,14 @@ namespace EnemyScript.Medium.MediumEnemyCommander {
         public Enemy enemy;
         
         public enum EnemyState {
-  
+            Idle,
+            Observing,
         }
         
         protected override EnemyState SetupState() {
-            return 0;
+            states[EnemyState.Idle] = new MediumCommanderIdle(EnemyState.Idle, this);
+            states[EnemyState.Observing] = new MediumCommanderObserving(EnemyState.Observing, this);
+            return EnemyState.Observing;
         }
 
         protected override void SetupRef() {

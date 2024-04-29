@@ -1,4 +1,5 @@
 using Effect;
+using EnemyScript.Commander;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -24,14 +25,17 @@ namespace EnemyScript {
         public GameObject explosionEffect;
 
         [ShowIf(nameof(useExplosionEffect))] public Vector3 explosionSize = Vector3.one;
-
         private EnemyBehaviors _enemyBehaviors;
+        private Troop _troop;
 
         private void Awake() {
             currentHp = hp;
             currentSpeed = speed;
             _enemyBehaviors = GetComponent<EnemyBehaviors>();
             _enemyBehaviors.speedDampValue = speedDampValue;
+            if (gameObject.TryGetComponent<Troop>(out var troop)) {
+                _troop = troop;
+            }
         }
 
         public void TakeDamage(float amount) {
@@ -47,7 +51,8 @@ namespace EnemyScript {
                 var explosionInst = Instantiate(explosionEffect, transform.position, Quaternion.identity);
                 explosionInst.GetComponent<EffectBase>().Init(explosionSize);
             }
-
+            
+            if (_troop) _troop.OnDeath();
             Destroy(gameObject);
         }
 

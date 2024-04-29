@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace EnemyScript.Medium.MediumEnemyCommander.States.Attacking {
-    public class MediumCommanderStrafe : MediumCommanderState {
+    public class MediumCommanderStrafe : MediumCommanderAttackState {
         private float _lastHp;
         
         public MediumCommanderStrafe(MediumCommanderAttackStateMachine.EnemyState key, StateMachine<MediumCommanderAttackStateMachine.EnemyState> stateMachine) : base(key, stateMachine) {

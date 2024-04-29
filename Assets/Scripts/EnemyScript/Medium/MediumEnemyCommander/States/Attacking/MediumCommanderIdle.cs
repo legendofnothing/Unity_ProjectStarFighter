@@ -1,7 +1,7 @@
 ﻿using StateMachine;
 
 namespace EnemyScript.Medium.MediumEnemyCommander.States.Attacking {
-    public class MediumCommanderIdle : MediumCommanderState {
+    public class MediumCommanderIdle : MediumCommanderAttackState {
         public MediumCommanderIdle(MediumCommanderAttackStateMachine.EnemyState key, StateMachine<MediumCommanderAttackStateMachine.EnemyState> stateMachine) : base(key, stateMachine) {
         }
 

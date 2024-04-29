@@ -5,7 +5,7 @@ using UnityEngine;
 namespace EnemyScript.Commander {
     public struct TroopCommand {
         public TroopCommander.Commands command;
-        public Enemy commander;
+        public Troop commander;
     }
     
     public abstract class Troop : MonoBehaviour {
@@ -17,31 +17,33 @@ namespace EnemyScript.Commander {
         public enum Commands {
             LookForTroop,
             Attack,
+            Defend,
         }
 
         public MonoBehaviour attackState;
         public MonoBehaviour commandState;
         
-        protected Enemy commander;
+        protected Troop commander;
         protected Enemy self;
 
         private void Start() {
             attackState.enabled = false;
             commandState.enabled = false;
-            OnStart();
             self = GetComponent<Enemy>();
+            OnStart();
         }
 
         protected abstract void OnStart();
+        public abstract void OnDeath();
 
         protected void SwitchState(State state) {
             switch (state) {
                 case State.Attack:
-                    attackState.enabled = true;
+                    if (!attackState.enabled) attackState.enabled = true;
                     commandState.enabled = false;
                     break;
                 case State.Command:
-                    commandState.enabled = true;
+                    if (!commandState.enabled) commandState.enabled = true;
                     attackState.enabled = false;
                     break;
             }

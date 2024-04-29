@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace EnemyScript.Medium.MediumEnemyCommander.States.Attacking {
-    public class MediumCommanderCircling : MediumCommanderState {
+    public class MediumCommanderCircling : MediumCommanderAttackState {
         private float _lastHp;
         
         public MediumCommanderCircling(MediumCommanderAttackStateMachine.EnemyState key, StateMachine<MediumCommanderAttackStateMachine.EnemyState> stateMachine) : base(key, stateMachine) {

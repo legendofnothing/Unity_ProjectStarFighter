@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace EnemyScript.Medium.MediumEnemyCommander.States.Attacking {
-    public class MediumCommanderReset : MediumCommanderState {
+    public class MediumCommanderReset : MediumCommanderAttackState {
         private float _distanceThreshold;
         private int _circlingDirection;
         private float _timePassed;
