@@ -430,9 +430,9 @@ MonoBehaviour:
   enemyBehaviors: {fileID: 8962849391832365900}
   enemy: {fileID: 1944694036408067861}
   commander: {fileID: 8343989144743107542}
-  minimumObservingDistance: 15
-  maximumObservingDistance: 25
-  dangerDistance: 5
+  minimumObservingDistance: 10
+  maximumObservingDistance: 15
+  dangerDistance: 8
 --- !u!1 &5779800318478737441
 GameObject:
   m_ObjectHideFlags: 0

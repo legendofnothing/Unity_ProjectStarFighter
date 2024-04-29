@@ -17,7 +17,7 @@ namespace EnemyScript.Commander {
         public enum Commands {
             LookForTroop,
             Attack,
-            Defend,
+            CommanderDead,
         }
 
         public MonoBehaviour attackState;
@@ -39,6 +39,7 @@ namespace EnemyScript.Commander {
         protected abstract void OnStart();
         protected abstract void OnAwake();
         public abstract void OnDeath();
+        public abstract void OnDamage();
 
         public void SwitchState(State state) {
             switch (state) {

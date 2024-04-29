@@ -41,6 +41,7 @@ namespace EnemyScript {
         public void TakeDamage(float amount) {
             if (hasDied) return;
             currentHp -= amount;
+            if (_troop) _troop.OnDamage();
             if (!(currentHp <= 0)) return;
             hasDied = true;
             Death();

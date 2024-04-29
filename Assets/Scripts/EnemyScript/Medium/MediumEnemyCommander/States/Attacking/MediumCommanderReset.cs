@@ -1,4 +1,6 @@
-﻿using StateMachine;
+﻿using DG.Tweening;
+using PlayerScript;
+using StateMachine;
 using UnityEngine;
 
 namespace EnemyScript.Medium.MediumEnemyCommander.States.Attacking {
@@ -21,7 +23,13 @@ namespace EnemyScript.Medium.MediumEnemyCommander.States.Attacking {
         }
 
         public override void OnExit() {
+            if (_esm.enemy.GetDistanceToPlayer >= _esm.minimumSafeDistance) {
+                _esm.commander.MakeDecision(Commander.Troop.State.Command);
+            }
             
+            else if (_esm.enemy.currentHp / _esm.enemy.hp < 0.7) {
+                _esm.commander.SendAllTroops();
+            }
         }
 
         public override void OnUpdate() {
@@ -40,8 +48,9 @@ namespace EnemyScript.Medium.MediumEnemyCommander.States.Attacking {
                 _locked = true;
                 _esm.enemy.currentSpeed = _esm.enemy.speed;
                 var choice = Random.Range(0, 2);
-                _esm.SwitchState(choice == 0 ? MediumCommanderAttackStateMachine.EnemyState.Strafing : MediumCommanderAttackStateMachine.EnemyState.Circling);
-                _esm.commander.SwitchState(Commander.Troop.State.Command);
+                DOVirtual.DelayedCall(0.8f, () => {
+                    _esm.SwitchState(choice == 0 ? MediumCommanderAttackStateMachine.EnemyState.Strafing : MediumCommanderAttackStateMachine.EnemyState.Circling);
+                });
             }
         }
     }
