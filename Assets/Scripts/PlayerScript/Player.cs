@@ -1,7 +1,10 @@
 using Core;
+using Core.Events;
 using Core.Patterns;
-using Unity.Collections;
+using Level;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using EventType = Core.Events.EventType;
 
 namespace PlayerScript {
     public class Player : Singleton<Player> {
@@ -47,7 +50,7 @@ namespace PlayerScript {
         }
 
         public void Death() {
-            Debug.Log("death");
+            this.FireEvent(EventType.OnGameStateChange, GameState.GameOver);
             _hasDied = true;
         }
 
