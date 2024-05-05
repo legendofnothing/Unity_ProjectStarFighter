@@ -1,34 +1,151 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace BehaviorTree {
+    #region Behavior Tree
+    
+        public class BehaviorTree : Node {
+            public BehaviorTree(List<Node> children, string name) : base(children, name) { }
+
+            public override State Update() {
+                while (currentChild < children.Count) {
+                    var status = children[currentChild].Update();
+                    if (status != State.Success) {
+                        return status;
+                    }
+
+                    GoNextNode();
+                }
+
+                Reset();
+                return State.Success;
+            }
+            
+            public override void OnEnter() { }
+            public override void OnExit() { }
+        }
+        
+    #endregion
+
+    #region Composite Nodes
+        public class Sequence : Node {
+            public Sequence(List<Node> children, string name) : base(children, name) { }
+
+            public override State Update() {
+                if (currentChild < children.Count) {
+                    switch (children[currentChild].Update()) {
+                        case State.Running:
+                            return State.Running;
+                        case State.Failure:
+                            Reset();
+                            return State.Failure;
+                        case State.Success:
+                            GoNextNode();
+                            return currentChild == children.Count ? State.Success : State.Running;
+                    }
+                }
+                
+                Reset();
+                return State.Success;
+            }
+            
+            public override void OnEnter() { }
+            public override void OnExit() { }
+        }
+
+        public class Selector : Node {
+            public Selector(List<Node> children, string name) : base(children, name) { }
+            
+            public override State Update() {
+                if (currentChild < children.Count) {
+                    switch (children[currentChild].Update()) {
+                        case State.Running:
+                            return State.Running;
+                        case State.Success:
+                            Reset();
+                            return State.Success;
+                        case State.Failure:
+                            GoNextNode();
+                            return State.Running;
+                    }
+                }
+                
+                Reset();
+                return State.Success;
+            }
+
+            public override void OnEnter() { }
+            public override void OnExit() { }
+        }
+        
+    #endregion
+
+    #region Node
+
+    public class Decorator : Node {
+        private readonly IExecution _execution;
+        private readonly MonoBehaviour _monoBehaviour; // Assign this if want to execute coroutines
+
+        public Decorator(string name, IExecution execution, MonoBehaviour monoBehaviour = null) : base(null, name) {
+            _execution = execution;
+            _monoBehaviour = monoBehaviour;
+        }
+
+        public override State Update() {
+            return _execution.Update();
+        }
+
+        public override void Reset() {
+            _execution.Reset();
+        }
+
+        public override void OnEnter() {
+            _execution.OnEnter();
+        }
+
+        public override void OnExit() {
+            _execution.OnExit();
+        }
+    }
+
     public abstract class Node {
         public enum State {
-            Running,
             Success,
-            Failure 
-        }
-        
-        protected State state = State.Running;
-        protected bool hasNodeStarted; 
-        
-        public State Update() {
-            if (!hasNodeStarted) {
-                OnEnter();
-                hasNodeStarted = true;
-            }
-
-            state = OnUpdate();
-
-            if (state is State.Failure or State.Success) {
-                OnExit();
-                hasNodeStarted = false;
-            }
-
-            return state;
+            Failure,
+            Running
         }
 
-        protected abstract void OnEnter();
-        protected abstract State OnUpdate();
-        protected abstract void OnExit();
+        public readonly string name;
+        public readonly List<Node> children = new();
+        protected int currentChild;
+
+        public Node(List<Node> children, string name = "Node") {
+            this.name = name;
+            this.children = children;
+        }
+        
+        public virtual State Update() {
+            return children[currentChild].Update();
+        }
+
+        public abstract void OnEnter();
+        public abstract void OnExit();
+
+        public virtual void Reset() {
+            currentChild = 0;
+            foreach (var child in children) {
+                child.Reset();
+            }
+        }
+        
+        public void GoNextNode() {
+            children[currentChild].OnExit();
+            currentChild++;
+            if (currentChild < children.Count) {
+                children[currentChild].OnEnter();
+            }
+        }
     }
+
+    #endregion
 }
