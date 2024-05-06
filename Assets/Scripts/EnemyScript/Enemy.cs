@@ -25,14 +25,14 @@ namespace EnemyScript {
         public GameObject explosionEffect;
 
         [ShowIf(nameof(useExplosionEffect))] public Vector3 explosionSize = Vector3.one;
-        private EnemyBehaviors _enemyBehaviors;
+        protected EnemyBehaviors enemyBehaviors;
         private Troop _troop;
 
         private void Awake() {
             currentHp = hp;
             currentSpeed = speed;
-            _enemyBehaviors = GetComponent<EnemyBehaviors>();
-            _enemyBehaviors.speedDampValue = speedDampValue;
+            enemyBehaviors = GetComponent<EnemyBehaviors>();
+            enemyBehaviors.speedDampValue = speedDampValue;
             if (gameObject.TryGetComponent<Troop>(out var troop)) {
                 _troop = troop;
             }
