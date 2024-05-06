@@ -1,40 +1,87 @@
 ﻿using System;
+using System.Collections.Generic;
+using BehaviorTree;
 using Core;
 using Core.Events;
 using DG.Tweening;
 using EnemyScript.Commander;
 using EnemyScript.Commander.Variation;
 using EnemyScript.Medium.MediumEnemyCommander;
-using EnemyScript.Medium.MediumEnemyTroop;
 using UnityEngine;
+using Sequence = BehaviorTree.Sequence;
 
 namespace EnemyScript.Medium.Troop {
     public class MediumCommander : TroopCommander {
         private bool _isRunning;
         private bool _locked;
+        private global::BehaviorTree.BehaviorTree _bt;
+        private Enemy _enemy;
+
+        private bool _provoked;
+        private bool _underProvoking;
+        
+        protected override void OnAwake() {
+            _enemy = GetComponent<Enemy>();
+        }
         
         protected override void OnStart() {
             SendCommand(new TroopCommand {
                 command = Commands.LookForTroop,
                 commander = this
             });
-
-            if (troops.Count <= 0) {
-                SwitchState(State.Attack);
-            }
             
-            else {
-                SwitchState(State.Command);
-                SendCommand(new TroopCommand {
-                    commander = this,
-                    command = Commands.Attack
-                });
-            }
+            DisableAllState();
+            
+            _bt = new global::BehaviorTree.BehaviorTree(new List<Node> {
+                new Selector(new List<Node> {
+                    
+                    new Sequence(new List<Node> {
+                        new Decorator(new Condition(() => troopCount <= 0)),
+                        new Decorator(new Actions(() => {
+                            SwitchState(State.Attack);
+                        }))
+                    }),
+                    
+                    new Selector(new List<Node> {
+                        new Sequence(new List<Node> {
+                            new Decorator(new Condition(() => {
+                                return _enemy.GetDistanceToPlayer <= 8f || _provoked;
+                            })),
+                            
+                            new Decorator(new Actions(() => {
+                                if (_provoked && !_underProvoking) {
+                                    _underProvoking = true;
+                                    
+                                    DOVirtual.DelayedCall(10f, () => {
+                                        _provoked = false;
+                                        _underProvoking = false;
+                                    });   
+                                    
+                                    if (attackState is MediumCommanderAttackStateMachine _esm) {
+                                        _esm.SwitchState(MediumCommanderAttackStateMachine.EnemyState.Resetting);
+                                    }
+                                    
+                                    SwitchState(State.Attack);
+                                    SendCommand(new TroopCommand {
+                                        command = Commands.Attack,
+                                        commander = this
+                                    });
+                                }
+                            }))
+                        }),
+                        
+                        new Decorator(new Actions(() => {
+                            SwitchState(State.Command);
+                            SendCommand(new TroopCommand {
+                                command = Commands.Attack,
+                                commander = this
+                            });
+                        }))
+                    })
+                })
+            });
         }
-
-        protected override void OnAwake() {
-        }
-
+        
         public override void OnDeath() {
             SendCommand(new TroopCommand {
                 commander = this,
@@ -43,13 +90,12 @@ namespace EnemyScript.Medium.Troop {
         }
 
         public override void OnDamage() {
-            if (currentState == State.Command) {
-                MakeDecision(State.Attack);
-            }
+            _provoked = true;
         }
 
         private void Update() {
             _isRunning = true;
+            _bt.Update();
         }
 
         private void OnDrawGizmos() {
@@ -66,64 +112,7 @@ namespace EnemyScript.Medium.Troop {
         }
 
         protected override void OnTroopRemoved() {
-            if (troopCount <= 0) {
-                SwitchState(State.Attack);
-                _locked = true;
-            }
-        }
-
-        public void MakeDecision(State requestState, MediumCommanderAttackStateMachine.EnemyState commanderAttackState = MediumCommanderAttackStateMachine.EnemyState.Resetting) {
-            if (_locked) return;
-            if (troopCount <= 0) {
-                if (currentState == State.Attack) return;
-                    
-                if (attackState is MediumCommanderAttackStateMachine esm) {
-                    esm.SwitchState(commanderAttackState);
-                }
-            }
-            else {
-                switch (requestState) {
-                    case State.Attack:
-                        if (currentState == State.Attack) return;
-                        
-                        if (attackState is MediumCommanderAttackStateMachine esm) {
-                            esm.SwitchState(commanderAttackState);
-                        }
-                        
-                        foreach (var troop in troops) {
-                            troop.SwitchState(State.Command);
-                            var casted = (EnemyTroopStateMachine) troop.commandState;
-                            casted.SwitchState(EnemyTroopStateMachine.EnemyState.Observing);
-                        }
-                        SwitchState(requestState);
-                        break;
-                    case State.Command:
-                        if (currentState == State.Command) return;
-                        
-                        if (commandState is MediumCommanderCommandStateMachine esn) {
-                            esn.SwitchState(MediumCommanderCommandStateMachine.EnemyState.Observing);
-                        }
-                        
-                        foreach (var troop in troops) {
-                            troop.SwitchState(State.Attack);
-                        }
-                        SwitchState(requestState);
-                        break;
-                }
-            }
-        }
-
-        public void SendAllTroops() {
-            if (troops.Count <= 0) return;
-            foreach (var troop in troops) {
-                troop.SwitchState(State.Attack);
-            }
-        }
-
-        public void RequestToBattle() {
-            if (self.currentHp / self.hp >= 0.4f) {
-                MakeDecision(State.Attack, MediumCommanderAttackStateMachine.EnemyState.Strafing);
-            };
+            
         }
     }
 }

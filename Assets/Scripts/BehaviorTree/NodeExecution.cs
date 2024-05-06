@@ -22,10 +22,10 @@ namespace BehaviorTree {
     }
     
     //Fire and Forget
-    public class Action : IExecution {
-        private readonly System.Action _action;
+    public class Actions : IExecution {
+        private readonly Action _action;
             
-        public Action(System.Action action) {
+        public Actions(Action action) {
             _action = action;
         }
             

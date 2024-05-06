@@ -23,13 +23,7 @@ namespace EnemyScript.Medium.MediumEnemyCommander.States.Attacking {
         }
 
         public override void OnExit() {
-            if (_esm.enemy.GetDistanceToPlayer >= _esm.minimumSafeDistance) {
-                _esm.commander.MakeDecision(Commander.Troop.State.Command);
-            }
             
-            else if (_esm.enemy.currentHp / _esm.enemy.hp < 0.7) {
-                _esm.commander.SendAllTroops();
-            }
         }
 
         public override void OnUpdate() {

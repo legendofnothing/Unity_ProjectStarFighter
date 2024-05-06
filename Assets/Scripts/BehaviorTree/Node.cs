@@ -5,7 +5,7 @@ namespace BehaviorTree {
     #region Behavior Tree
     
         public class BehaviorTree : Node {
-            public BehaviorTree(List<Node> children, string name) : base(children, name) { }
+            public BehaviorTree(List<Node> children) : base(children) { }
 
             public override State Update() {
                 while (currentChild < children.Count) {
@@ -29,7 +29,10 @@ namespace BehaviorTree {
 
     #region Composite Nodes
         public class Sequence : Node {
-            public Sequence(List<Node> children, string name) : base(children, name) { }
+            private bool _abortSelf;
+            public Sequence(List<Node> children, bool abortSelf = false) : base(children) {
+                _abortSelf = abortSelf;
+            }
 
             public override State Update() {
                 if (currentChild < children.Count) {
@@ -37,8 +40,13 @@ namespace BehaviorTree {
                         case State.Running:
                             return State.Running;
                         case State.Failure:
+                            if (_abortSelf) {
+                                Reset();
+                                return State.Success;
+                            }
+                            
                             Reset();
-                            return State.Failure;
+                            return State.Failure;   
                         case State.Success:
                             GoNextNode();
                             return currentChild == children.Count ? State.Success : State.Running;
@@ -54,7 +62,7 @@ namespace BehaviorTree {
         }
 
         public class Selector : Node {
-            public Selector(List<Node> children, string name) : base(children, name) { }
+            public Selector(List<Node> children) : base(children) { }
             
             public override State Update() {
                 if (currentChild < children.Count) {
@@ -86,7 +94,7 @@ namespace BehaviorTree {
         private readonly IExecution _execution;
         private readonly MonoBehaviour _monoBehaviour; // Assign this if want to execute coroutines
 
-        public Decorator(string name, IExecution execution, MonoBehaviour monoBehaviour = null) : base(null, name) {
+        public Decorator(IExecution execution, MonoBehaviour monoBehaviour = null) : base(null) {
             _execution = execution;
             _monoBehaviour = monoBehaviour;
         }
@@ -115,12 +123,10 @@ namespace BehaviorTree {
             Running
         }
 
-        public readonly string name;
         public readonly List<Node> children = new();
         protected int currentChild;
 
-        public Node(List<Node> children, string name = "Node") {
-            this.name = name;
+        public Node(List<Node> children) {
             this.children = children;
         }
         

@@ -10,6 +10,7 @@ namespace EnemyScript.Commander {
     
     public abstract class Troop : MonoBehaviour {
         public enum State {
+            None,
             Attack,
             Command
         }
@@ -42,6 +43,7 @@ namespace EnemyScript.Commander {
         public abstract void OnDamage();
 
         public void SwitchState(State state) {
+            if (!attackState && !commandState) return;
             switch (state) {
                 case State.Attack:
                     currentState = State.Attack;
@@ -54,6 +56,12 @@ namespace EnemyScript.Commander {
                     attackState.enabled = false;
                     break;
             }
+        }
+
+        public void DisableAllState() {
+            currentState = State.None;
+            if (attackState.enabled) attackState.enabled = false;
+            if (commandState.enabled) commandState.enabled = false;
         }
     }
 }

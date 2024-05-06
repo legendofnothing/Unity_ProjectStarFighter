@@ -27,9 +27,6 @@ namespace EnemyScript.Medium.MediumEnemyCommander.States.Commanding {
             else if (dist <= _esm.minimumObservingDistance && dist > _esm.dangerDistance) {
                 _esm.enemyBehaviors.Fly(_esm.enemy.currentSpeed, -_esm.transform.up);
             } 
-            else if (dist <= _esm.dangerDistance) {
-                _esm.commander.MakeDecision(Commander.Troop.State.Attack);
-            }
         }
     }
 }

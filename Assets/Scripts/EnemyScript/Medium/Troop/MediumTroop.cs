@@ -37,11 +37,6 @@ namespace EnemyScript.Medium.Troop {
             if (currentState == State.Command) {
                 SwitchState(State.Attack);
             }
-            
-            Debug.Log($"{gameObject.name} damaged");
-            if (commander is MediumCommander commanderTroop) {
-                commanderTroop.RequestToBattle();
-            }
         }
     }
 }
