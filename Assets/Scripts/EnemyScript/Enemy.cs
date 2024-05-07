@@ -33,6 +33,12 @@ namespace EnemyScript {
             currentSpeed = speed;
             enemyBehaviors = GetComponent<EnemyBehaviors>();
             enemyBehaviors.speedDampValue = speedDampValue;
+
+            minimumAngularSpeed -= Random.Range(-0.1f, 0.1f);
+            minimumSpeed -= Random.Range(-0.1f, 0.1f);
+            angularSpeed -= Random.Range(-0.1f, 0.1f);
+            speed -= Random.Range(-0.1f, 0.1f);
+            
             if (gameObject.TryGetComponent<Troop>(out var troop)) {
                 _troop = troop;
             }
@@ -47,7 +53,7 @@ namespace EnemyScript {
             Death();
         }
 
-        private void Death() {
+        protected virtual void Death() {
             if (useExplosionEffect && explosionEffect != null) {
                 var explosionInst = Instantiate(explosionEffect, transform.position, Quaternion.identity);
                 explosionInst.GetComponent<EffectBase>().Init(explosionSize);

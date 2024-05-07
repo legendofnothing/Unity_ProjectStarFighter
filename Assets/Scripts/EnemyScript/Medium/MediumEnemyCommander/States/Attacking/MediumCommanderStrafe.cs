@@ -20,7 +20,7 @@ namespace EnemyScript.Medium.MediumEnemyCommander.States.Attacking {
         public override void OnUpdate() {
             //this for weapon
             var predictedDot = _esm.enemy.GetDotToPoint(_esm.PredictPlayerPosition(_esm.predictedFrames));
-            if (predictedDot > 0.99f) {
+            if (predictedDot > 0.99f && _esm.enemy.GetDistanceToPlayer <= 30f) {
                 _esm.enemyBehaviors.FireWeapon();
             }
             

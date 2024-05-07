@@ -3,5 +3,8 @@ namespace Core.Events {
         SendCommand,
         OnPlayerOutOfBound,
         OnGameStateChange,
+        
+        //Level1 Events
+        OnTowerDestroyed,
     }
 }

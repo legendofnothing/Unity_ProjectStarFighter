@@ -1,8 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Core.Events;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using EventType = Core.Events.EventType;
 
 namespace EnemyScript.TowerScript {
     public class Tower : Enemy {
@@ -20,7 +23,8 @@ namespace EnemyScript.TowerScript {
         [Space] 
         public LayerMask detectLayer;
         public List<DeployConfig> deployConfig = new();
-        
+        [Space] public List<Turret> turrets = new();
+
         private bool _isPlayerInRange;
         private bool _canSpawn = true;
         private BehaviorTree.BehaviorTree _bt;
@@ -56,6 +60,22 @@ namespace EnemyScript.TowerScript {
             }
             yield return new WaitForSeconds(50f);
             _canSpawn = true;
+        }
+
+        public void RemoveTurret(Turret turret) {
+            if (turrets.Contains(turret)) {
+                turrets.Remove(turret);
+            }
+        }
+
+        protected override void Death() {
+            base.Death();
+            this.FireEvent(EventType.OnTowerDestroyed, this);
+            if (turrets.Count > 0) {
+                foreach (var turret in turrets) {
+                    turret.GetComponent<Enemy>().TakeDamage(9999);
+                }
+            }
         }
     }
 }

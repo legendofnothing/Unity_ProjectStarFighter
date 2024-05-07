@@ -1713,6 +1713,9 @@ MonoBehaviour:
     enemyToSpawn: {fileID: 3539584249148712691, guid: 7426c714ec35cea47879c0f9717c767a, type: 3}
   - point: {fileID: 7834312981669251850}
     enemyToSpawn: {fileID: 7394489358034142158, guid: cfd915024cbdb4941afa1e5aac812bd2, type: 3}
+  turrets:
+  - {fileID: 7834312981719808724}
+  - {fileID: 7834312982956862809}
 --- !u!114 &7834312983304330635
 MonoBehaviour:
   m_ObjectHideFlags: 0

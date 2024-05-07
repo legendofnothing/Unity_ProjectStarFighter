@@ -17,7 +17,7 @@ namespace EnemyScript.Easy.EnemyShoot.States {
             //0.5 side profile
             var dot = _enemyStateMachine.enemy.GetDotToPlayer;
             
-            if (dot > 0.98f) {
+            if (dot > 0.98f && _enemyStateMachine.enemy.GetDistanceToPlayer <= 20f) {
                 _enemyStateMachine.enemyBehaviors.FireWeapon();
             }
 

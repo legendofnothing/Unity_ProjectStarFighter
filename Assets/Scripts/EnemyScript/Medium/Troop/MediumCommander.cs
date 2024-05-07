@@ -45,7 +45,15 @@ namespace EnemyScript.Medium.Troop {
                     new Selector(new List<Node> {
                         new Sequence(new List<Node> {
                             new Decorator(new Condition(() => {
-                                return _enemy.GetDistanceToPlayer <= 8f || _provoked;
+                                if (_provoked) {
+                                    return _provoked;
+                                }
+
+                                if (_enemy.GetDistanceToPlayer <= 8f) {
+                                    _provoked = true;
+                                }
+
+                                return _provoked;
                             })),
                             
                             new Decorator(new Actions(() => {
