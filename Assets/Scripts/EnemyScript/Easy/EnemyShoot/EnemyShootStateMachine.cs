@@ -16,6 +16,8 @@ namespace EnemyScript.Easy.EnemyShoot {
         public float minimumCirclingDistance;
         public float maximumCirclingDistance;
         
+        [ReadOnly] public GameObject target;
+        
         public enum EnemyState {
             Idle,
             Attacking,

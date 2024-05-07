@@ -13,10 +13,12 @@ namespace EnemyScript.Easy.EnemyRam.States {
         }
 
         public override void OnUpdate() {
-            _enemyStateMachine
-                .enemyBehaviors.LookAt(PlayerScript.Player.Instance.transform.position, _enemyStateMachine.enemy.angularSpeed); 
-            _enemyStateMachine
-                .enemyBehaviors.FlyForward(_enemyStateMachine.enemy.currentSpeed); 
+            if (!_enemyStateMachine.target) {
+                _enemyStateMachine
+                    .enemyBehaviors.LookAt(PlayerScript.Player.Instance.transform.position, _enemyStateMachine.enemy.angularSpeed); 
+                _enemyStateMachine
+                    .enemyBehaviors.FlyForward(_enemyStateMachine.enemy.currentSpeed); 
+            }
         }
     }
 }

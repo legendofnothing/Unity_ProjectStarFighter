@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BehaviorTree;
 using Core;
 using Core.Events;
@@ -19,6 +20,7 @@ namespace EnemyScript.Medium.Troop {
 
         private bool _provoked;
         private bool _underProvoking;
+        private Tween _delayTween;
         
         protected override void OnAwake() {
             _enemy = GetComponent<Enemy>();
@@ -60,9 +62,15 @@ namespace EnemyScript.Medium.Troop {
                                 if (_provoked && !_underProvoking) {
                                     _underProvoking = true;
                                     
-                                    DOVirtual.DelayedCall(10f, () => {
+                                    _delayTween = DOVirtual.DelayedCall(10f, () => {
                                         _provoked = false;
                                         _underProvoking = false;
+                                    }).OnUpdate(() => {
+                                        if (troops.FindAll(troop => troop.currentState == State.Attack).Count >= 2 && _enemy.GetDistanceToPlayer >= 12f) {
+                                            _delayTween.Kill();
+                                            _provoked = false;
+                                            _underProvoking = false;
+                                        }
                                     });   
                                     
                                     if (attackState is MediumCommanderAttackStateMachine _esm) {
@@ -78,13 +86,38 @@ namespace EnemyScript.Medium.Troop {
                             }))
                         }),
                         
-                        new Decorator(new Actions(() => {
-                            SwitchState(State.Command);
-                            SendCommand(new TroopCommand {
-                                command = Commands.Attack,
-                                commander = this
-                            });
-                        }))
+                        new Sequence(new List<Node> {
+                            new Decorator(new Condition(() => {
+                                if (_provoked) return false;
+                                
+                                if (troopCount <= 1) {
+                                    SendCommand(new TroopCommand {
+                                        command = Commands.Attack,
+                                        commander = this
+                                    });
+
+                                    _provoked = true;
+                                    return false;
+                                }
+                                
+                                return true;
+                            })),
+                            
+                            new Decorator(new Actions(() => {
+                                SwitchState(State.Command);
+
+                                var attackingEnemies = troops.FindAll(troop => troop.currentState == State.Attack);
+                                if (attackingEnemies.Count >= 3) {
+                                    foreach (var troop in attackingEnemies.Take(attackingEnemies.Count - 2)) {
+                                        troop.SwitchState(State.Command);   
+                                    }
+                                } else if (attackingEnemies.Count <= 1) {
+                                    foreach (var troop in troops.FindAll(troop => troop.currentState == State.Command).Take(1)) {
+                                        troop.SwitchState(State.Attack);   
+                                    }
+                                }
+                            }))
+                        }),
                     })
                 })
             });

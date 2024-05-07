@@ -12,6 +12,7 @@ namespace EnemyScript.Easy.EnemyRam {
         [TitleGroup("Config")] 
         public LayerMask playerLayer;
         public float ramDamage = 10;
+        [ReadOnly] public GameObject target;
         
         public enum EnemyState {
             Ramming

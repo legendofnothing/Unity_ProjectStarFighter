@@ -20,7 +20,7 @@ namespace EnemyScript.Medium.MediumEnemyTroop.States {
             var dist = _esm.enemy.GetDistanceToPlayer;
 
             if (dist >= _esm.maximumObservingDistance) {
-                _esm.enemyBehaviors.FlyForward(_esm.enemy.currentSpeed);
+                _esm.enemyBehaviors.FlyForward(_esm.enemy.speed - _esm.enemy.speed * 0.3f);
             }
             else if (dist <= _esm.minimumObservingDistance && dist > _esm.dangerDistance) {
                 _esm.enemyBehaviors.Fly(_esm.enemy.currentSpeed, -_esm.transform.up);

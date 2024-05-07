@@ -1,5 +1,6 @@
 ﻿using System;
 using EnemyScript.Commander.Variation;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace EnemyScript.Commander {
@@ -18,6 +19,7 @@ namespace EnemyScript.Commander {
         public enum Commands {
             LookForTroop,
             Attack,
+            Command,
             CommanderDead,
         }
 
@@ -26,7 +28,7 @@ namespace EnemyScript.Commander {
         
         protected Troop commander;
         protected Enemy self;
-        protected State currentState;
+        [ReadOnly] public State currentState;
 
         private void Start() {
             self = GetComponent<Enemy>();
