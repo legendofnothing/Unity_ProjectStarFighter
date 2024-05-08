@@ -62,17 +62,11 @@ namespace EnemyScript.TowerScript {
             _canSpawn = true;
         }
 
-        public void RemoveTurret(Turret turret) {
-            if (turrets.Contains(turret)) {
-                turrets.Remove(turret);
-            }
-        }
-
         protected override void Death() {
             base.Death();
             this.FireEvent(EventType.OnTowerDestroyed, this);
             if (turrets.Count > 0) {
-                foreach (var turret in turrets) {
+                foreach (var turret in turrets.Where(turret => turret)) {
                     turret.GetComponent<Enemy>().TakeDamage(9999);
                 }
             }

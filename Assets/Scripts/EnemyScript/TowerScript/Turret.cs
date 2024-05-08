@@ -27,10 +27,5 @@ namespace EnemyScript.TowerScript {
                 Gizmos.DrawWireSphere(transform.position, tower.turretAttackRadius);
             }
         }
-
-        protected override void Death() {
-            base.Death();
-            tower.RemoveTurret(this);
-        }
     }
 }
