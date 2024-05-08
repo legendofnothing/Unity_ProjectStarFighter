@@ -35,5 +35,9 @@ namespace EnemyScript {
             _rigidbody.velocity 
                 = Vector2.SmoothDamp(_rigidbody.velocity, direction * speed, ref _refVel, speedDampValue);
         }
+
+        public void ResetVelocity() {
+            _rigidbody.velocity = Vector2.zero;
+        }
     }
 }

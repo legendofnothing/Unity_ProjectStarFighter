@@ -23,7 +23,7 @@ namespace EnemyScript.Easy.EnemyShoot.States {
             var dir = _circlingDirection == 0 ? _enemyStateMachine.transform.right : -_enemyStateMachine.transform.right;
             _enemyStateMachine
                 .enemyBehaviors
-                .LookAt(_enemyStateMachine.transform.right + _enemyStateMachine.transform.position, _enemyStateMachine.enemy.minimumAngularSpeed);
+                .LookAt(dir + _enemyStateMachine.transform.position, _enemyStateMachine.enemy.minimumAngularSpeed);
             _enemyStateMachine.enemyBehaviors.FlyForward(_enemyStateMachine.enemy.speed);
 
             if (_enemyStateMachine.enemy.GetDistanceToPlayer >= _distanceThreshold) {

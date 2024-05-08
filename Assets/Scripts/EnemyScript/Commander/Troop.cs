@@ -26,7 +26,7 @@ namespace EnemyScript.Commander {
         public MonoBehaviour attackState;
         public MonoBehaviour commandState;
         
-        protected Troop commander;
+        [ReadOnly] public Troop commander;
         protected Enemy self;
         [ReadOnly] public State currentState;
 
@@ -50,12 +50,12 @@ namespace EnemyScript.Commander {
                 case State.Attack:
                     currentState = State.Attack;
                     if (!attackState.enabled) attackState.enabled = true;
-                    commandState.enabled = false;
+                    if (commandState) commandState.enabled = false;
                     break;
                 case State.Command:
                     currentState = State.Command;
                     if (!commandState.enabled) commandState.enabled = true;
-                    attackState.enabled = false;
+                    if (attackState) attackState.enabled = false;
                     break;
             }
         }

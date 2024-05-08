@@ -9,6 +9,9 @@ namespace StateMachine {
     public abstract class StateMachine<TEState> : MonoBehaviour where TEState : Enum {
         protected Dictionary<TEState, State<TEState>> states = new();
         [ShowInInspector] [ReadOnly] protected State<TEState> currentState;
+        public TEState CurrentState => _currentStateKey;
+        private TEState _currentStateKey;
+        
         protected TEState entryStateKey;
         protected bool canRun = true;
         protected bool hasDisabled = false;
@@ -23,6 +26,7 @@ namespace StateMachine {
             entryStateKey = SetupState();
             try {
                 currentState = states[entryStateKey];
+                _currentStateKey = entryStateKey;
             }
             catch (Exception e) {
                 NCLogger.Log(e.Message);
@@ -45,6 +49,7 @@ namespace StateMachine {
             currentState = nextState;
             currentState = nextState;
             currentState.OnEnter();
+            _currentStateKey = stateToSwitch;
         }
 
         /// <summary>
