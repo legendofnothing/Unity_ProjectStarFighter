@@ -41,6 +41,10 @@ namespace Combat {
         }
 
         private void FixedUpdate() {
+            OnUpdate();
+        }
+
+        protected virtual void OnUpdate() {
             if (!_ready) return;
             _rb.velocity = transform.up * _speed;
         }
