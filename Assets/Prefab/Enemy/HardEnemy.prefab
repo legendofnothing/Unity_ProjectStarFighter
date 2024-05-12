@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 1467394760036966085}
   - component: {fileID: 1467394758040630417}
   - component: {fileID: 1467394758040630416}
+  - component: {fileID: 213097513}
   m_Layer: 7
   m_Name: HardEnemy
   m_TagString: Untagged
@@ -511,6 +512,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6209a3b4c6705354b8920c622e3698c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyBehaviors: {fileID: 0}
+  enemyWeapon: {fileID: 0}
+  enemy: {fileID: 0}
+--- !u!114 &213097513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8269659115129127648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d9a2eaf7a64df4a6d09fb3d3f5517e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyBehaviors: {fileID: 0}
+  enemy: {fileID: 0}
+  minimumDistance: 5
+  predictedFrames: 12
+  minimumSafeDistance: 15
+  maximumSafeDistance: 20
+  timeUntilAccelerate: 3
 --- !u!1 &8269659116053695781
 GameObject:
   m_ObjectHideFlags: 0
