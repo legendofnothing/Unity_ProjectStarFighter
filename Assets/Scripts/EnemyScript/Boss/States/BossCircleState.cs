@@ -1,4 +1,6 @@
-﻿using StateMachine;
+﻿using PlayerScript;
+using StateMachine;
+using UnityEngine;
 
 namespace EnemyScript.Boss.States {
     public class BossCircleState : BossState {
@@ -14,7 +16,25 @@ namespace EnemyScript.Boss.States {
         public override void OnExit() { }
 
         public override void OnUpdate() {
-            var predictedPos = esm.PredictPlayerPosition(esm.predictedFrames);
+            var predictedFrames =
+                Mathf.Lerp(
+                    0,
+                    esm.minimumDistance,
+                    Mathf.Clamp(esm.enemy.GetDistanceToPlayer / esm.engagingDistance, 0, 1));
+
+            Vector2 predictedPos;
+            if (PredictPosition.HasInterceptDirection(
+                    Player.Instance.PlayerPos, 
+                    esm.transform.position, 
+                    Player.Instance.PlayerDir, 
+                    esm.enemyWeapon.currentWeapon.setting.speed, 
+                    out var res)) {
+                predictedPos = res + Player.Instance.PlayerDir * (Time.fixedDeltaTime * predictedFrames);
+            }
+            else {
+                predictedPos = Player.Instance.PlayerPos;
+            }
+            
             var predictedDot = esm.enemy.GetDotToPoint(predictedPos);
             
             esm.enemyBehaviors.LookAt(predictedPos, esm.enemy.angularSpeed); 

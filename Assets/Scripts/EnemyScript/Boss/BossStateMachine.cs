@@ -1,4 +1,5 @@
-﻿using PlayerScript;
+﻿using Core;
+using PlayerScript;
 using Sirenix.OdinInspector;
 using StateMachine;
 using UnityEngine;
@@ -8,8 +9,9 @@ namespace EnemyScript.Boss {
         [ReadOnly] public EnemyBehaviors enemyBehaviors;
         [ReadOnly] public Enemy enemy;
         [ReadOnly] public EnemyWeapon enemyWeapon;
-        
+
         [TitleGroup("Strafe Settings")] 
+        public float engagingDistance = 30f;
         public float minimumDistance;
         public float predictedFrames = 1;
         
@@ -19,6 +21,8 @@ namespace EnemyScript.Boss {
         [Space] 
         //Accel to escape player chasing
         public float timeUntilAccelerate = 6f;
+
+        private bool _started;
 
         public enum EnemyState {
             Idle,
@@ -31,6 +35,7 @@ namespace EnemyScript.Boss {
             enemyBehaviors = GetComponent<EnemyBehaviors>();
             enemy = GetComponent<Enemy>();
             enemyWeapon = GetComponent<EnemyWeapon>();
+            _started = true;
         }
 
         public Vector2 PredictPlayerPosition(float framePredicted = 1) {
@@ -38,7 +43,11 @@ namespace EnemyScript.Boss {
                 ? Player.Instance.PlayerPos 
                 : Player.Instance.PlayerPos + Player.Instance.PlayerDir * (Time.fixedDeltaTime * framePredicted);
         }
-        
-        
+
+        private void OnDrawGizmos() {
+            if (_started) {
+                DebugExtension.DrawString($"distance: {enemy.GetDistanceToPlayer}", transform.position + Vector3.one, Color.white, Vector2.zero);
+            }
+        }
     }
 }

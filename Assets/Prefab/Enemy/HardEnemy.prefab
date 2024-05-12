@@ -31,7 +31,6 @@ Transform:
   - {fileID: 1467394759141924729}
   - {fileID: 7266569741724476970}
   - {fileID: 4682656578848073950}
-  - {fileID: 4682656579168123570}
   m_Father: {fileID: 8269659115129127650}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -90,7 +89,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4682656578848073951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.122, y: 0.709, z: 0}
+  m_LocalPosition: {x: 0, y: 0.709, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -158,37 +157,6 @@ MonoBehaviour:
     useImpactEffect: 1
     impactEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
     impactSize: {x: 0.2, y: 0.2, z: 0.2}
---- !u!1 &4682656579168123571
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4682656579168123570}
-  m_Layer: 7
-  m_Name: MachineGirl (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4682656579168123570
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4682656579168123571}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.122, y: 0.709, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1467394758884925872}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4682656579560679333
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,10 +234,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ce0f82f0e4423383d61812d8bc85b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireDelay: 0.2
+  fireDelay: 0.5
   firingPoints:
   - {fileID: 4682656578848073950}
-  - {fileID: 4682656579168123570}
   isFiring: 0
   projectile: {fileID: 4034899818029327129, guid: 6c18cdde0a6ddfc45b988c0261019366, type: 3}
   setting:
@@ -459,7 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888475d16bc9f544bab0615d4f131c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 400
+  hp: 2000
   currentHp: 0
   hasDied: 0
   speed: 10
@@ -529,10 +496,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBehaviors: {fileID: 0}
   enemy: {fileID: 0}
-  minimumDistance: 5
+  enemyWeapon: {fileID: 0}
+  engagingDistance: 30
+  minimumDistance: 3.5
   predictedFrames: 12
-  minimumSafeDistance: 15
-  maximumSafeDistance: 20
+  minimumSafeDistance: 7
+  maximumSafeDistance: 10
   timeUntilAccelerate: 3
 --- !u!1 &8269659116053695781
 GameObject:
