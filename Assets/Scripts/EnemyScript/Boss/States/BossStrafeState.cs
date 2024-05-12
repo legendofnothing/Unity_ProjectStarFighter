@@ -15,7 +15,7 @@ namespace EnemyScript.Boss.States {
             esm.enemy.currentSpeed = esm.enemy.minimumSpeed;
             _lastHp = esm.enemy.currentHp;
             _hitTaken = 0;
-            _maximumHitTaken = Random.Range(1, 4);
+            _maximumHitTaken = Random.Range(1, 3);
         }
 
         public override void OnExit() { }

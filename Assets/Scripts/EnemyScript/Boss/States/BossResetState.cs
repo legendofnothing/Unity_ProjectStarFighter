@@ -26,7 +26,7 @@ namespace EnemyScript.Boss.States {
             if (_locked) return;
             
             var dir = _circlingDirection == 0 ? esm.transform.right : -esm.transform.right;
-            esm.enemyBehaviors.LookAt(dir + esm.transform.position, esm.enemy.currentAngularSpeed);
+            esm.enemyBehaviors.LookAt(dir, esm.enemy.currentAngularSpeed);
             esm.enemyBehaviors.FlyForward(esm.enemy.currentSpeed);
 
             _timePassed += Time.fixedDeltaTime;

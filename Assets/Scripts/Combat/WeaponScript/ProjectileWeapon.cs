@@ -8,12 +8,13 @@ namespace Combat.WeaponScript {
         [TitleGroup("Projectile Config")] 
         public GameObject projectile;
         public ProjectileSetting setting;
+        public MonoBehaviour owner;
 
         protected override void OnWeaponFire() {
             if (!IsFiringPointValid()) return;
             foreach (var point in firingPoints) {
                 var projectileInst = Instantiate(projectile, point.position, point.transform.rotation);
-                projectileInst.GetComponent<Projectile>().Init(setting);
+                projectileInst.GetComponent<Projectile>().Init(setting, owner);
             }
         }
     }

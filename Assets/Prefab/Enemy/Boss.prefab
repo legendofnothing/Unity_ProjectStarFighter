@@ -148,7 +148,7 @@ MonoBehaviour:
   projectile: {fileID: 4034899818029327129, guid: 2d27350df53423e408c01f3242888767, type: 3}
   setting:
     damage: 10
-    speed: 15
+    speed: 18
     lifeSpan: 8
     proxyModifier: 1
     interactLayer:
@@ -157,6 +157,7 @@ MonoBehaviour:
     useImpactEffect: 1
     impactEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
     impactSize: {x: 0.2, y: 0.2, z: 0.2}
+  owner: {fileID: 8269659115129127580}
 --- !u!1 &4682656579560679333
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,7 +241,7 @@ MonoBehaviour:
   isFiring: 0
   projectile: {fileID: 4034899818029327129, guid: 6c18cdde0a6ddfc45b988c0261019366, type: 3}
   setting:
-    damage: 1
+    damage: 2.5
     speed: 20
     lifeSpan: 3
     proxyModifier: 1
@@ -250,6 +251,7 @@ MonoBehaviour:
     useImpactEffect: 1
     impactEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
     impactSize: {x: 0.2, y: 0.2, z: 0.2}
+  owner: {fileID: 8269659115129127580}
 --- !u!1 &7266569741724476969
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,10 +329,11 @@ GameObject:
   - component: {fileID: 8269659115129127580}
   - component: {fileID: 1467394760036966085}
   - component: {fileID: 1467394758040630417}
+  - component: {fileID: 9173246023352811395}
   - component: {fileID: 1467394758040630416}
   - component: {fileID: 213097513}
-  m_Layer: 7
-  m_Name: HardEnemy
+  m_Layer: 10
+  m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -432,7 +435,7 @@ MonoBehaviour:
   speed: 10
   minimumSpeed: 2
   speedDampValue: 0.5
-  minimumAngularSpeed: 0.8
+  minimumAngularSpeed: 2
   angularSpeed: 2
   currentSpeed: 0
   currentAngularSpeed: 0
@@ -467,6 +470,22 @@ MonoBehaviour:
   weapons:
   - {fileID: 4682656579023581394}
   - {fileID: 4682656579792368500}
+--- !u!114 &9173246023352811395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8269659115129127648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351d55fa22a946209b85a60f51cc3140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectRadius: 20
+  detectLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &1467394758040630416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,6 +501,16 @@ MonoBehaviour:
   enemyBehaviors: {fileID: 0}
   enemyWeapon: {fileID: 0}
   enemy: {fileID: 0}
+  enemyRadar: {fileID: 0}
+  rb: {fileID: 0}
+  sprite: {fileID: 8269659116053695783}
+  collider: {fileID: 1467394758040630422}
+  selfMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  stateMachine: {fileID: 213097513}
+  notFacade: 1
+  facade: {fileID: 2938559167382322939, guid: 213715107dcd1324d8d62a591878b1af, type: 3}
 --- !u!114 &213097513
 MonoBehaviour:
   m_ObjectHideFlags: 0

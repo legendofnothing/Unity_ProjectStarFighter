@@ -6,5 +6,8 @@ namespace Core.Events {
         
         //Level1 Events
         OnTowerDestroyed,
+        
+        //Boss Events
+        OnFacadeDestroyed,
     }
 }

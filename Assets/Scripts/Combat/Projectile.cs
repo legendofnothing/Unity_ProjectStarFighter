@@ -26,17 +26,21 @@ namespace Combat {
     public abstract class Projectile : MonoBehaviour {
         private bool _ready;
         private float _speed;
+        [ReadOnly] public MonoBehaviour owner;
         protected Rigidbody2D _rb;
         protected BoxCollider2D _col;
         protected ProjectileSetting _setting;
+
+        public Vector2 Velocity => transform.up * _speed;
         
-        public void Init(ProjectileSetting setting) {
+        public void Init(ProjectileSetting setting, MonoBehaviour owner) {
             _rb = GetComponent<Rigidbody2D>();
             _col = GetComponent<BoxCollider2D>();
             if (setting.proxyModifier >= 1) _col.size *= setting.proxyModifier;
             _speed = setting.speed;
             Destroy(gameObject, setting.lifeSpan);
             _setting = setting;
+            this.owner = owner;
             _ready = true;
         }
 
