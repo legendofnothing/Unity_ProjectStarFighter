@@ -15,6 +15,8 @@ namespace EnemyScript.TowerScript {
             public Transform point;
             public GameObject enemyToSpawn;
         }
+
+        public List<Section> sections = new();
         
         [TitleGroup("Tower Config")] 
         public float turretAttackRadius;
@@ -72,6 +74,9 @@ namespace EnemyScript.TowerScript {
         }
 
         protected override void Death() {
+            foreach (var s in sections) {
+                s.OnDeath();
+            }
             base.Death();
             this.FireEvent(EventType.OnTowerDestroyed, this);
             if (turrets.Count > 0) {
