@@ -27,6 +27,7 @@ namespace EnemyScript.Boss {
         public BossMainStateMachine stateMachine;
         public bool notFacade;
         [ShowIf(nameof(notFacade))] public GameObject facade;
+        [ShowIf(nameof(notFacade))] public List<SpriteRenderer> spritesToTurnOff = new();
 
         private global::BehaviorTree.BehaviorTree _switchWeaponBt;
         private global::BehaviorTree.BehaviorTree _mainBehavior;
@@ -100,6 +101,11 @@ namespace EnemyScript.Boss {
                                             transform.position = list[index];
                                         });
 
+                                        foreach (var s in spritesToTurnOff) {
+                                            s.DOColor(Color.clear, 0.5f);
+                                            s.enabled = false;
+                                        }
+
                                         List<Boss> bosses = new();
 
                                         for (var i = 0; i < 2; i++) {
@@ -116,6 +122,10 @@ namespace EnemyScript.Boss {
                                             sprite.DOColor(Color.white, 0.2f);
                                             stateMachine.enabled = true;
                                             collider.enabled = true;
+                                            
+                                            foreach (var s in spritesToTurnOff) {
+                                                s.enabled = true;
+                                            }
 
                                             foreach (var boss in bosses) {
                                                 boss.sprite.DOColor(Color.white, 0.2f);
