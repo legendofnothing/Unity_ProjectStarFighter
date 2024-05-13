@@ -34,7 +34,7 @@ namespace EnemyScript.Boss {
         private Projectile _currentThreat;
         private int facadeCount;
         private bool _canSpawnFacades = true;
-        
+
         private void Awake() {
             enemyBehaviors = GetComponent<EnemyBehaviors>();
             enemyWeapon = GetComponent<EnemyWeapon>();
@@ -88,6 +88,7 @@ namespace EnemyScript.Boss {
                                     if (dot >= 0.98f &&  Physics2D.Raycast(_currentThreat.transform.position, _currentThreat.transform.up, enemyRadar.detectRadius + 10f, selfMask)) {
                                         stateMachine.enabled = false;
                                         collider.enabled = false;
+                                        enemy.stopUpdatingUI = true;
 
                                         var list = new List<Vector3> {
                                             Player.Instance.PlayerPos + new Vector2(0, 5),
@@ -116,12 +117,15 @@ namespace EnemyScript.Boss {
                                             boss.sprite.color = Color.clear;
                                             boss.stateMachine.enabled = false;
                                             boss.collider.enabled = false;
+                                            boss.enemy.Ui.canvasGroup.alpha = 0;
+                                            boss.enemy.stopUpdatingUI = true;
                                         }
 
                                         DOVirtual.DelayedCall(2f, () => {
                                             sprite.DOColor(Color.white, 0.2f);
                                             stateMachine.enabled = true;
                                             collider.enabled = true;
+                                            enemy.stopUpdatingUI = false;
                                             
                                             foreach (var s in spritesToTurnOff) {
                                                 s.enabled = true;
@@ -131,6 +135,7 @@ namespace EnemyScript.Boss {
                                                 boss.sprite.DOColor(Color.white, 0.2f);
                                                 boss.stateMachine.enabled = true;
                                                 boss.collider.enabled = true;
+                                                boss.enemy.stopUpdatingUI = false;
                                             }
                                         });
                                     }

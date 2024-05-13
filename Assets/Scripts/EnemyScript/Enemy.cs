@@ -1,10 +1,15 @@
+using DG.Tweening;
 using Effect;
 using EnemyScript.Commander;
+using PlayerScript;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace EnemyScript {
     public class Enemy : MonoBehaviour {
+        [TitleGroup("Refs")] 
+        public GameObject uiPrefab;
+        
         [TitleGroup("Config")] public float hp = 100;
         [ReadOnly] public float currentHp;
         [ReadOnly] public bool hasDied;
@@ -27,6 +32,11 @@ namespace EnemyScript {
         [ShowIf(nameof(useExplosionEffect))] public Vector3 explosionSize = Vector3.one;
         protected EnemyBehaviors enemyBehaviors;
         private Troop _troop;
+        private EnemyUI _ui;
+        private bool _isInCamera;
+        private Tween _alphaUiTween;
+        public EnemyUI Ui => _ui == null ? null : _ui;
+        [ReadOnly] public bool stopUpdatingUI;
 
         private void Awake() {
             currentHp = hp;
@@ -42,15 +52,37 @@ namespace EnemyScript {
             if (gameObject.TryGetComponent<Troop>(out var troop)) {
                 _troop = troop;
             }
+            
+            if (!uiPrefab) return;
+            var inst = Instantiate(uiPrefab, transform.position, Quaternion.identity);
+            inst.transform.SetParent(gameObject.transform);
+            _ui = inst.GetComponent<EnemyUI>();
+            _ui.SetValue(currentHp / hp);
+            _ui.canvasGroup.alpha = Player.Instance.IsInCamera(transform.position) ? 1 : 0;
         }
 
         public void TakeDamage(float amount) {
             if (hasDied) return;
             currentHp -= amount;
             if (_troop) _troop.OnDamage();
+            if (_ui) _ui.SetValue(currentHp / hp);
             if (!(currentHp <= 0)) return;
+            if (_ui) _ui.SetValue(currentHp / hp);
             hasDied = true;
             Death();
+        }
+
+        private void Update() {
+            if (!_ui) return;
+            if ((Player.Instance.IsInCamera(transform.position) && _ui.canvasGroup.alpha <= 0) && !stopUpdatingUI) {
+                _alphaUiTween?.Kill();
+                _alphaUiTween = DOVirtual.Float(0, 1, 0.5f, value => {
+                    _ui.canvasGroup.alpha = value;
+                });
+            }
+            else if ((!Player.Instance.IsInCamera(transform.position) && _ui.canvasGroup.alpha > 0) || stopUpdatingUI) {
+                _ui.canvasGroup.alpha = 0;
+            }
         }
 
         protected virtual void Death() {
@@ -60,6 +92,7 @@ namespace EnemyScript {
             }
             
             if (_troop) _troop.OnDeath();
+            _alphaUiTween?.Kill();
             Destroy(gameObject);
         }
 

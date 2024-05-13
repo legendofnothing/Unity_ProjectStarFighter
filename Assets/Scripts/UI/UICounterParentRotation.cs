@@ -9,7 +9,7 @@ namespace UI {
         }
 
         private void Update() {
-            _rect.rotation = Quaternion.Euler (0.0f, 0.0f, transform.parent.rotation.z * -1.0f);
+            if (transform.parent != null) _rect.rotation = Quaternion.Euler (0.0f, 0.0f, transform.parent.rotation.z * -1.0f);
         }
     }
 }

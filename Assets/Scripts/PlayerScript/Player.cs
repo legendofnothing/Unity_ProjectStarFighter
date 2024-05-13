@@ -1,6 +1,7 @@
 using Core;
 using Core.Events;
 using Core.Patterns;
+using DG.Tweening;
 using Level;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -8,12 +9,19 @@ using EventType = Core.Events.EventType;
 
 namespace PlayerScript {
     public class Player : Singleton<Player> {
+        public Camera mainCamera;
+        [Space]
         public float hp;
+        [Space] 
+        public float shieldChargeRate;
         public float shieldBlockDamage;
+        
         [ReadOnly] 
         public float currentHp;
         [ReadOnly] 
         public float currentShield;
+
+        private bool _canGenerateShield = true;
 
         public Vector2 PlayerDir {
             get {
@@ -32,11 +40,13 @@ namespace PlayerScript {
                 return _rb.position;
             }
         }
-        
-        
+
+        public bool IsInCamera(Vector3 worldPoint) => mainCamera.IsInFrustum(worldPoint);
+
         private bool _hasDied;
         private Rigidbody2D _rb;
         private bool _isRunning;
+        private Tween _resetShieldTween;
 
         private void Start() {
             _rb = GetComponent<Rigidbody2D>();
@@ -45,7 +55,14 @@ namespace PlayerScript {
             _isRunning = true;
             UpdateUI();
         }
-        
+
+        private void FixedUpdate() {
+            if (_canGenerateShield && currentShield < shieldBlockDamage) {
+                currentShield += Time.fixedDeltaTime * shieldChargeRate;
+                UpdateUI();
+            }
+        }
+
         public void TakeDamage(float amount) {
             if (_hasDied) return;
             currentShield -= amount;
@@ -59,7 +76,11 @@ namespace PlayerScript {
                     Death();
                 }
             }
-
+            
+            _resetShieldTween?.Kill();
+            _canGenerateShield = false;
+            _resetShieldTween = DOVirtual.DelayedCall(5f, () => _canGenerateShield = true);
+            
             UpdateUI();
         }
 

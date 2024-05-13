@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888475d16bc9f544bab0615d4f131c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ui: {fileID: 4293670696308732016, guid: 691b6be9b60b92047806baa527332d02, type: 3}
   hp: 291
   currentHp: 0
   hasDied: 0
