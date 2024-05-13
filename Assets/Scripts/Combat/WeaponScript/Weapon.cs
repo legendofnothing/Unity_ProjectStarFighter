@@ -9,6 +9,9 @@ namespace Combat.WeaponScript {
         [TitleGroup("Config")] 
         public float fireDelay = 1f;
         public List<Transform> firingPoints;
+        public bool useSmokeEffect = true;
+        [ShowIf(nameof(useSmokeEffect))] [TitleGroup("Smoke Config")] public GameObject smokeEffect;
+        [ShowIf(nameof(useSmokeEffect))] public Vector3 smokeSize;
 
         [TitleGroup("Readonly")]
         [ReadOnly] public bool isFiring;

@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &535822333
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -329,16 +329,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1224703958 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2362499529778239106, guid: b390b3cc369cae942b21e0e53fdc95be, type: 3}
-  m_PrefabInstance: {fileID: 1551198287}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &1224703963 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 2362499529778239111, guid: b390b3cc369cae942b21e0e53fdc95be, type: 3}
-  m_PrefabInstance: {fileID: 1551198287}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1235545202
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,7 +430,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1289471141
 AudioListener:
   m_ObjectHideFlags: 0
@@ -520,7 +510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2362499529565090756, guid: b390b3cc369cae942b21e0e53fdc95be, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2362499529565090779, guid: b390b3cc369cae942b21e0e53fdc95be, type: 3}
       propertyPath: m_RootOrder
@@ -668,10 +658,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2063099402}
-  target: {fileID: 1224703958}
+  target: {fileID: 535822334}
   speed: 18
   bullet: {fileID: 1491187283911941859, guid: 2d4395586de820c499b8fdcea969f409, type: 3}
-  _targetRb: {fileID: 1224703963}
+  _targetRb: {fileID: 535822336}
 --- !u!50 &2063099402
 Rigidbody2D:
   serializedVersion: 4

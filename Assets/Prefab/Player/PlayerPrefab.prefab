@@ -646,6 +646,9 @@ MonoBehaviour:
   firingPoints:
   - {fileID: 2362499530845720663}
   - {fileID: 2362499529432561084}
+  useSmokeEffect: 1
+  smokeEffect: {fileID: 7480419980184279875, guid: cd66afaf1cc5eb54e8920d8d2f4ad244, type: 3}
+  smokeSize: {x: 0.5, y: 0.5, z: 0}
   isFiring: 0
   projectile: {fileID: 4034899818029327129, guid: e72b8ab3d85a5e74e8206c8ccb628ddf, type: 3}
   setting:

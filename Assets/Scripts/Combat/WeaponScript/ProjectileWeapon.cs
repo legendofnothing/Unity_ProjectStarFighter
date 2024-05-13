@@ -14,6 +14,7 @@ namespace Combat.WeaponScript {
             if (!IsFiringPointValid()) return;
             foreach (var point in firingPoints) {
                 var projectileInst = Instantiate(projectile, point.position, point.transform.rotation);
+                if (useSmokeEffect && smokeEffect) Instantiate(smokeEffect, point.position, transform.rotation);
                 projectileInst.GetComponent<Projectile>().Init(setting, owner);
             }
         }

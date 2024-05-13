@@ -48,6 +48,9 @@ MonoBehaviour:
   firingPoints:
   - {fileID: 5645643777435575138}
   - {fileID: 4529612383866018353}
+  useSmokeEffect: 1
+  smokeEffect: {fileID: 7480419980184279875, guid: cd66afaf1cc5eb54e8920d8d2f4ad244, type: 3}
+  smokeSize: {x: 0.5, y: 0.5, z: 0}
   isFiring: 0
   projectile: {fileID: 4034899818029327129, guid: 2d27350df53423e408c01f3242888767, type: 3}
   setting:
@@ -173,6 +176,9 @@ MonoBehaviour:
   fireDelay: 0.5
   firingPoints:
   - {fileID: 1943377462872184005}
+  useSmokeEffect: 1
+  smokeEffect: {fileID: 7480419980184279875, guid: cd66afaf1cc5eb54e8920d8d2f4ad244, type: 3}
+  smokeSize: {x: 0.5, y: 0.5, z: 0}
   isFiring: 0
   projectile: {fileID: 4034899818029327129, guid: 6c18cdde0a6ddfc45b988c0261019366, type: 3}
   setting:
@@ -482,6 +488,7 @@ MonoBehaviour:
   stateMachine: {fileID: 6486415847457693746}
   notFacade: 0
   facade: {fileID: 0}
+  spritesToTurnOff: []
 --- !u!114 &6486415847457693746
 MonoBehaviour:
   m_ObjectHideFlags: 0

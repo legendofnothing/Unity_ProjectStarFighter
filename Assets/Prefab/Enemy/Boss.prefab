@@ -144,6 +144,9 @@ MonoBehaviour:
   firingPoints:
   - {fileID: 1467394759141924729}
   - {fileID: 7266569741724476970}
+  useSmokeEffect: 1
+  smokeEffect: {fileID: 7480419980184279875, guid: cd66afaf1cc5eb54e8920d8d2f4ad244, type: 3}
+  smokeSize: {x: 0.5, y: 0.5, z: 0}
   isFiring: 0
   projectile: {fileID: 4034899818029327129, guid: 2d27350df53423e408c01f3242888767, type: 3}
   setting:
@@ -238,6 +241,9 @@ MonoBehaviour:
   fireDelay: 0.5
   firingPoints:
   - {fileID: 4682656578848073950}
+  useSmokeEffect: 1
+  smokeEffect: {fileID: 7480419980184279875, guid: cd66afaf1cc5eb54e8920d8d2f4ad244, type: 3}
+  smokeSize: {x: 0.5, y: 0.5, z: 0}
   isFiring: 0
   projectile: {fileID: 4034899818029327129, guid: 6c18cdde0a6ddfc45b988c0261019366, type: 3}
   setting:
