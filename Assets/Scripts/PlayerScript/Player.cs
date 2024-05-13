@@ -9,7 +9,11 @@ using EventType = Core.Events.EventType;
 namespace PlayerScript {
     public class Player : Singleton<Player> {
         public float hp;
-        [ReadOnly] public float currentHp;
+        public float shieldBlockDamage;
+        [ReadOnly] 
+        public float currentHp;
+        [ReadOnly] 
+        public float currentShield;
 
         public Vector2 PlayerDir {
             get {
@@ -37,16 +41,26 @@ namespace PlayerScript {
         private void Start() {
             _rb = GetComponent<Rigidbody2D>();
             currentHp = hp;
+            currentShield = shieldBlockDamage;
             _isRunning = true;
+            UpdateUI();
         }
         
         public void TakeDamage(float amount) {
             if (_hasDied) return;
-            currentHp -= amount;
-            if (currentHp <= 0) {
-                currentHp = 0;
-                Death();
+            currentShield -= amount;
+            if (currentShield < 0) {
+                var deltaDiff = -currentShield;
+                currentShield = 0;
+                
+                currentHp -= deltaDiff;
+                if (currentHp <= 0) {
+                    currentHp = 0;
+                    Death();
+                }
             }
+
+            UpdateUI();
         }
 
         public void Death() {
@@ -60,6 +74,12 @@ namespace PlayerScript {
                 Gizmos.color = Color.white;
                 Gizmos.DrawWireCube(_rb.position + _rb.velocity * (Time.fixedDeltaTime * 5), Vector3.one);
             }
+        }
+
+        private void UpdateUI() {
+            this.FireEvent(EventType.OnPlayerHpChangeBar, currentHp/hp);
+            this.FireEvent(EventType.OnPlayerHpChangeText, currentHp.ToString("0"));
+            this.FireEvent(EventType.OnShieldChange, currentShield / shieldBlockDamage);
         }
     }
 }

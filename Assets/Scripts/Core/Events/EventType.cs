@@ -1,5 +1,10 @@
 namespace Core.Events {
     public enum EventType {
+        //UI Event
+        OnPlayerHpChangeBar,
+        OnPlayerHpChangeText,
+        OnShieldChange,
+        
         SendCommand,
         OnPlayerOutOfBound,
         OnGameStateChange,
