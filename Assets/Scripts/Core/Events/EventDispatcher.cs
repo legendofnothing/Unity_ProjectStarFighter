@@ -27,9 +27,9 @@ namespace Core.Events {
         /// </summary>
         /// <param name="eventType">Type of event</param>
         /// <param name="callback"></param>
-        public void RemoveListener(EventType eventType, Action<object> callback) {
+        public void RemoveListener(EventType eventType) {
             if (Events.ContainsKey(eventType)) {
-                Events[eventType] -= callback;
+                Events[eventType] -= Events[eventType];
             }
         }
 
@@ -72,8 +72,8 @@ namespace Core.Events {
             EventDispatcher.Instance.AddListener(eventType, callback);
         }
 
-        public static void RemoveListener(this MonoBehaviour listener, EventType eventType, Action<object> callback) {
-            EventDispatcher.Instance.RemoveListener(eventType, callback);
+        public static void RemoveListener(this MonoBehaviour listener, EventType eventType) {
+            EventDispatcher.Instance.RemoveListener(eventType);
         }
 
         public static void FireEvent(this MonoBehaviour listener, EventType eventType, object param = null) {

@@ -16,6 +16,10 @@ namespace EnemyScript.TowerScript {
             public GameObject enemyToSpawn;
         }
 
+        [TitleGroup("refs")] 
+        public GameObject miniDot;
+        
+        [Space]
         public List<Section> sections = new();
         
         [TitleGroup("Tower Config")] 
@@ -79,6 +83,7 @@ namespace EnemyScript.TowerScript {
             }
             base.Death();
             this.FireEvent(EventType.OnTowerDestroyed, this);
+            Destroy(miniDot);
             if (turrets.Count > 0) {
                 foreach (var turret in turrets.Where(turret => turret)) {
                     turret.GetComponent<Enemy>().TakeDamage(9999);

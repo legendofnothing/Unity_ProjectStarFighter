@@ -19,6 +19,7 @@ namespace Minimap {
             _currentIndex = index;
             miniMapCamera.orthographicSize = sizes[_currentIndex];
             this.FireEvent(EventType.OnMinimapSizeChange, $"[{_currentIndex + 1}]");
+            this.FireEvent(EventType.ChangeMinimapIconSize, _currentIndex);
         }
 
         public void GoNextSize() {
