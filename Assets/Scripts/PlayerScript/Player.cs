@@ -3,6 +3,7 @@ using Core.Events;
 using Core.Patterns;
 using DG.Tweening;
 using Level;
+using Minimap;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using EventType = Core.Events.EventType;
@@ -22,6 +23,8 @@ namespace PlayerScript {
         public float currentShield;
 
         private bool _canGenerateShield = true;
+
+        private MinimapChangeSize _miniMap;
 
         public Vector2 PlayerDir {
             get {
@@ -50,10 +53,17 @@ namespace PlayerScript {
 
         private void Start() {
             _rb = GetComponent<Rigidbody2D>();
+            _miniMap = GetComponent<MinimapChangeSize>();
             currentHp = hp;
             currentShield = shieldBlockDamage;
             _isRunning = true;
             UpdateUI();
+        }
+
+        private void Update() {
+            if (Input.GetKeyDown(KeyCode.F)) {
+                _miniMap.GoNextSize();
+            }
         }
 
         private void FixedUpdate() {

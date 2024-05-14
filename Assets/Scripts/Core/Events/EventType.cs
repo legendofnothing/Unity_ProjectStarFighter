@@ -4,6 +4,7 @@ namespace Core.Events {
         OnPlayerHpChangeBar,
         OnPlayerHpChangeText,
         OnShieldChange,
+        OnMinimapSizeChange,
         
         SendCommand,
         OnPlayerOutOfBound,

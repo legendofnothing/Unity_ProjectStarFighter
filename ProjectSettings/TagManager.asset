@@ -16,8 +16,8 @@ TagManager:
   - LevelBound
   - Tower
   - Boss
-  - 
-  - 
+  - Minimap
+  - Level
   - 
   - 
   - 
@@ -40,6 +40,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 740885039
+    locked: 0
+  - name: MinimapLayer
+    uniqueID: 246905441
     locked: 0
   - name: Default
     uniqueID: 0
