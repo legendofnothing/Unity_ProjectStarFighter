@@ -464,7 +464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7834312981705719391}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: FiringPoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 7834312981719808724}
   - component: {fileID: 7834312981719808727}
   - component: {fileID: 7834312981719808725}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Turret (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -667,6 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b4f506d84a2fb48b71a44645249bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiPrefab: {fileID: 4293670696308732016, guid: 93efdbc2c582eda41bbd9366cf7df222, type: 3}
   hp: 650
   currentHp: 0
   hasDied: 0
@@ -680,6 +681,7 @@ MonoBehaviour:
   useExplosionEffect: 1
   explosionEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
   explosionSize: {x: 1, y: 1, z: 1}
+  stopUpdatingUI: 0
   tower: {fileID: 7834312983304330632}
   followPoint: {fileID: 7834312981455194975}
 --- !u!114 &7834312981719808727
@@ -821,7 +823,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7834312981886897104}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: FiringPoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -1271,7 +1273,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7834312982856540924}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: FiringPoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -1302,7 +1304,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7834312982914921195}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: FiringPoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -1339,7 +1341,7 @@ GameObject:
   - component: {fileID: 7834312982956862809}
   - component: {fileID: 7834312982956862808}
   - component: {fileID: 7834312982956862811}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Turret (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1474,6 +1476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b4f506d84a2fb48b71a44645249bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiPrefab: {fileID: 4293670696308732016, guid: 93efdbc2c582eda41bbd9366cf7df222, type: 3}
   hp: 650
   currentHp: 0
   hasDied: 0
@@ -1487,6 +1490,7 @@ MonoBehaviour:
   useExplosionEffect: 1
   explosionEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
   explosionSize: {x: 1, y: 1, z: 1}
+  stopUpdatingUI: 0
   tower: {fileID: 7834312983304330632}
   followPoint: {fileID: 7834312982519130255}
 --- !u!114 &7834312982956862808
@@ -1821,7 +1825,7 @@ GameObject:
   - component: {fileID: 7834312983304330633}
   - component: {fileID: 7834312983304330632}
   - component: {fileID: 7834312983304330635}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1905,6 +1909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d336b3ef6b206441a3fadd8066e8652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiPrefab: {fileID: 4293670696308732016, guid: e39e4e9fc45b1854f8c15bd922ee8e1e, type: 3}
   hp: 1337
   currentHp: 0
   hasDied: 0
@@ -1918,6 +1923,7 @@ MonoBehaviour:
   useExplosionEffect: 0
   explosionEffect: {fileID: 0}
   explosionSize: {x: 1, y: 1, z: 1}
+  stopUpdatingUI: 0
   sections:
   - {fileID: 3627803491200309671}
   - {fileID: 7992845505852695191}

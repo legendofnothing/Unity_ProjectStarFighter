@@ -279,6 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b4f506d84a2fb48b71a44645249bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiPrefab: {fileID: 0}
   hp: 550
   currentHp: 0
   hasDied: 0
@@ -292,6 +293,7 @@ MonoBehaviour:
   useExplosionEffect: 1
   explosionEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
   explosionSize: {x: 1, y: 1, z: 1}
+  stopUpdatingUI: 0
   tower: {fileID: 842953451903540105}
   followPoint: {fileID: 842953451606232410}
 --- !u!114 &842953451340070098
@@ -323,6 +325,9 @@ MonoBehaviour:
   firingPoints:
   - {fileID: 842953451039755733}
   - {fileID: 842953452217083129}
+  useSmokeEffect: 1
+  smokeEffect: {fileID: 0}
+  smokeSize: {x: 0, y: 0, z: 0}
   isFiring: 0
   projectile: {fileID: 4034899818029327129, guid: 2d27350df53423e408c01f3242888767, type: 3}
   setting:
@@ -336,6 +341,7 @@ MonoBehaviour:
     useImpactEffect: 1
     impactEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
     impactSize: {x: 1, y: 1, z: 1}
+  owner: {fileID: 0}
 --- !u!1 &842953451355732059
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,6 +650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed9bca3bfa54e46a3857a70c3ebe7d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiPrefab: {fileID: 0}
   hp: 1500
   currentHp: 0
   hasDied: 0
@@ -657,6 +664,8 @@ MonoBehaviour:
   useExplosionEffect: 0
   explosionEffect: {fileID: 0}
   explosionSize: {x: 1, y: 1, z: 1}
+  stopUpdatingUI: 0
+  sections: []
   turretAttackRadius: 20
   spawnUnitRadius: 50
   detectLayer:
@@ -699,6 +708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackState: {fileID: 0}
   commandState: {fileID: 0}
+  commander: {fileID: 0}
   currentState: 0
   troops: []
 --- !u!1 &842953452117846848
@@ -851,6 +861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b4f506d84a2fb48b71a44645249bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiPrefab: {fileID: 0}
   hp: 550
   currentHp: 0
   hasDied: 0
@@ -864,6 +875,7 @@ MonoBehaviour:
   useExplosionEffect: 1
   explosionEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
   explosionSize: {x: 1, y: 1, z: 1}
+  stopUpdatingUI: 0
   tower: {fileID: 842953451903540105}
   followPoint: {fileID: 842953452689239690}
 --- !u!114 &842953452117846877
@@ -895,6 +907,9 @@ MonoBehaviour:
   firingPoints:
   - {fileID: 842953452294010094}
   - {fileID: 842953451355732058}
+  useSmokeEffect: 1
+  smokeEffect: {fileID: 0}
+  smokeSize: {x: 0, y: 0, z: 0}
   isFiring: 0
   projectile: {fileID: 4034899818029327129, guid: 2d27350df53423e408c01f3242888767, type: 3}
   setting:
@@ -908,6 +923,7 @@ MonoBehaviour:
     useImpactEffect: 1
     impactEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
     impactSize: {x: 1, y: 1, z: 1}
+  owner: {fileID: 0}
 --- !u!1 &842953452188198186
 GameObject:
   m_ObjectHideFlags: 0

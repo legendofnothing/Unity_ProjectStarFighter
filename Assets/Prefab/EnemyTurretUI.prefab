@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.003921578, g: 0.58812964, b: 0.83137256, a: 1}
+  m_Color: {r: 0.83137256, g: 0.713852, b: 0.003921578, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.011347434, g: 0.7337885, b: 0.8018868, a: 1}
+  m_Color: {r: 0.8, g: 0.74195486, b: 0.011764717, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 2705118078908738214}
   - component: {fileID: 4817825214255503572}
   m_Layer: 5
-  m_Name: EnemyWorldUI
+  m_Name: EnemyTurretUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -366,7 +366,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &3465327581917994836
 MonoBehaviour:
