@@ -8,6 +8,7 @@ namespace EnemyScript.Hard {
     public class TwinFighterStateMachine : StateMachine<TwinFighterStateMachine.EnemyState> {
         [ReadOnly] public Enemy enemy;
         [ReadOnly] public EnemyBehaviors enemyBehaviors;
+        [ReadOnly] public TwinFighter twinFighter;
 
         [TitleGroup("Strafe Settings")] 
         public float minimumDistance;
@@ -45,6 +46,7 @@ namespace EnemyScript.Hard {
         protected override void SetupRef() {
             enemy = GetComponent<Enemy>();
             enemyBehaviors = GetComponent<EnemyBehaviors>();
+            twinFighter = GetComponent<TwinFighter>();
         }
         
         public Vector2 PredictPlayerPosition(float framePredicted = 1) {

@@ -15,11 +15,11 @@ namespace EnemyScript.Hard {
         private bool _pendingAttack;
         private TwinFighterStateMachine _esm;
         private Enemy _self;
+
+        private Tween _attackTween;
         
         protected override void OnAwake() { }
-        public override void OnDeath() { }
         public override void OnDamage() { }
-        
         
         protected override void OnStart() {
             _esm = (TwinFighterStateMachine)attackState;
@@ -45,19 +45,18 @@ namespace EnemyScript.Hard {
                     
                     new Sequence(new List<Node> {
                         new Decorator(new Condition(() => _esm.CurrentState == TwinFighterStateMachine.EnemyState.Resetting)),
-                        new Decorator(new Condition(() => {
-                            if (_self.currentHp / _self.hp <= 0.5f && commander) {
-                                _esm.SwitchState(TwinFighterStateMachine.EnemyState.Retreating);
-                                return false;
-                            }
-
-                            if (!(_self.GetDistanceToPlayer >= _esm.maximumSafeDistance) || !(self.GetDotToPlayer < 0.9f)) return false;
-                            
-                            DOVirtual.DelayedCall(2f, () => {
-                                _esm.SwitchState(TwinFighterStateMachine.EnemyState.Attack);
-                            });
-                            return false;
-                        })),
+                        
+                        new Selector(new List<Node> {
+                           new Sequence(new List<Node> {
+                               new Decorator(new Condition(() => _self.currentHp / _self.hp <= 0.5f && commander)),
+                               new Decorator(new Actions(() => {
+                                   _esm.SwitchState(TwinFighterStateMachine.EnemyState.Retreating);
+                                   _esm.overrideResettingState = true;
+                               }))
+                           }),
+                           
+                           new Decorator(new Actions(() => _esm.overrideResettingState = false))
+                        }),
                     })
                 }),
             });

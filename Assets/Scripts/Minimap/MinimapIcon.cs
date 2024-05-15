@@ -12,6 +12,10 @@ namespace Minimap {
             this.AddListener(EventType.ChangeMinimapIconSize, param => ChangeSize((int) param));
         }
 
+        private void Start() {
+            transform.localScale = new Vector3(1, 1) * iconSizes[0];
+        }
+
         private void ChangeSize(int param) {
             transform.localScale = new Vector3(1, 1) * iconSizes[param];
         }

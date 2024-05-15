@@ -23,7 +23,7 @@ namespace EnemyScript.Hard {
             _bt = new global::BehaviorTree.BehaviorTree(new List<Node> {
                 new Selector(new List<Node> {
                     new Sequence(new List<Node> {
-                        new Decorator(new Condition(() => troops.Count <= 0 && _tower.canSpawn)),
+                        new Decorator(new Condition(() => troops.Count <= 0 && _tower.isPlayerInRange)),
                         new Decorator(new Actions(() => {
                             var list = _tower.SpawnTroopDirectly();
                             foreach (var troop in list) {

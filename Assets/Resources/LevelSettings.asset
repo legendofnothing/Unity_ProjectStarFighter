@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0cd9eb0a884eed84af7727e2664d0c, type: 3}
   m_Name: LevelSettings
   m_EditorClassIdentifier: 
-  outOfBoundDuration: 8
+  outOfBoundDuration: 5

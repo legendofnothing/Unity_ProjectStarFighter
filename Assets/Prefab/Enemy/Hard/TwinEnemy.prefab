@@ -309,12 +309,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   enemyBehaviors: {fileID: 0}
+  twinFighter: {fileID: 0}
   minimumDistance: 5
   predictedFrames: 8
   minimumSafeDistance: 8
   maximumSafeDistance: 12
   safeRetreatingDistance: 35
-  distanceInView: 10
+  distanceInView: 16
   overrideResettingState: 0
 --- !u!1 &5879930608231518891
 GameObject:

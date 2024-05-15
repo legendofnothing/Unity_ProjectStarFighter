@@ -6,8 +6,9 @@ namespace EnemyScript.TowerScript {
         [Space]
         public Tower tower;
         public Transform followPoint;
-        
-        private void Update() {
+
+        protected override void Update() {
+            base.Update();
             if (!tower) return;
 
             transform.position = followPoint.position;

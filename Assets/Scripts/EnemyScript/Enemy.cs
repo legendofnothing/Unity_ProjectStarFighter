@@ -72,7 +72,7 @@ namespace EnemyScript {
             Death();
         }
 
-        private void Update() {
+        protected virtual void Update() {
             if (!_ui) return;
             if ((Player.Instance.IsInCamera(transform.position) && _ui.canvasGroup.alpha <= 0) && !stopUpdatingUI) {
                 _alphaUiTween?.Kill();
