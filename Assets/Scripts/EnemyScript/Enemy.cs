@@ -1,9 +1,11 @@
+using Core.Events;
 using DG.Tweening;
 using Effect;
 using EnemyScript.Commander;
 using PlayerScript;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using EventType = Core.Events.EventType;
 
 namespace EnemyScript {
     public class Enemy : MonoBehaviour {
@@ -93,6 +95,7 @@ namespace EnemyScript {
             
             if (_troop) _troop.OnDeath();
             _alphaUiTween?.Kill();
+            this.FireEvent(EventType.OnEnemyKilled, this);
             Destroy(gameObject);
         }
 

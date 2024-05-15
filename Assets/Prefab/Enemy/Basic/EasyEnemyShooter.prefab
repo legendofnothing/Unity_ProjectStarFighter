@@ -202,7 +202,7 @@ MonoBehaviour:
   speed: 5
   minimumSpeed: 3
   speedDampValue: 0.7
-  minimumAngularSpeed: 1
+  minimumAngularSpeed: 0.7
   angularSpeed: 1.8
   currentSpeed: 0
   currentAngularSpeed: 0

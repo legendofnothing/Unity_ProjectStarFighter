@@ -226,7 +226,7 @@ MonoBehaviour:
   hp: 100
   currentHp: 0
   hasDied: 0
-  speed: 7
+  speed: 9
   minimumSpeed: 2
   speedDampValue: 0.7
   minimumAngularSpeed: 1.2

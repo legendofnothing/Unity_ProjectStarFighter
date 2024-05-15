@@ -6,9 +6,12 @@ namespace Core.Events {
         OnShieldChange,
         OnMinimapSizeChange,
         
+        OnDialoguesChange,
+        
         SendCommand,
         OnPlayerOutOfBound,
         OnGameStateChange,
+        OnEnemyKilled,
 
         //Level1 Events
         OnTowerDestroyed,
