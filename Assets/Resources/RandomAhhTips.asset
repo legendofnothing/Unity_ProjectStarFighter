@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b65f2b451d7af1040925486c97f9e00f, type: 3}
+  m_Name: RandomAhhTips
+  m_EditorClassIdentifier: 
+  tips:
+  - text: Change your radar size for better position reading! [F]
+    readingTime: 5
+  - text: Enemies will kill you...
+    readingTime: 5
+  - text: Don't aim at the enemy, aim ahead of them!
+    readingTime: 5
+  - text: 277123772
+    readingTime: 0.1
+  - text: This is a simulation.
+    readingTime: 0.2
+  - text: Your shield power is limited, don't take too much damage out there!
+    readingTime: 5
+  - text: We come to help. Don't listen to them.
+    readingTime: 0.2
