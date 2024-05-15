@@ -1,13 +1,20 @@
 using System.Collections;
+using Core.Events;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using SO;
 using TMPro;
 using UnityEngine;
+using EventType = Core.Events.EventType;
 
 namespace UI {
     public class InGameMenu : MonoBehaviour {
         public Canvas mainCanvas;
         public Canvas pauseCanvas;
+        public Canvas deathCanvas;
+
+        [TitleGroup("Death")] 
+        public DeathScreenUI deathUI;
 
         [TitleGroup("Miscs")] 
         public TextMeshProUGUI tipsText;
@@ -15,12 +22,24 @@ namespace UI {
 
         private bool _isPausing;
         private bool _paused;
+        private bool _hasDied;
+        
+        
         private void Start() {
             pauseCanvas.enabled = false;
+            deathCanvas.enabled = false;
+            this.AddListener(EventType.OpenDeathUI, _ => OpenDeathUI());
+        }
+
+        private void OpenDeathUI() {
+            Time.timeScale = 0;
+            deathCanvas.enabled = true;
+            deathUI.OpenDeathScreen();
+            _hasDied = true;
         }
 
         private void Update() {
-            if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (Input.GetKeyDown(KeyCode.Escape) && !_hasDied) {
                 if (_paused) UnPause();
                 else PauseGame();
             }

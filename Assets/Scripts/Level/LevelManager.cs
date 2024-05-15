@@ -1,6 +1,7 @@
 using System;
 using Core.Events;
 using Core.Patterns;
+using DG.Tweening;
 using SO;
 using UnityEngine;
 using EventType = Core.Events.EventType;
@@ -30,7 +31,8 @@ namespace Level {
                     
                     break;
                 case GameState.GameOver:
-                    Debug.Log("Game Over");
+                    DOTween.Clear();
+                    this.FireEvent(EventType.OpenDeathUI);
                     break;
                 case GameState.Win:
                     Debug.Log("Win");

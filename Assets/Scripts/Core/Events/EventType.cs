@@ -7,6 +7,7 @@ namespace Core.Events {
         OnMinimapSizeChange,
         
         OnDialoguesChange,
+        OpenDeathUI,
         
         SendCommand,
         OnPlayerOutOfBound,

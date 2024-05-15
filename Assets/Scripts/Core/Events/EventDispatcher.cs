@@ -53,6 +53,10 @@ namespace Core.Events {
             Events.Clear();
         }
 
+        private void OnDestroy() {
+            ClearListeners();
+        }
+
         private void OnApplicationQuit() {
             _isQuitting = true;
         }
