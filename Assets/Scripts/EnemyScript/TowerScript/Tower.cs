@@ -32,6 +32,8 @@ namespace EnemyScript.TowerScript {
 
         [ReadOnly] public bool isPlayerInRange;
         [ReadOnly] public bool canSpawn = true;
+
+        private List<Enemy> _enemies = new();
         private BehaviorTree.BehaviorTree _bt;
 
         protected override void Update() {
@@ -62,7 +64,8 @@ namespace EnemyScript.TowerScript {
         public IEnumerator SpawnShips() {
             canSpawn = false;
             foreach (var deploys in deployConfig) {
-                Instantiate(deploys.enemyToSpawn, deploys.point.position, deploys.point.rotation);
+                var inst = Instantiate(deploys.enemyToSpawn, deploys.point.position, deploys.point.rotation);
+                _enemies.Add(inst.GetComponent<Enemy>());
             }
             yield return new WaitForSeconds(50f);
             canSpawn = true;
@@ -72,9 +75,9 @@ namespace EnemyScript.TowerScript {
             var tempList = new List<Troop>();
             foreach (var deploys in deployConfig) {
                 var inst = Instantiate(deploys.enemyToSpawn, deploys.point.position, deploys.point.rotation);
+                _enemies.Add(inst.GetComponent<Enemy>());
                 tempList.Add(inst.GetComponent<Troop>());
             }
-
             return tempList;
         }
 
@@ -85,6 +88,11 @@ namespace EnemyScript.TowerScript {
             base.Death();
             this.FireEvent(EventType.OnTowerDestroyed, this);
             Destroy(miniDot);
+            
+            foreach (var e in _enemies.Where(x => x)) {
+                e.TakeDamage(9999);
+            }
+            
             if (turrets.Count > 0) {
                 foreach (var turret in turrets.Where(turret => turret)) {
                     turret.GetComponent<Enemy>().TakeDamage(9999);

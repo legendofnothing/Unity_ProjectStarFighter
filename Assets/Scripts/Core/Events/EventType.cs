@@ -8,6 +8,7 @@ namespace Core.Events {
         
         OnDialoguesChange,
         OpenDeathUI,
+        OpenWinUI,
         
         SendCommand,
         OnPlayerOutOfBound,

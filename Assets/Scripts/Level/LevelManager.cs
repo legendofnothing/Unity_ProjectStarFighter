@@ -35,7 +35,7 @@ namespace Level {
                     this.FireEvent(EventType.OpenDeathUI);
                     break;
                 case GameState.Win:
-                    Debug.Log("Win");
+                    this.FireEvent(EventType.OpenWinUI);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

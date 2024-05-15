@@ -12,6 +12,7 @@ namespace UI {
         public Canvas mainCanvas;
         public Canvas pauseCanvas;
         public Canvas deathCanvas;
+        public Canvas winCanvas;
 
         [TitleGroup("Death")] 
         public DeathScreenUI deathUI;
@@ -22,24 +23,31 @@ namespace UI {
 
         private bool _isPausing;
         private bool _paused;
-        private bool _hasDied;
+        private bool _hasGameEnded;
         
         
         private void Start() {
             pauseCanvas.enabled = false;
             deathCanvas.enabled = false;
+            winCanvas.enabled = false;
             this.AddListener(EventType.OpenDeathUI, _ => OpenDeathUI());
+            this.AddListener(EventType.OpenWinUI, _ => OpenWinUI());
         }
 
         private void OpenDeathUI() {
             Time.timeScale = 0;
             deathCanvas.enabled = true;
             deathUI.OpenDeathScreen();
-            _hasDied = true;
+            _hasGameEnded = true;
+        }
+
+        private void OpenWinUI() {
+            winCanvas.enabled = true;
+            _hasGameEnded = true;
         }
 
         private void Update() {
-            if (Input.GetKeyDown(KeyCode.Escape) && !_hasDied) {
+            if (Input.GetKeyDown(KeyCode.Escape) && !_hasGameEnded) {
                 if (_paused) UnPause();
                 else PauseGame();
             }
