@@ -39,6 +39,13 @@ namespace UI {
             }
         }
 
+        public void StopDialogue() {
+            _isPlayingDialogues = false;
+            canvasGroup.alpha = 0;
+            StopAllCoroutines();
+            _queue.Clear();
+        }
+
         private IEnumerator PlayDialogues(Dialogues dialogues, bool realTime = false) {
             _isPlayingDialogues = true;
             canvasGroup.alpha = 1;

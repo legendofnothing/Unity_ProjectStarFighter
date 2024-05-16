@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbe627ce5ac41fb93dc433f8a58a1bb, type: 3}
+  m_Name: IntroDialouge
+  m_EditorClassIdentifier: 
+  dialogues:
+    handleColor: {r: 0, g: 0, b: 0, a: 0}
+    handleName: 
+    main:
+    - text: Wake up.
+      readingTime: 2
+    - text: 
+      readingTime: 1
+    - text: ...
+      readingTime: 1.5
+    - text: 'Subject 120 is not waking up. '
+      readingTime: 2
+    - text: A dose of Epinephrine please.
+      readingTime: 2
+    - text: 
+      readingTime: 1
+    - text: ...
+      readingTime: 2
+    - text: 
+      readingTime: 1
