@@ -7,6 +7,7 @@ using UnityEngine.UI;
 namespace UI {
     public class DeathScreenUI : MonoBehaviour {
         public CanvasGroup mainGroup;
+        public CanvasGroup reiGroup;
         public Image ditherImage;
         public DialogueUI dialogueUI;
 
@@ -21,7 +22,7 @@ namespace UI {
         public void OpenDeathScreen() {
             mainGroup.alpha = 0;
             ditherImage.DOFade(0, 0).SetUpdate(true);
-            
+            reiGroup.alpha = 0;
             
             _sequence = DOTween.Sequence();
             _sequence
@@ -33,6 +34,10 @@ namespace UI {
                     foreach (var d in DialoguesList) {
                         dialogueUI.PlayDialogue(d, true);
                     }
+
+                    DOVirtual.DelayedCall(0.8f, () => {
+                        reiGroup.DOFade(1, 5).SetEase(Ease.Linear).SetUpdate(true);
+                    }).SetUpdate(true);
                 }))
                 .SetEase(Ease.Linear)
                 .SetUpdate(true);
