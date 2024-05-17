@@ -34,7 +34,7 @@ namespace Level.Level1 {
             this.AddListener(EventType.OnTowerDestroyed, param => OnTowerDestroy((Tower) param));
             this.AddListener(EventType.OnEnemyKilled, param => OnTaskForceDown((Enemy)param));
             
-            this.FireEvent(EventType.OnDialoguesChange, startingDialogues);
+            this.FireEvent(EventType.OnDialoguesChange, startingDialogues); 
         }
 
         private void OnTowerDestroy(Tower tower) {
@@ -56,6 +56,10 @@ namespace Level.Level1 {
                     var delay = endOfMissionDialogues.dialogues.main.Sum(t => t.readingTime);
                     DOVirtual.DelayedCall(1.2f, () => {
                         this.FireEvent(EventType.OnGameStateChange, GameState.Win);
+                    });
+
+                    DOVirtual.DelayedCall(delay, () => {
+                        this.FireEvent(EventType.OpenActualWinUI);
                     });
                 }
             }

@@ -25,8 +25,9 @@ namespace UI {
         public GraphicRaycaster pauseRaycaster;
         public GraphicRaycaster deathRaycaster;
 
-        [TitleGroup("Death")] 
+        [TitleGroup("UI Refs")] 
         public DeathScreenUI deathUI;
+        public WinScreenUI winScreen;
 
         [TitleGroup("Intro")] 
         public List<Image> images = new();
@@ -57,6 +58,7 @@ namespace UI {
             
             this.AddListener(EventType.OpenDeathUI, _ => OpenDeathUI());
             this.AddListener(EventType.OpenWinUI, _ => OpenWinUI());
+            this.AddListener(EventType.OpenActualWinUI, _ => OpenActualWinUI());
         }
 
         private void OpenDeathUI() {
@@ -69,6 +71,10 @@ namespace UI {
         private void OpenWinUI() {
             winCanvas.enabled = true;
             _hasGameEnded = true;
+        }
+
+        private void OpenActualWinUI() {
+            winScreen.OpenWinScreen();
         }
 
         private void Update() {
