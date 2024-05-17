@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Core;
 using Core.Events;
 using Core.Patterns;
@@ -11,6 +12,7 @@ using EventType = Core.Events.EventType;
 namespace PlayerScript {
     public class Player : Singleton<Player> {
         public Camera mainCamera;
+        public List<MonoBehaviour> playerScripts = new();
         [Space]
         public float hp;
         [Space] 
@@ -23,7 +25,6 @@ namespace PlayerScript {
         public float currentShield;
 
         private bool _canGenerateShield = true;
-
         private MinimapChangeSize _miniMap;
 
         public Vector2 PlayerDir {
@@ -111,6 +112,12 @@ namespace PlayerScript {
             this.FireEvent(EventType.OnPlayerHpChangeBar, currentHp/hp);
             this.FireEvent(EventType.OnPlayerHpChangeText, currentHp.ToString("0"));
             this.FireEvent(EventType.OnShieldChange, currentShield / shieldBlockDamage);
+        }
+
+        public void ManipulateInput(bool isEnabled = true) {
+            foreach (var script in playerScripts) {
+                script.enabled = isEnabled;
+            }
         }
     }
 }

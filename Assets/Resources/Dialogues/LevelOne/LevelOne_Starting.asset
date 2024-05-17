@@ -16,6 +16,10 @@ MonoBehaviour:
     handleColor: {r: 0.015686275, g: 0.7372549, b: 1, a: 1}
     handleName: t-one actual
     main:
+    - text: ...
+      readingTime: 0.5
+    - text: You're awake? Good.
+      readingTime: 3
     - text: This is T-One Actual. I will be your commander for this mission.
       readingTime: 5
     - text: We inserted you into the middle of an enemy fleet formation.

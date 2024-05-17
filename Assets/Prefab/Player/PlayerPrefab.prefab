@@ -482,6 +482,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 2362499529272950996}
+  playerScripts:
+  - {fileID: 2362499529778239104}
+  - {fileID: 2362499529778239109}
+  - {fileID: 2362499529778239108}
   hp: 100
   shieldChargeRate: 10
   shieldBlockDamage: 25

@@ -1,25 +1,36 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using Core.Events;
 using DG.Tweening;
+using PlayerScript;
 using Sirenix.OdinInspector;
 using SO;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using EventType = Core.Events.EventType;
 
 namespace UI {
     public class InGameMenu : MonoBehaviour {
+        public Canvas introCanvas;
         public Canvas mainCanvas;
         public Canvas pauseCanvas;
         public Canvas deathCanvas;
         public Canvas winCanvas;
 
+        [TitleGroup("Raycasters")] 
+        public GraphicRaycaster pauseRaycaster;
+        public GraphicRaycaster deathRaycaster;
+
         [TitleGroup("Death")] 
         public DeathScreenUI deathUI;
 
-        [TitleGroup("Miscs")] 
-        public TextMeshProUGUI tipsText;
-        public BunchOfTip tips;
+        [TitleGroup("Intro")] 
+        public List<Image> images = new();
+
 
         private bool _isPausing;
         private bool _paused;
@@ -30,6 +41,20 @@ namespace UI {
             pauseCanvas.enabled = false;
             deathCanvas.enabled = false;
             winCanvas.enabled = false;
+            introCanvas.enabled = true;
+            
+            Time.timeScale = 0;
+            Player.Instance.ManipulateInput(false);
+            foreach (var image in images) {
+                image.fillAmount = 0.5f;
+            }
+            
+            DoBlink182(0, 2.5f, () => {
+                Time.timeScale = 1;
+                introCanvas.enabled = false;
+                Player.Instance.ManipulateInput();
+            });
+            
             this.AddListener(EventType.OpenDeathUI, _ => OpenDeathUI());
             this.AddListener(EventType.OpenWinUI, _ => OpenWinUI());
         }
@@ -61,9 +86,6 @@ namespace UI {
             pauseCanvas.enabled = true;
             mainCanvas.enabled = false;
             _isPausing = false;
-
-            var element = tips.tips[Random.Range(0, tips.tips.Count)];
-            tipsText.text = "Tips: " + element.text;
         }
 
         public void UnPause() {
@@ -74,6 +96,36 @@ namespace UI {
             pauseCanvas.enabled = false;
             mainCanvas.enabled = true;
             _isPausing = false;
+        }
+
+        public void Retry() {
+            Time.timeScale = 0;
+            Player.Instance.ManipulateInput(false);
+            introCanvas.enabled = true;
+            pauseRaycaster.enabled = false;
+            
+            DoBlink182(0.5f, 1.5f, () => {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            });
+        }
+
+        public void Quit() {
+            Time.timeScale = 0;
+            Player.Instance.ManipulateInput(false);
+            introCanvas.enabled = true;
+            deathRaycaster.enabled = false;
+            
+            DoBlink182(0.5f, 1.5f, () => {
+                SceneManager.LoadScene("Menu");
+            });
+        }
+
+        private void DoBlink182(float to, float duration, TweenCallback action) {
+            foreach (var image in images) {
+                DOVirtual.Float(image.fillAmount, to, duration, value => {
+                    image.fillAmount = value;
+                }).SetEase(Ease.InElastic).SetUpdate(true).OnComplete(action);
+            }
         }
     }
 }

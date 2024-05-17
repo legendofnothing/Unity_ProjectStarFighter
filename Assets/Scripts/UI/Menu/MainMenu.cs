@@ -24,6 +24,7 @@ namespace UI.Menu {
         public GraphicRaycaster levelSelectorRaycaster;
 
         private void Start() {
+            Time.timeScale = 1;
             mainCanvas.enabled = false;
             mainGroup.alpha = 1;
             
