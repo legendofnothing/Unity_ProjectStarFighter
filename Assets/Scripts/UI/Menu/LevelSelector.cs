@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 namespace UI.Menu {
     public class LevelSelector : MonoBehaviour {
+        public MainMenu mainMenu;
         public List<MissionBrief> MissionBriefs = new();
         public TextMeshProUGUI missionName;
         public TextMeshProUGUI missionBrief;
@@ -20,8 +21,13 @@ namespace UI.Menu {
 
         public void SelectMission(int index) {
             if (!playButton.interactable) playButton.interactable = true;
+            _currentIndex = index;
             missionName.text = MissionBriefs[index].name;
-            missionBrief.text = MissionBriefs[index].text;
+            missionBrief.text = MissionBriefs[index].text.ToString();
+        }
+
+        public void Play() {
+            mainMenu.Play(_currentIndex);
         }
     }
 }

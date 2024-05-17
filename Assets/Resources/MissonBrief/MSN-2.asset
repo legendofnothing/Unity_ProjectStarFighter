@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49422b38f58941a08f1e94a40b1ecfb4, type: 3}
-  m_Name: TUTORIAL
+  m_Name: MSN-2
   m_EditorClassIdentifier: 
-  name: Tutorial
-  text: {fileID: 4900000, guid: 22749e88c9966c542880eeacc80edb2f, type: 3}
+  name: 'MISN-2: Frontal Attack'
+  text: {fileID: 4900000, guid: 668b8c78a09c5a1409979bf7564782f3, type: 3}

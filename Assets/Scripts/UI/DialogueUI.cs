@@ -46,6 +46,10 @@ namespace UI {
             _queue.Clear();
         }
 
+        public void ChangeTextColor(Color color) {
+            messageText.color = color;
+        }
+
         private IEnumerator PlayDialogues(Dialogues dialogues, bool realTime = false) {
             _isPlayingDialogues = true;
             canvasGroup.alpha = 1;

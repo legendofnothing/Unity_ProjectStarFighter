@@ -1,9 +1,15 @@
-﻿using DG.Tweening;
+﻿using System.Linq;
+using Core.Events;
+using DG.Tweening;
+using SO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using EventType = Core.Events.EventType;
 
 namespace UI.Menu {
     public class MainMenu : MonoBehaviour {
+        public Dialogues outroDialogues;
         public StartingIntro intro;
         [Space]
         public Canvas mainCanvas;
@@ -89,6 +95,34 @@ namespace UI.Menu {
                     image.fillAmount = value;
                 }).SetEase(Ease.InElastic).OnComplete(Application.Quit);
             }
+        }
+
+        public void Play(int level) {
+            levelSelectorRaycaster.enabled = false;
+            mainOptionsRaycaster.enabled = false;
+            
+            intro.GetComponent<Canvas>().enabled = true;
+            
+            var s = DOTween.Sequence();
+            s
+                .Append(levelSelectorGroup.DOFade(0, 0.5f).OnComplete(() => {
+                    levelSelectorCanvas.enabled = false;
+                }))
+                .OnComplete(() => {
+                    intro.uiDialogue.ChangeTextColor(new Color(0.4f, 0.4f, 0.4f));
+                    intro.uiDialogue.PlayDialogue(outroDialogues);
+                    var delay = outroDialogues.dialogues.main.Sum(t => t.readingTime);
+
+                    DOVirtual.DelayedCall(delay * 0.8f, () => {
+                        foreach (var image in intro.images) {
+                            DOVirtual.Float(image.fillAmount, 0.5f, 1.5f, value => {
+                                image.fillAmount = value;
+                            }).SetEase(Ease.InElastic).OnComplete(() => {
+                                SceneManager.LoadScene("LevelOne");
+                            });
+                        }
+                    });
+                });
         }
     }
 }
