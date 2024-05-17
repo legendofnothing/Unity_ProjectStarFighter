@@ -41,5 +41,9 @@ namespace Core.Patterns {
         protected void OnApplicationQuit() {
             isQuitting = true;
         }
+
+        private void OnDestroy() {
+            Destroy(gameObject);
+        }
     }
 }

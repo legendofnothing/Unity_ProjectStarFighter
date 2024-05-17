@@ -10,11 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfbe627ce5ac41fb93dc433f8a58a1bb, type: 3}
-  m_Name: LevelOne_TowerDestroyed
+  m_Name: Level_Two_Combat_3
   m_EditorClassIdentifier: 
   dialogues:
-    handleColor: {r: 0.015686275, g: 0.7372549, b: 1, a: 1}
-    handleName: t-one actual
+    handleColor: {r: 0.01999998, g: 0.73866665, b: 1, a: 1}
+    handleName: T-One Actual
     main:
-    - text: Tower destroyed. Good work.
-      readingTime: 3.5
+    - text: I can't cut off his transmission. Their radar signal is too powerful!
+      readingTime: 4
+    - text: Um, this is part of the simulation. Please proceed to destroy the enemies.
+      readingTime: 4
+    - text: T-One Actual out.
+      readingTime: 3

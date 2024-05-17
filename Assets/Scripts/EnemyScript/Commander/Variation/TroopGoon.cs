@@ -16,5 +16,9 @@ namespace EnemyScript.Commander.Variation {
         }
 
         protected abstract void RespondToCall(TroopCommand command);
+
+        private void OnDestroy() {
+            this.RemoveListener(EventType.SendCommand);
+        }
     }
 }

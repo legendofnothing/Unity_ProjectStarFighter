@@ -269,7 +269,7 @@ MonoBehaviour:
   projectile: {fileID: 4034899818029327129, guid: 2d27350df53423e408c01f3242888767, type: 3}
   setting:
     damage: 10
-    speed: 10
+    speed: 15
     lifeSpan: 8
     proxyModifier: 1
     interactLayer:

@@ -10,22 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfbe627ce5ac41fb93dc433f8a58a1bb, type: 3}
-  m_Name: Win_1
+  m_Name: Level_Two_Ending
   m_EditorClassIdentifier: 
   dialogues:
-    handleColor: {r: 0.015686275, g: 0.7372549, b: 1, a: 1}
-    handleName: t-one actual
+    handleColor: {r: 0.01999998, g: 0.73866665, b: 1, a: 1}
+    handleName: T-One Actual
     main:
-    - text: Good work.
-      readingTime: 3
-    - text: We will extract you soon now.
-      readingTime: 4
-    - text: You can...retry the simulation
-      readingTime: 4
-    - text: Or hit the button next to you. It will put you to sleep for our post-combat
-        analysis.
-      readingTime: 5
-    - text: T-One Actual out.
-      readingTime: 2.5
     - text: ...
       readingTime: 0.5
+    - text: That was...close.
+      readingTime: 3
+    - text: Good work regardless. Follow the procedure.
+      readingTime: 4
+    - text: I will debrief you once you wake up.
+      readingTime: 4
+    - text: T-One...Actual out.
+      readingTime: 2.5

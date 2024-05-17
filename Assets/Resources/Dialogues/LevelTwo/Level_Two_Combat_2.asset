@@ -10,11 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfbe627ce5ac41fb93dc433f8a58a1bb, type: 3}
-  m_Name: LevelOne_TowerDestroyed
+  m_Name: Level_Two_Combat_2
   m_EditorClassIdentifier: 
   dialogues:
-    handleColor: {r: 0.015686275, g: 0.7372549, b: 1, a: 1}
-    handleName: t-one actual
+    handleColor: {r: 1, g: 0.07291311, b: 0, a: 1}
+    handleName: H1N-A Commander
     main:
-    - text: Tower destroyed. Good work.
-      readingTime: 3.5
+    - text: I wouldn't say unknown. T-One Actual.
+      readingTime: 3
+    - text: As for you, our dear...Subject-120.
+      readingTime: 4
+    - text: You're quite, interesting.
+      readingTime: 3

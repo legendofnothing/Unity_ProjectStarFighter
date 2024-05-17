@@ -487,8 +487,8 @@ MonoBehaviour:
   - {fileID: 2362499529778239109}
   - {fileID: 2362499529778239108}
   hp: 100
-  shieldChargeRate: 5
-  shieldBlockDamage: 15
+  shieldChargeRate: 10
+  shieldBlockDamage: 25
   currentHp: 0
   currentShield: 0
 --- !u!114 &2362499529778239104

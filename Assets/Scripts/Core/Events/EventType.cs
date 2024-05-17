@@ -7,6 +7,7 @@ namespace Core.Events {
         OnMinimapSizeChange,
         
         OnDialoguesChange,
+        ClearDialogues,
         OpenDeathUI,
         OpenWinUI,
         OpenActualWinUI,

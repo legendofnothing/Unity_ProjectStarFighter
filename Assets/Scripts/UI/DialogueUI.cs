@@ -28,6 +28,8 @@ namespace UI {
                     StartCoroutine(PlayDialogues((Dialogues)param));
                 }
             });
+            
+            this.AddListener(EventType.ClearDialogues, _ => StopDialogue());
         }
 
         public void PlayDialogue(Dialogues dialogues, bool realTime = false) {

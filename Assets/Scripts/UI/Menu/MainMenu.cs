@@ -119,7 +119,14 @@ namespace UI.Menu {
                             DOVirtual.Float(image.fillAmount, 0.5f, 1.5f, value => {
                                 image.fillAmount = value;
                             }).SetEase(Ease.InElastic).OnComplete(() => {
-                                SceneManager.LoadScene("LevelOne");
+                                
+                                var sceneName = level switch {
+                                    1 => "LevelOne",
+                                    2 => "LevelTwo",
+                                    _ => "LevelOne"
+                                };
+
+                                SceneManager.LoadScene(sceneName);
                             });
                         }
                     });

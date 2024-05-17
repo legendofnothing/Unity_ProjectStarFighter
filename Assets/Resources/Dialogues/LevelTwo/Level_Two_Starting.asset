@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbe627ce5ac41fb93dc433f8a58a1bb, type: 3}
+  m_Name: Level_Two_Starting
+  m_EditorClassIdentifier: 
+  dialogues:
+    handleColor: {r: 0.01999998, g: 0.73866665, b: 1, a: 1}
+    handleName: T-One Actual
+    main:
+    - text: ...
+      readingTime: 0.5
+    - text: Awake? Good.
+      readingTime: 2
+    - text: Same drill, but this time you will attack their fleet frontally.
+      readingTime: 4
+    - text: Good luck.
+      readingTime: 3
+    - text: '*chatters* Yes yes, I know, I know this mission is sudi-'
+      readingTime: 1.5
+    - text: Oh, my bad. Turning off my radio now. T-One Actual out
+      readingTime: 5

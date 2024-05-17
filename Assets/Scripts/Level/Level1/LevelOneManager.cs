@@ -53,6 +53,7 @@ namespace Level.Level1 {
                 _enemies.Remove(enemy);
                 if (_enemies.Count <= 0) {
                     this.FireEvent(EventType.OnDialoguesChange, endOfMissionDialogues);
+                    
                     var delay = endOfMissionDialogues.dialogues.main.Sum(t => t.readingTime);
                     DOVirtual.DelayedCall(1.2f, () => {
                         this.FireEvent(EventType.OnGameStateChange, GameState.Win);
@@ -60,7 +61,7 @@ namespace Level.Level1 {
 
                     DOVirtual.DelayedCall(delay, () => {
                         this.FireEvent(EventType.OpenActualWinUI);
-                    });
+                    }); 
                 }
             }
         }

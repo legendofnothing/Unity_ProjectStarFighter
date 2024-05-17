@@ -128,6 +128,7 @@ namespace EnemyScript.Medium.Troop {
                 commander = this,
                 command = Commands.CommanderDead
             });
+            _delayTween?.Kill();
         }
 
         public override void OnDamage() {

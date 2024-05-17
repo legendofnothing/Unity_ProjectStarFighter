@@ -17,7 +17,6 @@ namespace EnemyScript.Hard.States {
 
         public override void OnUpdate() {
             var dist = _esm.enemy.GetDistanceToPlayer;
-            Debug.Log(dist);
             if (dist <= _esm.distanceInView) {
                 _esm.SwitchState(TwinFighterStateMachine.EnemyState.Attack);
             } else if (!_esm.twinFighter.commander) {
