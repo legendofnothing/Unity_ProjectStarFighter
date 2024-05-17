@@ -123,6 +123,7 @@ namespace UI.Menu {
                                 var sceneName = level switch {
                                     1 => "LevelOne",
                                     2 => "LevelTwo",
+                                    3 => "LevelThree",
                                     _ => "LevelOne"
                                 };
 

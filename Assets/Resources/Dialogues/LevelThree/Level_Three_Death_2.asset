@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbe627ce5ac41fb93dc433f8a58a1bb, type: 3}
+  m_Name: Level_Three_Death_2
+  m_EditorClassIdentifier: 
+  dialogues:
+    handleColor: {r: 0.02352941, g: 0.5117647, b: 1, a: 1}
+    handleName: Overseer
+    main:
+    - text: Oh, it's done already?
+      readingTime: 4
+    - text: Good work. T-One Actual.
+      readingTime: 4
+    - text: Looking at this data... Looks like you're better than our little subject
+        here, way better.
+      readingTime: 5
+    - text: But, are you better because you're T-One Actual, or because of the F-5J
+        we developed...
+      readingTime: 7
+    - text: Well, I think the name Subject-121 would suit you.
+      readingTime: 5

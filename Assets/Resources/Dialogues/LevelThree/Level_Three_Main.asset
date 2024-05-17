@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbe627ce5ac41fb93dc433f8a58a1bb, type: 3}
+  m_Name: Level_Three_Main
+  m_EditorClassIdentifier: 
+  dialogues:
+    handleColor: {r: 1, g: 0.02352941, b: 0.02352941, a: 1}
+    handleName: T-One Actual.
+    main:
+    - text: Is this frequency working? Come in, come in Subject-120.
+      readingTime: 4
+    - text: Listen, I'm sorry. But it's me. I'm piloting the F-5J.
+      readingTime: 5
+    - text: I'm sorry.
+      readingTime: 3
+    - text: He had my family at gunpoint.
+      readingTime: 4
+    - text: He told me to fight you, for his stupid project.
+      readingTime: 5
+    - text: I don't want to fight you, but, my family...
+      readingTime: 5
+    - text: You'd understand right? Right??
+      readingTime: 5
+    - text: 'Who am I kidding, the drugs they gave you, they made you numb. '
+      readingTime: 6
+    - text: All this time, you've been fighting real people.
+      readingTime: 4
+    - text: You have blood on your hands.
+      readingTime: 3
+    - text: Those people you killed, they have families, they have someone expecting
+        their returns.
+      readingTime: 5
+    - text: But, their family...
+      readingTime: 4
+    - text: Do you understand?
+      readingTime: 3
+    - text: I have my own family. I'm doing this for my own family.
+      readingTime: 5
+    - text: Please, I'm sorry, forgive me.
+      readingTime: 5
+    - text: I'm sorry, I'm sorry I'm so sorry. *sobs*
+      readingTime: 5
+    - text: I don't want things to be like this.
+      readingTime: 5
+    - text: But, I have to, I have to...
+      readingTime: 5
+    - text: I'm so sorry.
+      readingTime: 3
+    - text: Please....forgive...me...
+      readingTime: 5

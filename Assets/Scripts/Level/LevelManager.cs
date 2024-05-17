@@ -31,7 +31,6 @@ namespace Level {
                     
                     break;
                 case GameState.GameOver:
-                    DOTween.Clear();
                     this.FireEvent(EventType.OpenDeathUI);
                     break;
                 case GameState.Win:

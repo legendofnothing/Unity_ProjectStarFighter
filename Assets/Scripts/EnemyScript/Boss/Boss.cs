@@ -98,8 +98,8 @@ namespace EnemyScript.Boss {
                                         
                                         sprite.DOColor(Color.clear, 0.5f).OnComplete(() => {
                                             var index = Random.Range(0, list.Count);
-                                            list.RemoveAt(index);
                                             transform.position = list[index];
+                                            list.RemoveAt(index);
                                         });
 
                                         foreach (var s in spritesToTurnOff) {

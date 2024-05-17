@@ -10,13 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfbe627ce5ac41fb93dc433f8a58a1bb, type: 3}
-  m_Name: Fail_3
+  m_Name: Level_Three_Death_7
   m_EditorClassIdentifier: 
   dialogues:
-    handleColor: {r: 0, g: 0.5, b: 1, a: 1}
+    handleColor: {r: 0.02352941, g: 0.5117647, b: 1, a: 1}
     handleName: Overseer
     main:
-    - text: Until then, send in another one. Do not fail me.
-      readingTime: 6
-    - text: That, unless you want a bullet in your head...
+    - text: Well, that was, nasty.
+      readingTime: 4
+    - text: Annoying, even.
+      readingTime: 4
+    - text: Well, let's welcome our new subject here.
       readingTime: 5
+    - text: Extraction team, please take him back to base.
+      readingTime: 5
+    - text: We will have a lot of work for you, Subject-121.
+      readingTime: 5
+    - text: ...
+      readingTime: 2

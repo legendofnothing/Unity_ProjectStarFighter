@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfbe627ce5ac41fb93dc433f8a58a1bb, type: 3}
-  m_Name: Fail_2
+  m_Name: Level_Three_Death_1
   m_EditorClassIdentifier: 
   dialogues:
-    handleColor: {r: 0.015686274, g: 0.50784314, b: 1, a: 1}
-    handleName: Overseer
+    handleColor: {r: 1, g: 0.02352941, b: 0.02352941, a: 1}
+    handleName: T-One Actual
     main:
-    - text: Yes, I saw. Our little experiment failed.
-      readingTime: 6
-    - text: I will have to..bring this up to the higher-ups.
-      readingTime: 6
+    - text: I'm sorry...
+      readingTime: 3
+    - text: I'm really really sorry...
+      readingTime: 5
+    - text: This is T-One Actual... Subject-120 is eliminated...
+      readingTime: 5

@@ -31,6 +31,7 @@ namespace UI {
                     timerText.text = value.ToString("0.00") + "s";
                 }).SetEase(Ease.Linear).OnComplete(() => {
                     outOfBoundCanvas.enabled = false;
+                    _timerTween?.Kill();
                     this.FireEvent(EventType.OnGameStateChange, GameState.GameOver);
                 });
             }
