@@ -18,11 +18,16 @@ MonoBehaviour:
     main:
     - text: 
       readingTime: 1
+      optionalAudio: {fileID: 0}
     - text: 0.5mg of benzodiazepines please.
       readingTime: 3
+      optionalAudio: {fileID: 0}
     - text: 
       readingTime: 1
+      optionalAudio: {fileID: 8300000, guid: a826c8f01cda1164086bc1f9edb0c023, type: 3}
     - text: ...
       readingTime: 2
+      optionalAudio: {fileID: 0}
     - text: 
       readingTime: 1
+      optionalAudio: {fileID: 0}

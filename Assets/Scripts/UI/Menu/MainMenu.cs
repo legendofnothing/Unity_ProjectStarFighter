@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Audio;
 using Core.Events;
 using DG.Tweening;
 using SO;
@@ -11,6 +12,9 @@ namespace UI.Menu {
     public class MainMenu : MonoBehaviour {
         public Dialogues outroDialogues;
         public StartingIntro intro;
+        public AudioClip menuMusic;
+        public AudioClip transitionAudio;
+        public AudioClip outOfIntroAudio;
         [Space]
         public Canvas mainCanvas;
         public CanvasGroup mainGroup;
@@ -42,6 +46,8 @@ namespace UI.Menu {
             mainOptionsGroup.alpha = 0;
             mainOptionsRaycaster.enabled = false;
             mainOptionsCanvas.enabled = true;
+            AudioManager.Instance.PlaySFX(outOfIntroAudio);
+            AudioManager.Instance.PlayMusic(menuMusic, 2f);
             
             var s = DOTween.Sequence();
             s
@@ -57,6 +63,8 @@ namespace UI.Menu {
             levelSelectorCanvas.enabled = true;
             levelSelectorGroup.alpha = 0;
             levelSelectorRaycaster.enabled = false;
+            
+            AudioManager.Instance.PlaySFX(transitionAudio);
             
             var s = DOTween.Sequence();
             s
@@ -74,6 +82,8 @@ namespace UI.Menu {
             mainOptionsCanvas.enabled = true;
             mainOptionsGroup.alpha = 0;
             mainOptionsRaycaster.enabled = false;
+            
+            AudioManager.Instance.PlaySFX(transitionAudio);
             
             var s = DOTween.Sequence();
             s
@@ -103,6 +113,7 @@ namespace UI.Menu {
             mainOptionsRaycaster.enabled = false;
             
             intro.GetComponent<Canvas>().enabled = true;
+            AudioManager.Instance.StopMusic(true, 2f);
             
             var s = DOTween.Sequence();
             s

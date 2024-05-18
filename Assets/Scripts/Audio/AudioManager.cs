@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Core.Patterns;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -21,6 +22,8 @@ namespace Audio {
         private AudioMixerGroup _musicGroup;
         private AudioMixerGroup _sfxInsideGroup;
         private AudioMixerGroup _sfxOutsideGroup;
+
+        private bool _isFadingMusic;
 
         private void Awake() {
             _mainMixer = Resources.Load<AudioMixer>("Audio/MainAudioController");
@@ -66,7 +69,7 @@ namespace Audio {
             distance.Init(clip, transform, 50, 1);
         }
 
-        public void PlayMusic(AudioClip clip) {
+        public void PlayMusic(AudioClip clip, float delay = 0) {
             var source = _audioSources[AudioType.Music];
             if (source.isPlaying) {
                 source.Stop();
@@ -74,7 +77,26 @@ namespace Audio {
 
             source.volume = 1;
             source.clip = clip;
-            source.Play();
+            source.loop = true;
+            if (delay > 0) source.PlayDelayed(delay);
+            else source.Play();
+        }
+
+        public void StopMusic(bool doFade = true, float fadeDuration = 0) {
+            if (_audioSources[AudioType.Music].isPlaying && !_isFadingMusic) {
+                _isFadingMusic = true;
+                var source = _audioSources[AudioType.Music];
+                if (!doFade) {
+                    source.volume = 0;
+                    _isFadingMusic = false;
+                }
+                else {
+                    source.DOFade(0, fadeDuration)
+                        .OnComplete(() => _isFadingMusic = false)
+                        .SetEase(Ease.Linear)
+                        .SetUpdate(true);
+                }
+            }
         }
     }
 }

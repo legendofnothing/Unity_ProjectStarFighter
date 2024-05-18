@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Audio;
 using Core.Events;
 using DG.Tweening;
 using SO;
@@ -61,6 +62,10 @@ namespace UI {
             
             foreach (var text in dialogues.dialogues.main) {
                 messageText.text = text.text;
+                if (text.optionalAudio != null) {
+                    AudioManager.Instance.PlaySFX(text.optionalAudio);
+                } 
+                
                 if (realTime) {
                     yield return new WaitForSecondsRealtime(text.readingTime);
                 }

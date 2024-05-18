@@ -7,6 +7,7 @@ namespace SO {
     public struct DialoguesSettings {
         public string text;
         public float readingTime;
+        public AudioClip optionalAudio;
     }
     
     [Serializable]
