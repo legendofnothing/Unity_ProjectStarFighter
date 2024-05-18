@@ -50,6 +50,7 @@ namespace PlayerScript {
         private bool _hasDied;
         private Rigidbody2D _rb;
         private bool _isRunning;
+        public bool overridesDie;
         private Tween _resetShieldTween;
 
         private void Start() {
@@ -83,8 +84,13 @@ namespace PlayerScript {
                 
                 currentHp -= deltaDiff;
                 if (currentHp <= 0) {
-                    currentHp = 0;
-                    Death();
+                    if (!overridesDie) {
+                        currentHp = 0;
+                        Death();
+                    }
+                    else {
+                        currentHp = 1;
+                    }
                 }
             }
             

@@ -11,7 +11,7 @@ using SO;
 using UnityEngine;
 using EventType = Core.Events.EventType;
 
-namespace Level.Level1 {
+namespace Level.Levels {
     public class LevelTwoManager : MonoBehaviour {
         [ReadOnly] public List<TowerObjective> towerObjectives;
         public List<Dialogues> DialoguesList = new();

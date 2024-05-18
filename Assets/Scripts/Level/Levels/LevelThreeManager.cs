@@ -5,14 +5,12 @@ using Cinemachine;
 using Core.Events;
 using DG.Tweening;
 using EnemyScript;
-using EnemyScript.Boss;
 using Sirenix.OdinInspector;
 using SO;
-using Unity.VisualScripting;
 using UnityEngine;
 using EventType = Core.Events.EventType;
 
-namespace Level.Level1 {
+namespace Level.Levels {
     public class LevelThreeManager : MonoBehaviour {
         [ReadOnly] public Enemy boss;
         public List<Dialogues> startingDialogues = new();

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbe627ce5ac41fb93dc433f8a58a1bb, type: 3}
+  m_Name: Tutorial_3
+  m_EditorClassIdentifier: 
+  dialogues:
+    handleColor: {r: 0.01999998, g: 0.7059998, b: 1, a: 1}
+    handleName: T-Two Actual
+    main:
+    - text: Good.
+      readingTime: 1.5
+    - text: Now, let's try to fight our simulated enemy.
+      readingTime: 3
+    - text: Your new F-6 is equipped with the new shield system. It will block partial
+        amount of incoming damage
+      readingTime: 8
+    - text: Though, don't rely on them too much.
+      readingTime: 3
+    - text: And, it also equipped with a newer Mk-2 Space Radar system. There are
+        3 ranges mode you can use to scout out close or farway enemy.
+      readingTime: 6
+    - text: I will run the simulation now, get ready.
+      readingTime: 3

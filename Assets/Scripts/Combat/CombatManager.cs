@@ -10,6 +10,7 @@ namespace Combat {
         public List<Weapon> weapons = new();
         private Weapon _currentWeapon;
         private int _lastEquippedIndex = 0;
+        [ReadOnly] public bool canFire = true;
 
         private void Start() {
             foreach (var weapon in weapons) {
@@ -20,6 +21,7 @@ namespace Combat {
         }
 
         private void Update() {
+            if (!canFire) return;
             if (Input.GetKey(KeyCode.Mouse0)) _currentWeapon.FireWeapon();
             else if (Input.GetKeyDown(KeyCode.Q)) SwitchWeapon(_lastEquippedIndex);
             else if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchWeapon(0);

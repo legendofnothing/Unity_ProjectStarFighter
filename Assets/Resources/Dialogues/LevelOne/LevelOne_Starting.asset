@@ -20,14 +20,15 @@ MonoBehaviour:
       readingTime: 0.5
     - text: You're awake? Good.
       readingTime: 3
-    - text: This is T-One Actual. I will be your commander for this mission.
+    - text: This is T-One Actual. I will be your commander for this simulation.
       readingTime: 5
-    - text: We inserted you into the middle of an enemy fleet formation.
-      readingTime: 5
+    - text: In this simulation, you're inserted you into the middle of an enemy fleet
+        formation.
+      readingTime: 6
     - text: Locate them, and destroy them.
       readingTime: 4
-    - text: Use your radar, they're marked as yellow. And uh, don't die, we will
-        need you later.
+    - text: Use your radar, it's proven to be very useful. The targets are marked
+        as yellow on your radar.
       readingTime: 7
     - text: T-One Actual out.
       readingTime: 2.5
