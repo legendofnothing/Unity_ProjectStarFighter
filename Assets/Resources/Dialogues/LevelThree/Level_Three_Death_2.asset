@@ -18,13 +18,18 @@ MonoBehaviour:
     main:
     - text: Oh, it's done already?
       readingTime: 4
+      optionalAudio: {fileID: 8300000, guid: 5c8c59129ab732f46a507d101038e7a8, type: 3}
     - text: Good work. T-One Actual.
       readingTime: 4
+      optionalAudio: {fileID: 0}
     - text: Looking at this data... Looks like you're better than our little subject
         here, way better.
       readingTime: 5
+      optionalAudio: {fileID: 0}
     - text: But, are you better because you're T-One Actual, or because of the F-5J
         we developed...
       readingTime: 7
+      optionalAudio: {fileID: 0}
     - text: Well, I think the name Subject-121 would suit you.
       readingTime: 5
+      optionalAudio: {fileID: 0}

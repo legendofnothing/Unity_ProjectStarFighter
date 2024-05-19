@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiPrefab: {fileID: 4293670696308732016, guid: 691b6be9b60b92047806baa527332d02, type: 3}
+  deathSound: {fileID: 8300000, guid: 61ea1866e3e4a6049a26ef3b2818c9ba, type: 3}
   hp: 291
   currentHp: 0
   hasDied: 0
@@ -275,6 +276,8 @@ MonoBehaviour:
     interactLayer:
       serializedVersion: 2
       m_Bits: 9
+    activeSound: {fileID: 8300000, guid: 620bf43993b94c4439a4591cfd679cba, type: 3}
+    impactSound: {fileID: 8300000, guid: 92f8177f69195a44e8e2621c115f6599, type: 3}
     useImpactEffect: 1
     impactEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
     impactSize: {x: 0.2, y: 0.2, z: 0.2}

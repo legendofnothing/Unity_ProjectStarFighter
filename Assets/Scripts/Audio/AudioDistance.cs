@@ -10,14 +10,21 @@ namespace Audio {
 
         private float _minDist;
 
-        public void Init(AudioClip clip, Transform transform, float maxDistance, float minDist) {
+        public void Init(AudioClip clip, Transform targetTransform, bool looped = false, bool attachedToTransform = false, float minDist = 1) {
             _audioSource = GetComponent<AudioSource>();
-            _target = transform;
+            _target = targetTransform;
             _minDist = minDist;
-            transform.position = _target.position;
+            if (attachedToTransform) {
+                transform.SetParent(_target);
+                transform.localPosition = Vector3.zero;
+            }
+            else {
+                transform.position = _target.position;
+            }
             _audioSource.clip = clip;
             _audioSource.Play();
-            Destroy(gameObject, clip.length);
+            _audioSource.loop = looped;
+            if (!looped) Destroy(gameObject, clip.length);
             _ready = true;
         }
 
@@ -28,7 +35,6 @@ namespace Audio {
                 _audioSource.volume = 1;
             }
             else {
-                Debug.Log(dist);
                 _audioSource.volume = _minDist * (1 / (1 + AudioGlobalValues.LogarithmDropOffScale * (dist - 1)));
             }
         }

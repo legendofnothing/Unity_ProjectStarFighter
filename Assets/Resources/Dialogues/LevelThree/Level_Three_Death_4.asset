@@ -18,7 +18,7 @@ MonoBehaviour:
     main:
     - text: '*Gunshot*'
       readingTime: 2.5
-    - text: '*Screams*'
-      readingTime: 2.5
-    - text: '*Gunshot*'
-      readingTime: 2.5
+      optionalAudio: {fileID: 8300000, guid: 0e41bb6677f862e41a05202932b8b544, type: 3}
+    - text: 
+      readingTime: 0
+      optionalAudio: {fileID: 8300000, guid: 78c17d54c12e9ee43a093cda99e48b1b, type: 3}

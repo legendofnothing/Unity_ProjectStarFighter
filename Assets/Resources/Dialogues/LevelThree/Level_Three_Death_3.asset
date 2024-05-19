@@ -18,5 +18,7 @@ MonoBehaviour:
     main:
     - text: Wait wait wait wait wait.
       readingTime: 4
+      optionalAudio: {fileID: 8300000, guid: 5c8c59129ab732f46a507d101038e7a8, type: 3}
     - text: We had a deal you son of a-
       readingTime: 4
+      optionalAudio: {fileID: 0}

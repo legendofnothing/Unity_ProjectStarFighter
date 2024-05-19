@@ -18,18 +18,29 @@ MonoBehaviour:
     main:
     - text: Had a good sleep? Subject-120.
       readingTime: 3
+      optionalAudio: {fileID: 8300000, guid: 5c8c59129ab732f46a507d101038e7a8, type: 3}
     - text: T-One is on sick leave right now.
       readingTime: 3
+      optionalAudio: {fileID: 0}
     - text: So, I will be in charged of this mission.
       readingTime: 3
+      optionalAudio: {fileID: 0}
     - text: My callsign is Overseer.
       readingTime: 2.5
+      optionalAudio: {fileID: 0}
     - text: I assumed you already read the mission brief. So, I won't be explaining
         much.
       readingTime: 5
+      optionalAudio: {fileID: 0}
     - text: However, the data simulation used here is based on T-One combat data.
       readingTime: 4
+      optionalAudio: {fileID: 0}
     - text: Feel free to...kill him. In the simulation of course! Haha.
       readingTime: 5
+      optionalAudio: {fileID: 0}
     - text: Well, how does he says it? Oh. Oveseer out.
       readingTime: 5
+      optionalAudio: {fileID: 0}
+    - text: 
+      readingTime: 0
+      optionalAudio: {fileID: 8300000, guid: 912dc1500b5c44e4788eae85f7507bbc, type: 3}

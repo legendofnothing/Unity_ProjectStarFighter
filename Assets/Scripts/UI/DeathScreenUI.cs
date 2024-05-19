@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Audio;
 using DG.Tweening;
 using SO;
 using UnityEngine;
@@ -23,6 +24,7 @@ namespace UI {
             mainGroup.alpha = 0;
             ditherImage.DOFade(0, 0).SetUpdate(true);
             reiGroup.alpha = 0;
+            AudioManager.Instance.SetOutsideVolume(0);
             
             _sequence = DOTween.Sequence();
             _sequence

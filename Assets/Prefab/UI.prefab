@@ -676,12 +676,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a5e9a67e41834f45a3426ecd66c7663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cursors: {fileID: 11400000, guid: 83bb8f553bb4d15409f682851e261d5b, type: 2}
   introCanvas: {fileID: 6099706285192579772}
   mainCanvas: {fileID: 9165774874187470945}
   pauseCanvas: {fileID: 6933813276548735304}
   deathCanvas: {fileID: 8929279437459649278}
   winCanvas: {fileID: 6999381937558387356}
-  pauseRaycaster: {fileID: 8554678776187839028}
+  winRaycaster: {fileID: 971652441688213215}
+  pauseRaycaster: {fileID: 1111834880313093979}
   deathRaycaster: {fileID: 5319456646481284683}
   deathUI: {fileID: 4165172982080320148}
   winScreen: {fileID: 6179343486490441271}
@@ -2100,7 +2102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3739,6 +3741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7599687174237142205}
   - component: {fileID: 6933813276548735304}
+  - component: {fileID: 1111834880313093979}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -3792,6 +3795,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!114 &1111834880313093979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4658050900750317746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 8191
 --- !u!1 &4743227073073467883
 GameObject:
   m_ObjectHideFlags: 0
@@ -3988,7 +4008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4260,8 +4280,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5662603388520813379}
   - component: {fileID: 3848721362042947614}
-  - component: {fileID: 1922754990528666023}
-  - component: {fileID: 8554678776187839028}
   m_Layer: 5
   m_Name: SortButtons
   m_TagString: Untagged
@@ -4318,44 +4336,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!223 &1922754990528666023
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5163621633016298198}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 3
-  m_TargetDisplay: 0
---- !u!114 &8554678776187839028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5163621633016298198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 8191
 --- !u!1 &5331932160472955574
 GameObject:
   m_ObjectHideFlags: 0
@@ -4695,7 +4675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.14117648}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4725,6 +4705,7 @@ GameObject:
   - component: {fileID: 2104844999068279880}
   - component: {fileID: 3867122624817986954}
   - component: {fileID: 7019855767878151009}
+  - component: {fileID: 4805630710639550361}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -4892,6 +4873,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 4805630710639550361}
+          m_TargetAssemblyTypeName: Audio.AudioSfxPlay, Assembly-CSharp
+          m_MethodName: PlayAudio
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: 5ca4dd1a8226af6459207d3a9d7241df, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -4908,6 +4901,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &4805630710639550361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5883641046858620156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f78b43ee020cf304ca9000f888a7587d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6005234875074864243
 GameObject:
   m_ObjectHideFlags: 0
@@ -4970,7 +4975,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &4165172982080320148
 MonoBehaviour:
@@ -5184,7 +5189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5503,6 +5508,7 @@ GameObject:
   - component: {fileID: 4466228854925276796}
   - component: {fileID: 8911791882583848385}
   - component: {fileID: 4997441303871548642}
+  - component: {fileID: 510815008271085666}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -5670,6 +5676,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 510815008271085666}
+          m_TargetAssemblyTypeName: Audio.AudioSfxPlay, Assembly-CSharp
+          m_MethodName: PlayAudio
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: 5ca4dd1a8226af6459207d3a9d7241df, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -5686,6 +5704,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &510815008271085666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944517777508080192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f78b43ee020cf304ca9000f888a7587d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6951076929259983036
 GameObject:
   m_ObjectHideFlags: 0
@@ -6648,7 +6678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.1, g: 0.1, b: 0.1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6718,12 +6748,12 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &6179343486490441271
 MonoBehaviour:
@@ -7946,6 +7976,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6124151645211715619, guid: 007e22000c8cd4047bd12bd924eb0fd9, type: 3}
+      propertyPath: m_text
+      value: ':3
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 6367871327714277098, guid: 007e22000c8cd4047bd12bd924eb0fd9, type: 3}
       propertyPath: m_Name
       value: DialougeText
@@ -8388,6 +8424,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5085061595377981697}
+    - target: {fileID: 6339955089064950980, guid: d47ba307b5170ef4c8fd92518814d843, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339955089064950980, guid: d47ba307b5170ef4c8fd92518814d843, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339955089064950980, guid: d47ba307b5170ef4c8fd92518814d843, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339955089064950980, guid: d47ba307b5170ef4c8fd92518814d843, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Audio.AudioSfxPlay, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47ba307b5170ef4c8fd92518814d843, type: 3}
 --- !u!224 &5565329721953406195 stripped

@@ -18,5 +18,10 @@ MonoBehaviour:
     main:
     - text: I don't...
       readingTime: 3
+      optionalAudio: {fileID: 0}
     - text: I don't want to..... (chatters*
       readingTime: 3
+      optionalAudio: {fileID: 0}
+    - text: ...
+      readingTime: 0
+      optionalAudio: {fileID: 8300000, guid: 912dc1500b5c44e4788eae85f7507bbc, type: 3}

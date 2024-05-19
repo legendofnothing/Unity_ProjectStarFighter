@@ -18,7 +18,10 @@ MonoBehaviour:
     main:
     - text: I'm sorry...
       readingTime: 3
+      optionalAudio: {fileID: 8300000, guid: 5c8c59129ab732f46a507d101038e7a8, type: 3}
     - text: I'm really really sorry...
       readingTime: 5
+      optionalAudio: {fileID: 0}
     - text: This is T-One Actual... Subject-120 is eliminated...
       readingTime: 5
+      optionalAudio: {fileID: 8300000, guid: 5c8c59129ab732f46a507d101038e7a8, type: 3}

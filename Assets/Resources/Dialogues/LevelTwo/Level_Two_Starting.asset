@@ -18,13 +18,22 @@ MonoBehaviour:
     main:
     - text: ...
       readingTime: 0.5
+      optionalAudio: {fileID: 8300000, guid: 5c8c59129ab732f46a507d101038e7a8, type: 3}
     - text: Awake? Good.
       readingTime: 2
+      optionalAudio: {fileID: 0}
     - text: Same drill, but this time you will attack their fleet frontally.
       readingTime: 4
+      optionalAudio: {fileID: 0}
     - text: Good luck.
       readingTime: 3
+      optionalAudio: {fileID: 0}
     - text: '*chatters* Yes yes, I know, I know this mission is sudi-'
       readingTime: 1.5
+      optionalAudio: {fileID: 0}
     - text: Oh, my bad. Turning off my radio now. T-One Actual out
       readingTime: 5
+      optionalAudio: {fileID: 0}
+    - text: 
+      readingTime: 0
+      optionalAudio: {fileID: 8300000, guid: 912dc1500b5c44e4788eae85f7507bbc, type: 3}

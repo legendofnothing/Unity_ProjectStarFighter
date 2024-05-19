@@ -1,3 +1,4 @@
+using Audio;
 using Core.Events;
 using DG.Tweening;
 using Effect;
@@ -11,6 +12,7 @@ namespace EnemyScript {
     public class Enemy : MonoBehaviour {
         [TitleGroup("Refs")] 
         public GameObject uiPrefab;
+        public AudioClip deathSound;
         
         [TitleGroup("Config")] public float hp = 100;
         [ReadOnly] public float currentHp;
@@ -96,6 +98,7 @@ namespace EnemyScript {
             if (_troop) _troop.OnDeath();
             _alphaUiTween?.Kill();
             this.FireEvent(EventType.OnEnemyKilled, this);
+            if (deathSound) AudioManager.Instance.PlaySFX(deathSound, transform, false, false, 5);
             Destroy(gameObject);
         }
 

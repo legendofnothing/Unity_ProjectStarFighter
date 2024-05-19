@@ -18,11 +18,19 @@ MonoBehaviour:
     main:
     - text: ...
       readingTime: 0.5
+      optionalAudio: {fileID: 8300000, guid: 5c8c59129ab732f46a507d101038e7a8, type: 3}
     - text: That was...close.
       readingTime: 3
+      optionalAudio: {fileID: 0}
     - text: Good work regardless. Follow the procedure.
       readingTime: 4
+      optionalAudio: {fileID: 0}
     - text: I will debrief you once you wake up.
       readingTime: 4
+      optionalAudio: {fileID: 0}
     - text: T-One...Actual out.
       readingTime: 2.5
+      optionalAudio: {fileID: 0}
+    - text: 
+      readingTime: 0
+      optionalAudio: {fileID: 8300000, guid: 912dc1500b5c44e4788eae85f7507bbc, type: 3}

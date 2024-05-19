@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Audio;
 using Core.Events;
 using DG.Tweening;
 using PlayerScript;
@@ -15,6 +16,8 @@ using EventType = Core.Events.EventType;
 
 namespace UI {
     public class InGameMenu : MonoBehaviour {
+        public Cursors Cursors;
+        [Space]
         public Canvas introCanvas;
         public Canvas mainCanvas;
         public Canvas pauseCanvas;
@@ -22,6 +25,7 @@ namespace UI {
         public Canvas winCanvas;
 
         [TitleGroup("Raycasters")] 
+        public GraphicRaycaster winRaycaster;
         public GraphicRaycaster pauseRaycaster;
         public GraphicRaycaster deathRaycaster;
 
@@ -43,6 +47,7 @@ namespace UI {
             deathCanvas.enabled = false;
             winCanvas.enabled = false;
             introCanvas.enabled = true;
+            Cursor.SetCursor(Cursors.cursorCombat, Vector2.zero, CursorMode.Auto);
             
             Time.timeScale = 0;
             Player.Instance.ManipulateInput(false);
@@ -109,7 +114,9 @@ namespace UI {
             Player.Instance.ManipulateInput(false);
             introCanvas.enabled = true;
             pauseRaycaster.enabled = false;
-            
+            deathRaycaster.enabled = false;
+            winRaycaster.enabled = false;
+
             DoBlink182(0.5f, 1.5f, () => {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             });
@@ -119,10 +126,13 @@ namespace UI {
             Time.timeScale = 0;
             Player.Instance.ManipulateInput(false);
             introCanvas.enabled = true;
+            pauseRaycaster.enabled = false;
             deathRaycaster.enabled = false;
-            
+            winRaycaster.enabled = false;
+
             DoBlink182(0.5f, 1.5f, () => {
                 SceneManager.LoadScene("Menu");
+                Cursor.SetCursor(Cursors.cursorNormal, Vector2.zero, CursorMode.Auto);
             });
         }
 

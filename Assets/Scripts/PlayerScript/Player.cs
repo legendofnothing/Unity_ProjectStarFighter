@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using Audio;
 using Core;
 using Core.Events;
 using Core.Patterns;
@@ -18,13 +20,21 @@ namespace PlayerScript {
         [Space] 
         public float shieldChargeRate;
         public float shieldBlockDamage;
+
+        [Space] 
+        public AudioClip warningHull;
+        public AudioClip warningShield;
+        public AudioClip hullShaking;
         
+        [Space]
         [ReadOnly] 
         public float currentHp;
         [ReadOnly] 
         public float currentShield;
 
         private bool _canGenerateShield = true;
+        private bool _soundEffectShieldPlaying;
+        private bool _soundEffectHullPlaying;
         private MinimapChangeSize _miniMap;
 
         public Vector2 PlayerDir {
@@ -81,8 +91,9 @@ namespace PlayerScript {
             if (currentShield < 0) {
                 var deltaDiff = -currentShield;
                 currentShield = 0;
-                
                 currentHp -= deltaDiff;
+                PlaySoundEffect(new []{warningHull, hullShaking});
+                
                 if (currentHp <= 0) {
                     if (!overridesDie) {
                         currentHp = 0;
@@ -92,6 +103,9 @@ namespace PlayerScript {
                         currentHp = 1;
                     }
                 }
+            }
+            else {
+                PlaySoundEffect(warningShield);
             }
             
             _resetShieldTween?.Kill();
@@ -124,6 +138,26 @@ namespace PlayerScript {
             foreach (var script in playerScripts) {
                 script.enabled = isEnabled;
             }
+        }
+
+        private void PlaySoundEffect(AudioClip clip) {
+            if (_soundEffectShieldPlaying) return;
+            _soundEffectShieldPlaying = true;
+            AudioManager.Instance.PlaySFX(clip);
+            DOVirtual.DelayedCall(clip.length, () => {
+                _soundEffectShieldPlaying = false;
+            });
+        }
+        
+        private void PlaySoundEffect(AudioClip[] clips) {
+            if (_soundEffectHullPlaying) return;
+            _soundEffectHullPlaying = true;
+            foreach (var clip in clips) {
+                AudioManager.Instance.PlaySFX(clip);
+            }
+            DOVirtual.DelayedCall(clips.OrderBy(c => c.length).ToArray()[0].length, () => {
+                _soundEffectHullPlaying = false;
+            });
         }
     }
 }

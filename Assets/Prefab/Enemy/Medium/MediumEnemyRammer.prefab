@@ -223,6 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiPrefab: {fileID: 4293670696308732016, guid: 691b6be9b60b92047806baa527332d02, type: 3}
+  deathSound: {fileID: 8300000, guid: 61ea1866e3e4a6049a26ef3b2818c9ba, type: 3}
   hp: 100
   currentHp: 0
   hasDied: 0

@@ -18,3 +18,7 @@ MonoBehaviour:
     main:
     - text: Tower destroyed. Good work.
       readingTime: 3.5
+      optionalAudio: {fileID: 8300000, guid: 5c8c59129ab732f46a507d101038e7a8, type: 3}
+    - text: 
+      readingTime: 0
+      optionalAudio: {fileID: 8300000, guid: 912dc1500b5c44e4788eae85f7507bbc, type: 3}

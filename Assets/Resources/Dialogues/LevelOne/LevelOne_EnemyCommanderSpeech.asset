@@ -18,7 +18,10 @@ MonoBehaviour:
     main:
     - text: Roger, [inaudible] actual.
       readingTime: 3
+      optionalAudio: {fileID: 8300000, guid: 5c8c59129ab732f46a507d101038e7a8, type: 3}
     - text: We will destroy them.
       readingTime: 4
+      optionalAudio: {fileID: 0}
     - text: H1N-A Commander out.
       readingTime: 3
+      optionalAudio: {fileID: 8300000, guid: 912dc1500b5c44e4788eae85f7507bbc, type: 3}

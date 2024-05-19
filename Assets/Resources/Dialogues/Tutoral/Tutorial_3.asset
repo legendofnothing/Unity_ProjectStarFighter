@@ -18,15 +18,24 @@ MonoBehaviour:
     main:
     - text: Good.
       readingTime: 1.5
+      optionalAudio: {fileID: 8300000, guid: 5c8c59129ab732f46a507d101038e7a8, type: 3}
     - text: Now, let's try to fight our simulated enemy.
       readingTime: 3
+      optionalAudio: {fileID: 0}
     - text: Your new F-6 is equipped with the new shield system. It will block partial
         amount of incoming damage
       readingTime: 8
+      optionalAudio: {fileID: 0}
     - text: Though, don't rely on them too much.
       readingTime: 3
+      optionalAudio: {fileID: 0}
     - text: And, it also equipped with a newer Mk-2 Space Radar system. There are
         3 ranges mode you can use to scout out close or farway enemy.
       readingTime: 6
+      optionalAudio: {fileID: 0}
     - text: I will run the simulation now, get ready.
       readingTime: 3
+      optionalAudio: {fileID: 0}
+    - text: 
+      readingTime: 0
+      optionalAudio: {fileID: 8300000, guid: 912dc1500b5c44e4788eae85f7507bbc, type: 3}

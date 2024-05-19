@@ -1,4 +1,5 @@
 ﻿using System;
+using Audio;
 using Effect;
 using Scripts.Core;
 using Sirenix.OdinInspector;
@@ -15,6 +16,10 @@ namespace Combat {
         [Range(1, 999)]
         public float proxyModifier;
         public LayerMask interactLayer;
+        [TitleGroup("Audio")] 
+        public AudioClip activeSound;
+        public AudioClip impactSound;
+        
         [TitleGroup("Options")] 
         public bool useImpactEffect;
         [ShowIf(nameof(useImpactEffect))] [TitleGroup("Explosion Config")] 
@@ -41,6 +46,9 @@ namespace Combat {
             Destroy(gameObject, setting.lifeSpan);
             _setting = setting;
             this.owner = owner;
+            
+            AudioManager.Instance.PlaySFX(setting.activeSound, transform, true, true, 2);
+            
             _ready = true;
         }
 
@@ -55,7 +63,9 @@ namespace Combat {
         
         private void OnTriggerEnter2D(Collider2D other) {
             if (CheckLayerMask.IsInLayerMask(other.gameObject, _setting.interactLayer)) {
+                if (!other) return;
                 OnImpact(other);
+                AudioManager.Instance.PlaySFX(_setting.impactSound, transform, false, false, 3);
                 
                 if (_setting.useImpactEffect && _setting.impactEffect != null) {
                     var explosionInst = Instantiate(_setting.impactEffect, transform.position, Quaternion.identity);

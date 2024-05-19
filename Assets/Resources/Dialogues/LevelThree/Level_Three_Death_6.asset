@@ -18,3 +18,4 @@ MonoBehaviour:
     main:
     - text: '*thump*'
       readingTime: 1.5
+      optionalAudio: {fileID: 8300000, guid: 78c17d54c12e9ee43a093cda99e48b1b, type: 3}

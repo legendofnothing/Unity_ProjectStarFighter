@@ -18,42 +18,65 @@ MonoBehaviour:
     main:
     - text: Is this frequency working? Come in, come in Subject-120.
       readingTime: 4
+      optionalAudio: {fileID: 8300000, guid: 5c8c59129ab732f46a507d101038e7a8, type: 3}
     - text: Listen, I'm sorry. But it's me. I'm piloting the F-5J.
       readingTime: 5
+      optionalAudio: {fileID: 0}
     - text: I'm sorry.
       readingTime: 3
+      optionalAudio: {fileID: 0}
     - text: He had my family at gunpoint.
       readingTime: 4
+      optionalAudio: {fileID: 0}
     - text: He told me to fight you, for his stupid project.
       readingTime: 5
+      optionalAudio: {fileID: 0}
     - text: I don't want to fight you, but, my family...
       readingTime: 5
+      optionalAudio: {fileID: 0}
     - text: You'd understand right? Right??
       readingTime: 5
+      optionalAudio: {fileID: 0}
     - text: 'Who am I kidding, the drugs they gave you, they made you numb. '
       readingTime: 6
+      optionalAudio: {fileID: 0}
     - text: All this time, you've been fighting real people.
       readingTime: 4
+      optionalAudio: {fileID: 0}
     - text: You have blood on your hands.
       readingTime: 3
+      optionalAudio: {fileID: 0}
     - text: Those people you killed, they have families, they have someone expecting
         their returns.
       readingTime: 5
+      optionalAudio: {fileID: 0}
     - text: But, their family...
       readingTime: 4
+      optionalAudio: {fileID: 0}
     - text: Do you understand?
       readingTime: 3
+      optionalAudio: {fileID: 0}
     - text: I have my own family. I'm doing this for my own family.
       readingTime: 5
+      optionalAudio: {fileID: 0}
     - text: Please, I'm sorry, forgive me.
       readingTime: 5
+      optionalAudio: {fileID: 0}
     - text: I'm sorry, I'm sorry I'm so sorry. *sobs*
       readingTime: 5
+      optionalAudio: {fileID: 0}
     - text: I don't want things to be like this.
       readingTime: 5
+      optionalAudio: {fileID: 0}
     - text: But, I have to, I have to...
       readingTime: 5
+      optionalAudio: {fileID: 0}
     - text: I'm so sorry.
       readingTime: 3
+      optionalAudio: {fileID: 0}
     - text: Please....forgive...me...
       readingTime: 5
+      optionalAudio: {fileID: 0}
+    - text: 
+      readingTime: 0
+      optionalAudio: {fileID: 8300000, guid: 912dc1500b5c44e4788eae85f7507bbc, type: 3}

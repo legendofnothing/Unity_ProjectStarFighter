@@ -18,7 +18,13 @@ MonoBehaviour:
     main:
     - text: ...
       readingTime: 1.5
+      optionalAudio: {fileID: 8300000, guid: 5c8c59129ab732f46a507d101038e7a8, type: 3}
     - text: Oh, greetings. I'm your training commander for today.
       readingTime: 3
+      optionalAudio: {fileID: 0}
     - text: First, let's run through some basic controls of your F-6.
       readingTime: 5
+      optionalAudio: {fileID: 0}
+    - text: 
+      readingTime: 0
+      optionalAudio: {fileID: 8300000, guid: 912dc1500b5c44e4788eae85f7507bbc, type: 3}

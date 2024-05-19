@@ -18,9 +18,16 @@ MonoBehaviour:
     main:
     - text: Simulation? Ha, well let's see how strong you really are.
       readingTime: 4
+      optionalAudio: {fileID: 8300000, guid: 5c8c59129ab732f46a507d101038e7a8, type: 3}
     - text: You will learn the truth eventually.
       readingTime: 4
+      optionalAudio: {fileID: 0}
     - text: That is, and everything you did.
       readingTime: 3
+      optionalAudio: {fileID: 0}
     - text: Was... *static noises*
       readingTime: 3
+      optionalAudio: {fileID: 0}
+    - text: 
+      readingTime: 0
+      optionalAudio: {fileID: 8300000, guid: 912dc1500b5c44e4788eae85f7507bbc, type: 3}

@@ -18,13 +18,19 @@ MonoBehaviour:
     main:
     - text: Copy that.... T-One Actual Out.
       readingTime: 4
+      optionalAudio: {fileID: 0}
     - text: '[Cuts off radio] Jesus fucking christ.'
       readingTime: 5
+      optionalAudio: {fileID: 0}
     - text: He was a living actual fucking person...
       readingTime: 5
+      optionalAudio: {fileID: 0}
     - text: And those enemies....
       readingTime: 5
+      optionalAudio: {fileID: 0}
     - text: They're also.... *chatters*
       readingTime: 4
+      optionalAudio: {fileID: 0}
     - text: '[CONNECTION LOST]'
       readingTime: 3
+      optionalAudio: {fileID: 8300000, guid: 912dc1500b5c44e4788eae85f7507bbc, type: 3}

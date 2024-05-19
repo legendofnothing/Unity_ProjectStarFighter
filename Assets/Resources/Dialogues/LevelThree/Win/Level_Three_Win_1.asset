@@ -18,15 +18,22 @@ MonoBehaviour:
     main:
     - text: Hnnghn...
       readingTime: 3
+      optionalAudio: {fileID: 8300000, guid: 5c8c59129ab732f46a507d101038e7a8, type: 3}
     - text: You are...really good...
       readingTime: 4
+      optionalAudio: {fileID: 0}
     - text: I'm sorry, darling.... I'm sorry...my daughter... *coughs*
       readingTime: 6
+      optionalAudio: {fileID: 0}
     - text: I won't...be...returning...
       readingTime: 4
+      optionalAudio: {fileID: 0}
     - text: Subject...120...please...please know that...
       readingTime: 5
+      optionalAudio: {fileID: 0}
     - text: This is...not a...simulation.... *coughs*
       readingTime: 4
+      optionalAudio: {fileID: 0}
     - text: I still...have hope....you can change....you can show....emotions *cough*
       readingTime: 5
+      optionalAudio: {fileID: 0}

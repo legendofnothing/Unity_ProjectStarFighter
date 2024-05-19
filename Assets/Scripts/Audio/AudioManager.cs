@@ -29,6 +29,7 @@ namespace Audio {
             _mainMixer = Resources.Load<AudioMixer>("Audio/MainAudioController");
         
             _musicGroup = _mainMixer.FindMatchingGroups("Music")[0];
+            _mainMixer.SetFloat("OutsideVolume", 0);
 
             var sfxGroups = _mainMixer.FindMatchingGroups("SFX");
             _sfxInsideGroup = sfxGroups[1];
@@ -61,12 +62,12 @@ namespace Audio {
             _audioSources[AudioType.SfxInside].PlayOneShot(clip);
         }
 
-        public void PlaySFX(AudioClip clip, Transform transform) {
+        public void PlaySFX(AudioClip clip, Transform transform, bool looped = false, bool attached = false, float minDist = 1) {
             var inst = new GameObject("AudioSFXInstance", typeof(AudioSource), typeof(AudioDistance));
             var outAudio = inst.GetComponent<AudioSource>();
             var distance = inst.GetComponent<AudioDistance>();
             outAudio.outputAudioMixerGroup = _sfxOutsideGroup;
-            distance.Init(clip, transform, 50, 1);
+            distance.Init(clip, transform, looped, attached, minDist);
         }
 
         public void PlayMusic(AudioClip clip, float delay = 0) {
@@ -97,6 +98,10 @@ namespace Audio {
                         .SetUpdate(true);
                 }
             }
+        }
+
+        public void SetOutsideVolume(float volume) {
+            _mainMixer.SetFloat("OutsideVolume", Mathf.Lerp(-80, 0, volume));
         }
     }
 }
