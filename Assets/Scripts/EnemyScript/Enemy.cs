@@ -110,6 +110,17 @@ namespace EnemyScript {
                 (pos - (Vector2) transform.position).normalized);
         }
         
+        public float GetDotToPoint(GameObject pos) {
+            return  Vector2.Dot(transform.up,
+                (pos.transform.position - transform.position).normalized);
+        }
+        
+        public float GetDistanceToTarget(Vector3 position) => Vector2.Distance(transform.position,
+            position);
+        
+        public float GetDistanceToTarget(GameObject gb) => Vector2.Distance(transform.position,
+            gb.transform.position);
+        
         public float GetDistanceToPlayer => Vector2.Distance(transform.position,
             PlayerScript.Player.Instance.transform.position);
     }

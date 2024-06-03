@@ -7,12 +7,22 @@ namespace EnemyScript {
         [HideInInspector] public float speedDampValue;
         
         private Rigidbody2D _rigidbody;
-        private Weapon _weapon;
+        public Weapon Weapon { get; private set; }
+
+        public ProjectileWeapon WeaponProjectile {
+            get {
+                if (Weapon is ProjectileWeapon weapon) {
+                    return weapon;
+                }
+
+                return null;
+            }
+        }
         private Vector2 _refVel = Vector2.zero;
         
         private void Start() {
             _rigidbody = GetComponent<Rigidbody2D>();
-            _weapon = GetComponent<Weapon>();
+            Weapon = GetComponent<Weapon>();
         }
         
         public void LookAt(Vector3 point, float maxRotationDelta) {
@@ -23,7 +33,7 @@ namespace EnemyScript {
         }
         
         public void FireWeapon() {
-            _weapon.FireWeapon();
+            Weapon.FireWeapon();
         }
 
         public void FlyForward(float speed) {

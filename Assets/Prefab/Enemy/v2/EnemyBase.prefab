@@ -109,6 +109,8 @@ GameObject:
   - component: {fileID: 7394489358034142130}
   - component: {fileID: 1385832427}
   - component: {fileID: 697824697}
+  - component: {fileID: 5072429778172491493}
+  - component: {fileID: -294185101310073695}
   m_Layer: 7
   m_Name: EnemyBase
   m_TagString: Untagged
@@ -199,7 +201,7 @@ MonoBehaviour:
   hp: 200
   currentHp: 0
   hasDied: 0
-  speed: 5
+  speed: 7
   minimumSpeed: 3
   speedDampValue: 0.7
   minimumAngularSpeed: 0.7
@@ -258,6 +260,40 @@ MonoBehaviour:
     impactEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
     impactSize: {x: 0.2, y: 0.2, z: 0.2}
   owner: {fileID: 7394489358034142130}
+--- !u!114 &5072429778172491493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394489358034142158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f6d7f7145f4b9ab2ffa03185d71b52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyBehaviors: {fileID: 1385832427}
+  enemy: {fileID: 7394489358034142130}
+  minEngageDistance: 20
+  minCirclingDistance: 8
+  predictedOffset: 1.5
+--- !u!114 &-294185101310073695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394489358034142158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cd47d48834a448fa1bb4b0057b85639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateMachine: {fileID: 5072429778172491493}
+  dotInFront: 0.998
+  dangerDistance: 3.5
+  minResetDistance: 4
+  maxResetDistance: 8
 --- !u!1 &7394489358069991528
 GameObject:
   m_ObjectHideFlags: 0
