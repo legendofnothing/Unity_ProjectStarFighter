@@ -5,15 +5,18 @@ using UnityEngine;
 namespace EnemyScript.v2.BehaviorTree {
     public abstract class DefaultBehavior : MonoBehaviour {
         public EnemyStateMachine stateMachine;
+
+        protected Rigidbody2D rb;
         protected global::BehaviorTree.BehaviorTree MainTree;
 
         protected abstract void SetupTree();
 
         protected void Awake() {
+            rb = GetComponent<Rigidbody2D>();
             SetupTree();
         }
 
-        protected void Update() {
+        protected virtual void Update() {
             if (MainTree.children.Count <= 0) return;
             MainTree.Update();
         }

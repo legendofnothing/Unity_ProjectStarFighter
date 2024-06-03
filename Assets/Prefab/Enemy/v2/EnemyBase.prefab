@@ -110,7 +110,6 @@ GameObject:
   - component: {fileID: 1385832427}
   - component: {fileID: 697824697}
   - component: {fileID: 5072429778172491493}
-  - component: {fileID: -294185101310073695}
   m_Layer: 7
   m_Name: EnemyBase
   m_TagString: Untagged
@@ -277,23 +276,6 @@ MonoBehaviour:
   minEngageDistance: 20
   minCirclingDistance: 8
   predictedOffset: 1.5
---- !u!114 &-294185101310073695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7394489358034142158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cd47d48834a448fa1bb4b0057b85639, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stateMachine: {fileID: 5072429778172491493}
-  dotInFront: 0.998
-  dangerDistance: 3.5
-  minResetDistance: 4
-  maxResetDistance: 8
 --- !u!1 &7394489358069991528
 GameObject:
   m_ObjectHideFlags: 0

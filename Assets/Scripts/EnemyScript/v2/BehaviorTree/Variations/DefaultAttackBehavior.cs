@@ -16,10 +16,10 @@ namespace EnemyScript.v2.BehaviorTree.Variations {
         public float minResetDistance = 4f;
         public float maxResetDistance = 8f;
 
-        private float _currentResetDistance;
+        protected float CurrentResetDistance;
         
         protected override void SetupTree() {
-            _currentResetDistance = Random.Range(minResetDistance, maxResetDistance);
+            CurrentResetDistance = Random.Range(minResetDistance, maxResetDistance);
 
             MainTree = new global::BehaviorTree.BehaviorTree(new List<Node> {
                 new Selector(new List<Node> {
@@ -33,19 +33,21 @@ namespace EnemyScript.v2.BehaviorTree.Variations {
                         new Decorator(new Condition(() => stateMachine.CurrentState == EnemyStates.Strafing)),
                         new Decorator(new Condition(() => stateMachine.enemy.GetDotToPoint(Player.Instance.PlayerPos) >= dotInFront)),
                         new Decorator(new Condition(() => stateMachine.enemy.GetDistanceToTarget(Player.Instance.PlayerPos) >= dangerDistance)),
-                        new Decorator(new Actions(() => {
-                            _currentResetDistance = Random.Range(minResetDistance, maxResetDistance);
-                            stateMachine.SwitchState(EnemyStates.Resetting);
-                        }))
+                        new Decorator(new Actions(SwitchToReset))
                     }),
                     
                     new Sequence(new List<Node> {
                         new Decorator(new Condition(() => stateMachine.CurrentState == EnemyStates.Resetting)),
-                        new Decorator(new Condition(() => stateMachine.enemy.GetDistanceToTarget(Player.Instance.PlayerPos) >= _currentResetDistance)),
+                        new Decorator(new Condition(() => stateMachine.enemy.GetDistanceToTarget(Player.Instance.PlayerPos) >= CurrentResetDistance)),
                         new Decorator(new Actions(() => stateMachine.SwitchState(EnemyStates.Idle)))
                     }),
                 })
             });
+        }
+        
+        protected void SwitchToReset() {
+            CurrentResetDistance = Random.Range(minResetDistance, maxResetDistance);
+            stateMachine.SwitchState(EnemyStates.Resetting);
         }
     }
 }

@@ -47,8 +47,7 @@ namespace UI {
             deathCanvas.enabled = false;
             winCanvas.enabled = false;
             introCanvas.enabled = true;
-            Cursor.SetCursor(Cursors.cursorCombat, Vector2.zero, CursorMode.Auto);
-            
+
             Time.timeScale = 0;
             Player.Instance.ManipulateInput(false);
             foreach (var image in images) {
@@ -136,7 +135,6 @@ namespace UI {
 
             DoBlink182(0.5f, 1.5f, () => {
                 SceneManager.LoadScene("Menu");
-                Cursor.SetCursor(Cursors.cursorNormal, Vector2.zero, CursorMode.Auto);
             });
         }
 

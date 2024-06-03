@@ -41,6 +41,7 @@ namespace EnemyScript {
         private Tween _alphaUiTween;
         public EnemyUI Ui => _ui == null ? null : _ui;
         [ReadOnly] public bool stopUpdatingUI;
+        [ReadOnly] public bool canDamage = true;
 
         private void Awake() {
             currentHp = hp;
@@ -67,6 +68,7 @@ namespace EnemyScript {
 
         public void TakeDamage(float amount) {
             if (hasDied) return;
+            if (!canDamage) return;
             currentHp -= amount;
             if (_troop) _troop.OnDamage();
             if (_ui) _ui.SetValue(currentHp / hp);

@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6368265137466395522
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -294185101310073695, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: dangerDistance
+      value: 2.9
+      objectReference: {fileID: 0}
+    - target: {fileID: -294185101310073695, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: maxResetDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -294185101310073695, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: minResetDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394489358034142156, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394489358034142156, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394489358034142156, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394489358034142156, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394489358034142156, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394489358034142156, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394489358034142156, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394489358034142156, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394489358034142156, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394489358034142156, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394489358034142156, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394489358034142158, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: m_Name
+      value: EnemyShooterVar2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: -294185101310073695, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+--- !u!114 &2162989393930222951 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5072429778172491493, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+  m_PrefabInstance: {fileID: 6368265137466395522}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539100119038445644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f6d7f7145f4b9ab2ffa03185d71b52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &4539100119038445644 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7394489358034142158, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+  m_PrefabInstance: {fileID: 6368265137466395522}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4105893099890333049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4539100119038445644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 650398c15dbf4b878df7f0c04898f52b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateMachine: {fileID: 2162989393930222951}
+  dotInFront: 0.998
+  dangerDistance: 3.5
+  minResetDistance: 12
+  maxResetDistance: 18
