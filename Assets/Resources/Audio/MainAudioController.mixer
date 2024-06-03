@@ -228,6 +228,8 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
+  - guid: a0a9bf2f0c96e4a4da5e411c569f9eb0
+    name: InsideVolume
   - guid: 98d45bbfa8c383343b253e717eb23e5a
     name: OutsideVolume
   m_AudioMixerGroupViews:
@@ -498,7 +500,7 @@ AudioMixerSnapshotController:
     073227ebeee326f4a9f2a8915abcfa70: 24.9
     037087cdc1389dc40bbd9ac67ed34c45: 200
     3c05866e2c2dea340823bb9bc587de71: 4
-    a0a9bf2f0c96e4a4da5e411c569f9eb0: -0.025776725
+    a0a9bf2f0c96e4a4da5e411c569f9eb0: 0
     98d45bbfa8c383343b253e717eb23e5a: 0
     6d0da6ffe4e06704ebfeaa9ae79c6571: 0
   m_TransitionOverrides: {}

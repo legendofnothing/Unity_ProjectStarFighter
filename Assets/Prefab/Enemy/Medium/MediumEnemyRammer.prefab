@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 8975040260721135054}
   - component: {fileID: 1106031932}
   - component: {fileID: 5847101181404202728}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: MediumEnemyRammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

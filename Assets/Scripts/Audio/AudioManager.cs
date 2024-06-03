@@ -58,8 +58,17 @@ namespace Audio {
             }
         }
 
-        public void PlaySFX(AudioClip clip) {
+        public void PlaySFXOneShot(AudioClip clip) {
             _audioSources[AudioType.SfxInside].PlayOneShot(clip);
+        }
+
+        public void PlaySFX(AudioClip clip) {
+            var inst = new GameObject("AudioSFXInstance", typeof(AudioSource));
+            var outAudio = inst.GetComponent<AudioSource>();
+            outAudio.outputAudioMixerGroup = _sfxInsideGroup;
+            outAudio.clip = clip;
+            outAudio.Play();
+            Destroy(inst, clip.length);
         }
 
         public void PlaySFX(AudioClip clip, Transform transform, bool looped = false, bool attached = false, float minDist = 1) {
@@ -102,6 +111,10 @@ namespace Audio {
 
         public void SetOutsideVolume(float volume) {
             _mainMixer.SetFloat("OutsideVolume", Mathf.Lerp(-80, 0, volume));
+        }
+        
+        public void SetInsideVolume(float volume) {
+            _mainMixer.SetFloat("InsideVolume", Mathf.Lerp(-80, 0, volume));
         }
     }
 }

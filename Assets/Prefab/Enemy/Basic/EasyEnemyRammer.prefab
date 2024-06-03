@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 3539584249148712591}
   - component: {fileID: 6305499048753347286}
   - component: {fileID: 1639349069826391703}
-  m_Layer: 7
+  m_Layer: 13
   m_Name: EasyEnemyRammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -28,6 +28,8 @@ namespace UI.Menu {
         public GraphicRaycaster levelSelectorRaycaster;
 
         private void Start() {
+            AudioManager.Instance.SetInsideVolume(1);
+            AudioManager.Instance.SetOutsideVolume(1);
             Time.timeScale = 1;
             mainCanvas.enabled = false;
             mainGroup.alpha = 1;
@@ -46,7 +48,7 @@ namespace UI.Menu {
             mainOptionsGroup.alpha = 0;
             mainOptionsRaycaster.enabled = false;
             mainOptionsCanvas.enabled = true;
-            AudioManager.Instance.PlaySFX(outOfIntroAudio);
+            AudioManager.Instance.PlaySFXOneShot(outOfIntroAudio);
             AudioManager.Instance.PlayMusic(menuMusic, 2f);
             
             var s = DOTween.Sequence();
@@ -64,7 +66,7 @@ namespace UI.Menu {
             levelSelectorGroup.alpha = 0;
             levelSelectorRaycaster.enabled = false;
             
-            AudioManager.Instance.PlaySFX(transitionAudio);
+            AudioManager.Instance.PlaySFXOneShot(transitionAudio);
             
             var s = DOTween.Sequence();
             s
@@ -83,7 +85,7 @@ namespace UI.Menu {
             mainOptionsGroup.alpha = 0;
             mainOptionsRaycaster.enabled = false;
             
-            AudioManager.Instance.PlaySFX(transitionAudio);
+            AudioManager.Instance.PlaySFXOneShot(transitionAudio);
             
             var s = DOTween.Sequence();
             s
