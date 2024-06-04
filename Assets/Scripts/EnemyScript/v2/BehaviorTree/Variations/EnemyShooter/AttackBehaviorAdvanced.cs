@@ -54,7 +54,9 @@ namespace EnemyScript.v2.BehaviorTree.Variations.EnemyShooter {
                                             transform.position,
                                             _currentThreat.Velocity,
                                             rb.velocity.magnitude,
-                                            out _)) {
+                                            out var pos)) {
+                                        
+                                        if (stateMachine.enemy.GetDistanceToTarget(pos) >= 2) return;
 
                                         if (!_shieldOnCooldown) {
                                             _shieldOnCooldown = true;
