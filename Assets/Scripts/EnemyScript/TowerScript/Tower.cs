@@ -7,13 +7,14 @@ using EnemyScript.Commander;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using EventType = Core.Events.EventType;
+using Random = UnityEngine.Random;
 
 namespace EnemyScript.TowerScript {
     public class Tower : Enemy {
         [Serializable]
         public struct DeployConfig {
             public Transform point;
-            public GameObject enemyToSpawn;
+            public List<GameObject> enemyToSpawn;
         }
 
         [TitleGroup("refs")] 
@@ -64,7 +65,8 @@ namespace EnemyScript.TowerScript {
         public IEnumerator SpawnShips() {
             canSpawn = false;
             foreach (var deploys in deployConfig) {
-                var inst = Instantiate(deploys.enemyToSpawn, deploys.point.position, deploys.point.rotation);
+                var randomEnemy = deploys.enemyToSpawn[Random.Range(0, deploys.enemyToSpawn.Count)];
+                var inst = Instantiate(randomEnemy, deploys.point.position, deploys.point.rotation);
                 _enemies.Add(inst.GetComponent<Enemy>());
             }
             yield return new WaitForSeconds(50f);
@@ -74,7 +76,8 @@ namespace EnemyScript.TowerScript {
         public List<Troop> SpawnTroopDirectly() {
             var tempList = new List<Troop>();
             foreach (var deploys in deployConfig) {
-                var inst = Instantiate(deploys.enemyToSpawn, deploys.point.position, deploys.point.rotation);
+                var randomEnemy = deploys.enemyToSpawn[Random.Range(0, deploys.enemyToSpawn.Count)];
+                var inst = Instantiate(randomEnemy, deploys.point.position, deploys.point.rotation);
                 _enemies.Add(inst.GetComponent<Enemy>());
                 tempList.Add(inst.GetComponent<Troop>());
             }

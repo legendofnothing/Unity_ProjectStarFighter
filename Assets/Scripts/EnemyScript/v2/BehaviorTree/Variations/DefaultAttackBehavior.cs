@@ -37,7 +37,7 @@ namespace EnemyScript.v2.BehaviorTree.Variations {
                     }),
                     
                     new Sequence(new List<Node> {
-                        new Decorator(new Condition(() => stateMachine.CurrentState == EnemyStates.Resetting)),
+                        new Decorator(new Condition(() => stateMachine.CurrentState == EnemyStates.Resetting )),
                         new Decorator(new Condition(() => stateMachine.enemy.GetDistanceToTarget(Player.Instance.PlayerPos) >= CurrentResetDistance)),
                         new Decorator(new Actions(() => stateMachine.SwitchState(EnemyStates.Idle)))
                     }),
@@ -45,7 +45,7 @@ namespace EnemyScript.v2.BehaviorTree.Variations {
             });
         }
         
-        protected void SwitchToReset() {
+        protected virtual void SwitchToReset() {
             CurrentResetDistance = Random.Range(minResetDistance, maxResetDistance);
             stateMachine.SwitchState(EnemyStates.Resetting);
         }

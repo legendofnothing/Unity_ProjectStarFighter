@@ -211,6 +211,7 @@ MonoBehaviour:
   explosionEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
   explosionSize: {x: 1, y: 1, z: 1}
   stopUpdatingUI: 0
+  canDamage: 1
 --- !u!114 &1385832427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,11 +272,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f6d7f7145f4b9ab2ffa03185d71b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBehaviors: {fileID: 1385832427}
-  enemy: {fileID: 7394489358034142130}
+  enemyBehaviors: {fileID: 0}
+  enemy: {fileID: 0}
   minEngageDistance: 20
   minCirclingDistance: 8
   predictedOffset: 1.5
+  accelTime: 3
+  percentAccelAdded: 0.6
 --- !u!1 &7394489358069991528
 GameObject:
   m_ObjectHideFlags: 0

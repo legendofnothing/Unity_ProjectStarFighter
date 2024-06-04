@@ -779,7 +779,7 @@ MonoBehaviour:
     proxyModifier: 1
     interactLayer:
       serializedVersion: 2
-      m_Bits: 1665
+      m_Bits: 9857
     activeSound: {fileID: 8300000, guid: 620bf43993b94c4439a4591cfd679cba, type: 3}
     impactSound: {fileID: 8300000, guid: 92f8177f69195a44e8e2621c115f6599, type: 3}
     useImpactEffect: 1

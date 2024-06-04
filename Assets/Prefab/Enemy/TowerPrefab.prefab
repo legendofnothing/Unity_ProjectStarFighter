@@ -1158,6 +1158,7 @@ MonoBehaviour:
   explosionEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
   explosionSize: {x: 1, y: 1, z: 1}
   stopUpdatingUI: 0
+  canDamage: 1
   tower: {fileID: 7834312983304330632}
   followPoint: {fileID: 7834312981455194975}
 --- !u!114 &7834312981719808727
@@ -1532,6 +1533,7 @@ MonoBehaviour:
   explosionEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
   explosionSize: {x: 1, y: 1, z: 1}
   stopUpdatingUI: 0
+  canDamage: 1
   tower: {fileID: 7834312983304330632}
   followPoint: {fileID: 7834312982519130255}
 --- !u!114 &7834312982956862808
@@ -1728,7 +1730,8 @@ MonoBehaviour:
   explosionEffect: {fileID: 0}
   explosionSize: {x: 1, y: 1, z: 1}
   stopUpdatingUI: 0
-  miniDot: {fileID: 0}
+  canDamage: 1
+  miniDot: {fileID: 8480310467476080182}
   sections:
   - {fileID: 1456215022592615720}
   - {fileID: 3492208217937428622}
@@ -1740,11 +1743,18 @@ MonoBehaviour:
     m_Bits: 8
   deployConfig:
   - point: {fileID: 7834312983222409671}
-    enemyToSpawn: {fileID: 3539584249148712691, guid: 7426c714ec35cea47879c0f9717c767a, type: 3}
+    enemyToSpawn:
+    - {fileID: 4539100119038445644, guid: f7cd7723e76466341974d1eabde4ce93, type: 3}
+    - {fileID: 4539100119038445644, guid: e25b43a85aa759e4fac8d32bd7030805, type: 3}
+    - {fileID: 4539100119038445644, guid: 31ed289fb9f75e74a81e1446cf7636f3, type: 3}
   - point: {fileID: 7834312981715550268}
-    enemyToSpawn: {fileID: 3539584249148712691, guid: 7426c714ec35cea47879c0f9717c767a, type: 3}
+    enemyToSpawn:
+    - {fileID: 4539100119038445644, guid: f7cd7723e76466341974d1eabde4ce93, type: 3}
+    - {fileID: 4539100119038445644, guid: e25b43a85aa759e4fac8d32bd7030805, type: 3}
+    - {fileID: 4539100119038445644, guid: 31ed289fb9f75e74a81e1446cf7636f3, type: 3}
   - point: {fileID: 7834312981669251850}
-    enemyToSpawn: {fileID: 7394489358034142158, guid: cfd915024cbdb4941afa1e5aac812bd2, type: 3}
+    enemyToSpawn:
+    - {fileID: 2832698962351065192, guid: 8f7e112579121d74f81813393e140e6a, type: 3}
   turrets:
   - {fileID: 7834312981719808724}
   - {fileID: 7834312982956862809}
@@ -2677,5 +2687,10 @@ PrefabInstance:
 --- !u!4 &8480310467476080180 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1105016104743978270, guid: cd0957223278721469f5cfd828e58f40, type: 3}
+  m_PrefabInstance: {fileID: 8855716490178560810}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8480310467476080182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1105016104743978268, guid: cd0957223278721469f5cfd828e58f40, type: 3}
   m_PrefabInstance: {fileID: 8855716490178560810}
   m_PrefabAsset: {fileID: 0}

@@ -10,6 +10,7 @@ namespace EnemyScript.v2.StateMachine {
         Strafing,
         Circling,
         Resetting,
+        ResettingAccel,
     }
 
     public static class UniversalSetting {
@@ -27,11 +28,16 @@ namespace EnemyScript.v2.StateMachine {
         public float minCirclingDistance = 8f;
         public float predictedOffset = 1.5f;
 
+        [TitleGroup("Reset Accel Config")] 
+        public float accelTime = 3f;
+        public float percentAccelAdded = 0.6f;
+
         protected override EnemyStates SetupState() {
             states[EnemyStates.Idle] = new EnemyIdleState(EnemyStates.Idle, this);
             states[EnemyStates.Strafing] = new EnemyStrafeState(EnemyStates.Strafing, this);
             states[EnemyStates.Circling] = new EnemyCircleState(EnemyStates.Circling, this);
             states[EnemyStates.Resetting] = new EnemyResetState(EnemyStates.Resetting, this);
+            states[EnemyStates.ResettingAccel] = new EnemyResetAccelState(EnemyStates.ResettingAccel, this);
             return EnemyStates.Idle;
         }
 
