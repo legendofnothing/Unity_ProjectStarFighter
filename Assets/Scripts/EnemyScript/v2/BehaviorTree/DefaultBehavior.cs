@@ -7,8 +7,8 @@ namespace EnemyScript.v2.BehaviorTree {
     public abstract class DefaultBehavior : MonoBehaviour {
         public EnemyStateMachine stateMachine;
         [ReadOnly] public bool canRun = true;
+        public global::BehaviorTree.BehaviorTree MainTree;
         protected Rigidbody2D rb;
-        protected global::BehaviorTree.BehaviorTree MainTree;
 
         protected abstract void SetupTree();
 

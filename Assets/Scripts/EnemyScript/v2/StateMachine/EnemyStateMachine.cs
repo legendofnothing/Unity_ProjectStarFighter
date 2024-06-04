@@ -11,6 +11,8 @@ namespace EnemyScript.v2.StateMachine {
         Circling,
         Resetting,
         ResettingAccel,
+        Luring,
+        LuringAccel,
     }
 
     public static class UniversalSetting {
@@ -31,11 +33,19 @@ namespace EnemyScript.v2.StateMachine {
         [TitleGroup("Reset Accel Config")] 
         public float accelTime = 3f;
         public float percentAccelAdded = 0.6f;
+        
+        [TitleGroup("Lure Accel Config")] 
+        public float lureAccelTime = 3f;
+        public float lurePercentAccelAdded = 0.2f;
 
         protected override EnemyStates SetupState() {
             states[EnemyStates.Idle] = new EnemyIdleState(EnemyStates.Idle, this);
             states[EnemyStates.Strafing] = new EnemyStrafeState(EnemyStates.Strafing, this);
             states[EnemyStates.Circling] = new EnemyCircleState(EnemyStates.Circling, this);
+            
+            states[EnemyStates.Luring] = new EnemyLureState(EnemyStates.Luring, this);
+            states[EnemyStates.LuringAccel] = new EnemyLureAccelState(EnemyStates.LuringAccel, this);
+            
             states[EnemyStates.Resetting] = new EnemyResetState(EnemyStates.Resetting, this);
             states[EnemyStates.ResettingAccel] = new EnemyResetAccelState(EnemyStates.ResettingAccel, this);
             return EnemyStates.Idle;
