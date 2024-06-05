@@ -653,12 +653,12 @@ MonoBehaviour:
     enemyToSpawn:
     - {fileID: 1327323282531987687, guid: 7b12efc243ddaae44b39c34fdaba2384, type: 3}
     - {fileID: 1327323282531987687, guid: 6a13b439614166e449dda3941c2e37a3, type: 3}
-    - {fileID: 1327323282531987687, guid: 6cc0d33d3facfbc4da8560b2e20bc4f3, type: 3}
+    - {fileID: 1327323282531987687, guid: 6b3e7fc6b0cbace44a641a76c4148a57, type: 3}
   - point: {fileID: 842953451256352015}
     enemyToSpawn:
     - {fileID: 1327323282531987687, guid: 7b12efc243ddaae44b39c34fdaba2384, type: 3}
     - {fileID: 1327323282531987687, guid: 6a13b439614166e449dda3941c2e37a3, type: 3}
-    - {fileID: 1327323282531987687, guid: 6cc0d33d3facfbc4da8560b2e20bc4f3, type: 3}
+    - {fileID: 1327323282531987687, guid: 6b3e7fc6b0cbace44a641a76c4148a57, type: 3}
   turrets:
   - {fileID: 842953451340070097}
   - {fileID: 842953452117846876}
@@ -694,6 +694,7 @@ MonoBehaviour:
   commandState: {fileID: 0}
   commander: {fileID: 0}
   currentState: 0
+  troopsToSpawn: []
   troops: []
 --- !u!1 &842953452117846848
 GameObject:

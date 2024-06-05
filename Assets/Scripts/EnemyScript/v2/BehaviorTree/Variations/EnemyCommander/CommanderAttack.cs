@@ -20,6 +20,7 @@ namespace EnemyScript.v2.BehaviorTree.Variations.EnemyCommander {
 
         [TitleGroup("Threat Config")]
         public float minThreatDistance = 3f;
+        public float minTimeBeingChased = 1f;
         
         [TitleGroup("Luring Config")]
         public float maximumDistanceToCancelLure = 8f;
@@ -38,10 +39,9 @@ namespace EnemyScript.v2.BehaviorTree.Variations.EnemyCommander {
         protected float lastHP;
         private Projectile _currentThreat;
         private bool _shieldOnCooldown;
-        private float _unpredictableValueCurrent;
+        private float _currentTimeBeingChased;
 
         protected override void SetupTree() {
-            _unpredictableValueCurrent = unpredictableValue;
             CurrentResetDistance = Random.Range(minResetDistance, maxResetDistance);
             lastHP = stateMachine.enemy.hp;
             
@@ -87,11 +87,6 @@ namespace EnemyScript.v2.BehaviorTree.Variations.EnemyCommander {
                                         }
                                     }
 
-                                    if (Random.Range(0f, 1f) <= _unpredictableValueCurrent) {
-                                        SwitchToReset();
-                                        return;
-                                    }
-                                    
                                     if (!_shieldOnCooldown) {
                                         _shieldOnCooldown = true;
                                         var inst = Instantiate(shieldEffect, transform.position, quaternion.identity);
@@ -163,7 +158,31 @@ namespace EnemyScript.v2.BehaviorTree.Variations.EnemyCommander {
                     }),
                     
                     new Sequence(new List<Node> {
-                        new Decorator(new Condition(() => stateMachine.CurrentState is EnemyStates.Resetting or EnemyStates.ResettingAccel)),
+                        new Decorator(new Condition(() => stateMachine.CurrentState is EnemyStates.Resetting)),
+                        new Selector(new List<Node> {
+                            new Sequence(new List<Node> {
+                                new Decorator(new Condition(() => stateMachine.enemy.GetDistanceToTarget(Player.Instance.PlayerPos) <= CurrentResetDistance)),
+                                new Decorator(new Actions(() => stateMachine.SwitchState(EnemyStates.Idle)))
+                            }),
+                            
+                            new Sequence(new List<Node> {
+                                new Decorator(new Actions(() => _currentTimeBeingChased += Time.fixedDeltaTime)),
+                                new Decorator(new Condition(() => _currentTimeBeingChased >= minTimeBeingChased)),
+                                new Decorator(new Actions(() => {
+                                    stateMachine.SwitchState(EnemyStates.ResettingAccel);
+                                    _currentTimeBeingChased = 0;
+                                }))
+                            })
+                        }),
+                        
+                        new Sequence(new List<Node> {
+                            new Decorator(new Condition(() => stateMachine.enemy.GetDistanceToTarget(Player.Instance.PlayerPos) >= CurrentResetDistance)),
+                        }),
+                        new Decorator(new Actions(() => stateMachine.SwitchState(EnemyStates.Idle)))
+                    }),
+                    
+                    new Sequence(new List<Node> {
+                        new Decorator(new Condition(() => stateMachine.CurrentState is EnemyStates.ResettingAccel)),
                         new Decorator(new Condition(() => stateMachine.enemy.GetDistanceToTarget(Player.Instance.PlayerPos) >= CurrentResetDistance)),
                         new Decorator(new Actions(() => stateMachine.SwitchState(EnemyStates.Idle)))
                     }),
@@ -222,6 +241,7 @@ namespace EnemyScript.v2.BehaviorTree.Variations.EnemyCommander {
                 }
             }
             
+            CurrentResetDistance = Random.Range(minResetDistance, maxResetDistance);
             lastHP = stateMachine.enemy.currentHp;
         }
     }

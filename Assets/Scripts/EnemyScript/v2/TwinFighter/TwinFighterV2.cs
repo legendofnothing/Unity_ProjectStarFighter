@@ -6,6 +6,7 @@ using EnemyScript.Commander.Variation;
 using EnemyScript.TowerScript;
 using EnemyScript.v2.BehaviorTree;
 using EnemyScript.v2.BehaviorTree.Variations.EnemyTwin;
+using EnemyScript.v2.Commander;
 using EnemyScript.v2.StateMachine;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -24,8 +25,12 @@ namespace EnemyScript.v2.TwinFighter {
         [Space] 
         public float suicidalTendenciesPercentIncrease = 0.4f;
         public float mentallyUnstableRate = 0.1f;
+        [Space] 
+        public float overrideCircleDistance = 12f;
 
         private float _currentTimeSpentLuring;
+        private float _lastCircleDistance;
+        private Commands _currentCommand;
 
         private float CurrentTimeSpentLuring {
             get {
@@ -43,12 +48,11 @@ namespace EnemyScript.v2.TwinFighter {
         private bool _currentlyOverride;
 
         protected override void OnStart() {
+            _lastCircleDistance = AttackYesCommanderBehavior.stateMachine.minCirclingDistance;
             AttackNoCommanderBehavior.canRun = false;
             AttackYesCommanderBehavior.canRun = false;
             if (commander) {
-                if (commander.gameObject.TryGetComponent<Tower>(out _)) {
-                    AttackYesCommanderBehavior.canRun = true;
-                }
+                AttackYesCommanderBehavior.canRun = true;
             }
             else {
                 AttackNoCommanderBehavior.canRun = true;
@@ -121,7 +125,8 @@ namespace EnemyScript.v2.TwinFighter {
                 });
             }
             else {
-                _mainTree = new global::BehaviorTree.BehaviorTree(new List<Node> {
+                if (commander.gameObject.TryGetComponent<Tower>(out _)) {
+                    _mainTree = new global::BehaviorTree.BehaviorTree(new List<Node> {
                     new Selector(new List<Node> {
                         new Sequence(new List<Node> {
                             new Decorator(new Condition(() => _currentlyOverride)),
@@ -169,8 +174,100 @@ namespace EnemyScript.v2.TwinFighter {
                         }),
                     })
                 });
+                }
+                else if (commander.gameObject.TryGetComponent<CommanderV2>(out _)) {
+                    _mainTree = new global::BehaviorTree.BehaviorTree(new List<Node> {
+                        new Selector(new List<Node> {
+                            new Sequence(new List<Node> {
+                                new Decorator(new Condition(() => !_currentlyOverride)),
+                                
+                                new Sequence(new List<Node> {
+                                    new Sequence(new List<Node> {
+                                        new Decorator(new Condition(() => _currentTimeTakenDamage >= maximumTimeDamageTaken)),
+                                        new Decorator(new Actions(() => {
+                                            _currentTimeTakenDamage = 0;
+
+                                            if (Random.Range(0f, 1f) < mentallyUnstableRate) {
+                                                _currentlyOverride = true;
+                                            }
+                                        }))
+                                    }),
+                                }),
+                                
+                                new Selector(new List<Node> {
+                                    new Sequence(new List<Node> {
+                                        new Decorator(new Condition(() => _currentCommand == Commands.Command)),
+                                        new Decorator(new Actions(() => {
+                                            if (AttackYesCommanderBehavior.canRun) return;
+                                            AttackNoCommanderBehavior.MainTree.Reset();
+                                            AttackYesCommanderBehavior.MainTree.Reset();
+                                
+                                            AttackNoCommanderBehavior.canRun = false;
+                                            AttackYesCommanderBehavior.canRun = true;
+                                    
+                                            AttackYesCommanderBehavior.MainTree.Reset();
+                                            AttackYesCommanderBehavior.stateMachine.SwitchState(EnemyStates.Idle);
+                                    
+                                            AttackYesCommanderBehavior.stateMachine.minCirclingDistance =
+                                                overrideCircleDistance;
+                                        }))
+                                    }),
+                                    
+                                    new Sequence(new List<Node> {
+                                        new Decorator(new Condition(() => _currentCommand == Commands.Attack)),
+                                        new Decorator(new Actions(() => {
+                                            if (AttackNoCommanderBehavior.canRun) return;
+                                            AttackNoCommanderBehavior.MainTree.Reset();
+                                            AttackYesCommanderBehavior.MainTree.Reset();
+                                
+                                            AttackNoCommanderBehavior.canRun = true;
+                                            AttackYesCommanderBehavior.canRun = false;
+                                    
+                                            AttackNoCommanderBehavior.MainTree.Reset();
+                                            AttackNoCommanderBehavior.stateMachine.SwitchState(EnemyStates.Idle);
+                                    
+                                            AttackYesCommanderBehavior.stateMachine.minCirclingDistance = _lastCircleDistance;
+                                        }))
+                                    }),
+                                })
+                            }),
+                            
+                            new Sequence(new List<Node> {
+                                new Decorator(new Condition(() => _currentTimeTakenDamage >= maximumTimeDamageTakenToSnapOut)),
+                                new Decorator(new Actions(() => {
+                                    _currentlyOverride = false;
+                                    _currentTimeTakenDamage = 0;
+                                    
+                                    if (AttackNoCommanderBehavior is TwinAttackNoCommander attack) {
+                                        attack.currentSuicidalTendencies = attack.suicidalTendencies;
+                                    }
+                                }))
+                            }),
+                            
+                            new Sequence(new List<Node> {
+                                new Decorator(new Condition(() => !AttackNoCommanderBehavior.canRun)),
+                                new Decorator(new Actions(() => {
+                                    AttackNoCommanderBehavior.MainTree.Reset();
+                                    AttackYesCommanderBehavior.MainTree.Reset();
+                                
+                                    AttackNoCommanderBehavior.canRun = true;
+                                    AttackYesCommanderBehavior.canRun = false;
+                                    
+                                    AttackNoCommanderBehavior.MainTree.Reset();
+                                    AttackNoCommanderBehavior.stateMachine.SwitchState(EnemyStates.Idle);
+                                    
+                                    AttackYesCommanderBehavior.stateMachine.minCirclingDistance = _lastCircleDistance;
+                                    
+                                    if (AttackNoCommanderBehavior is TwinAttackNoCommander attack) {
+                                        attack.currentSuicidalTendencies += attack.suicidalTendencies *
+                                                                            suicidalTendenciesPercentIncrease;
+                                    }
+                                }))
+                            })
+                        })
+                    });
+                }
             }
-            
         }
 
         public override void OnDamage() {
@@ -178,18 +275,16 @@ namespace EnemyScript.v2.TwinFighter {
         }
 
         protected override void RespondToCall(TroopCommand command) {
-            switch (command.command) {
-                case Commands.Attack:
-                    break;
-                case Commands.CommanderDead:
-                    _currentlyOverride = false;
-                    AttackNoCommanderBehavior.MainTree.Reset();
-                    AttackYesCommanderBehavior.MainTree.Reset();
+            _currentCommand = command.command;
+
+            if (command.command != Commands.CommanderDead) return;
+            
+            _currentlyOverride = false;
+            AttackNoCommanderBehavior.MainTree.Reset();
+            AttackYesCommanderBehavior.MainTree.Reset();
                                 
-                    AttackNoCommanderBehavior.canRun = true;
-                    AttackYesCommanderBehavior.canRun = false;
-                    break;
-            }
+            AttackNoCommanderBehavior.canRun = true;
+            AttackYesCommanderBehavior.canRun = false;
         }
 
         private void Update() {
