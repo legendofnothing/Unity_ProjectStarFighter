@@ -31,7 +31,7 @@ namespace EnemyScript.v2.StateMachine.States {
                 esm.enemyBehaviors.Fly(esm.enemy.currentSpeed, esm.transform.right);
             }
 
-            if (predictedDot >= UniversalSetting.DotToShoot) {
+            if (predictedDot >= UniversalSetting.DotToShoot && esm.enemy.GetDistanceToTarget(Player.Instance.PlayerPos) <= esm.minEngageDistance) {
                 esm.enemyBehaviors.FireWeapon();
             }
         }

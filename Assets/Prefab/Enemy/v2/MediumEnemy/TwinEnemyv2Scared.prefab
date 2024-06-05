@@ -27,6 +27,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.433
       objectReference: {fileID: 0}
+    - target: {fileID: 5010111562090443314, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: maxSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010111562090443314, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: ratioToMaxThrust
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 5072429778172491493, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
       propertyPath: enemy
       value: 
