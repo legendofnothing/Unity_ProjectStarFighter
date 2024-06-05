@@ -25,6 +25,9 @@ namespace EnemyScript.v2.BehaviorTree.Variations.EnemyTwin {
         private Projectile _currentThreat;
         private float _distancePlayerToTower;
         private float _timePlayerInDangerZone;
+
+        [TitleGroup("Readonly")] 
+        [ReadOnly] public float TimeSpentLuring;
         
         protected override void SetupTree() {
             CurrentResetDistance = Random.Range(minResetDistance, maxResetDistance);
@@ -57,7 +60,7 @@ namespace EnemyScript.v2.BehaviorTree.Variations.EnemyTwin {
                     }),
                         
                     new Sequence(new List<Node> {
-                        new Decorator(new Condition(() => stateMachine.CurrentState is EnemyStates.Strafing or EnemyStates.Circling or EnemyStates.Luring)),
+                        new Decorator(new Condition(() => stateMachine.CurrentState is EnemyStates.Strafing or EnemyStates.Circling or EnemyStates.Luring or EnemyStates.LuringAccel)),
                         new Selector(new List<Node> {
                             new Sequence(new List<Node> {
                                 new Decorator(new Condition(() => _currentThreat)),
@@ -143,6 +146,7 @@ namespace EnemyScript.v2.BehaviorTree.Variations.EnemyTwin {
                                     switch (stateMachine.CurrentState) {
                                         case EnemyStates.Circling or EnemyStates.Strafing:
                                             stateMachine.SwitchState(EnemyStates.Luring);
+                                            TimeSpentLuring++;
                                             break;
                                         case EnemyStates.Luring:
                                             stateMachine.SwitchState(Random.Range(0, 2) < 1
@@ -229,7 +233,7 @@ namespace EnemyScript.v2.BehaviorTree.Variations.EnemyTwin {
                 }
             }
 
-            if (troopGoon) {
+            if (troopGoon && troopGoon.commander) {
                 _distancePlayerToTower = Vector2.Distance(troopGoon.commander.transform.position,
                     Player.Instance.PlayerPos);
             } 

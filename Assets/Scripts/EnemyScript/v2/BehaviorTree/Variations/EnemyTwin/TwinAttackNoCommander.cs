@@ -16,11 +16,14 @@ namespace EnemyScript.v2.BehaviorTree.Variations.EnemyTwin {
         [TitleGroup("Refs")] 
         public EnemyRadar enemyRadar;
         
+        [TitleGroup("Readonly")] 
+        [ReadOnly] public float currentSuicidalTendencies;
         private Projectile _currentThreat;
         
         protected override void SetupTree() {
             CurrentResetDistance = Random.Range(minResetDistance, maxResetDistance);
             lastHP = stateMachine.enemy.hp;
+            currentSuicidalTendencies = suicidalTendencies;
             
             MainTree = new global::BehaviorTree.BehaviorTree(new List<Node> {
                 new Selector(new List<Node> {
@@ -91,7 +94,7 @@ namespace EnemyScript.v2.BehaviorTree.Variations.EnemyTwin {
         }
 
         protected override void SwitchToReset() {
-            if (Random.Range(0f, 1f) <= suicidalTendencies) {
+            if (Random.Range(0f, 1f) <= currentSuicidalTendencies) {
                 switch (stateMachine.CurrentState) {
                     case EnemyStates.Strafing:
                         stateMachine.SwitchState(EnemyStates.Strafing);

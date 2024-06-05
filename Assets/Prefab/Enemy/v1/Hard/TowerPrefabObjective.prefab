@@ -345,6 +345,7 @@ MonoBehaviour:
   explosionEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
   explosionSize: {x: 1, y: 1, z: 1}
   stopUpdatingUI: 0
+  canDamage: 1
   tower: {fileID: 842953451903540105}
   followPoint: {fileID: 842953451606232410}
 --- !u!114 &842953451340070098
@@ -636,6 +637,7 @@ MonoBehaviour:
   explosionEffect: {fileID: 0}
   explosionSize: {x: 1, y: 1, z: 1}
   stopUpdatingUI: 0
+  canDamage: 1
   miniDot: {fileID: 394357802848520376}
   sections:
   - {fileID: 2499607796661247131}
@@ -648,12 +650,19 @@ MonoBehaviour:
     m_Bits: 8
   deployConfig:
   - point: {fileID: 842953451850719170}
-    enemyToSpawn: {fileID: 3965196653134958387, guid: dfd1e395762b09a41b07d4f6c40b3be4, type: 3}
+    enemyToSpawn:
+    - {fileID: 1327323282531987687, guid: 7b12efc243ddaae44b39c34fdaba2384, type: 3}
+    - {fileID: 1327323282531987687, guid: 6a13b439614166e449dda3941c2e37a3, type: 3}
+    - {fileID: 1327323282531987687, guid: 6cc0d33d3facfbc4da8560b2e20bc4f3, type: 3}
   - point: {fileID: 842953451256352015}
-    enemyToSpawn: {fileID: 3965196653134958387, guid: dfd1e395762b09a41b07d4f6c40b3be4, type: 3}
+    enemyToSpawn:
+    - {fileID: 1327323282531987687, guid: 7b12efc243ddaae44b39c34fdaba2384, type: 3}
+    - {fileID: 1327323282531987687, guid: 6a13b439614166e449dda3941c2e37a3, type: 3}
+    - {fileID: 1327323282531987687, guid: 6cc0d33d3facfbc4da8560b2e20bc4f3, type: 3}
   turrets:
   - {fileID: 842953451340070097}
   - {fileID: 842953452117846876}
+  - {fileID: 0}
   isPlayerInRange: 0
   canSpawn: 1
 --- !u!114 &842953451903540110
@@ -852,6 +861,7 @@ MonoBehaviour:
   explosionEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
   explosionSize: {x: 1, y: 1, z: 1}
   stopUpdatingUI: 0
+  canDamage: 1
   tower: {fileID: 842953451903540105}
   followPoint: {fileID: 842953452689239690}
 --- !u!114 &842953452117846877

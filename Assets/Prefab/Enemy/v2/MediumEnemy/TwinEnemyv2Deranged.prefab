@@ -129,7 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7394489358034142158, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
       propertyPath: m_Name
-      value: TwinEnemyv2
+      value: TwinEnemyv2Deranged
       objectReference: {fileID: 0}
     - target: {fileID: 7394489358724385801, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
       propertyPath: m_Sprite
@@ -171,9 +171,10 @@ MonoBehaviour:
   dangerDistance: 1.5
   minResetDistance: 8
   maxResetDistance: 12
-  chanceToAccelReset: 0.4
-  suicidalTendencies: 0.3
+  chanceToAccelReset: 0.2
+  suicidalTendencies: 0.4
   enemyRadar: {fileID: 3028906198174492361}
+  currentSuicidalTendencies: 0
 --- !u!114 &1688006484293336408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,13 +190,16 @@ MonoBehaviour:
   stateMachine: {fileID: 3643972405622277580}
   canRun: 1
   dotInFront: 0.998
-  dangerDistance: 4
+  dangerDistance: 1.5
   minResetDistance: 5
   maxResetDistance: 11
-  towerDangerDistance: 20
-  maximumTimePlayerNearTower: 1
+  towerDangerDistance: 15
+  maximumTimePlayerNearTower: 0.7
+  maximumDistanceToCancelLure: 7
+  minDistanceToCancelLure: 2
   troopGoon: {fileID: 5453326253671772431}
   enemyRadar: {fileID: 3028906198174492361}
+  TimeSpentLuring: 0
 --- !u!114 &3028906198174492361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,7 +233,12 @@ MonoBehaviour:
   commander: {fileID: 0}
   currentState: 0
   AttackNoCommanderBehavior: {fileID: 10780188111737602}
-  AttackTowerCommanderBehavior: {fileID: 1688006484293336408}
+  AttackYesCommanderBehavior: {fileID: 1688006484293336408}
+  maximumTimeSpentLuring: 2
+  maximumTimeDamageTaken: 3
+  maximumTimeDamageTakenToSnapOut: 1
+  suicidalTendenciesPercentIncrease: 0.5
+  mentallyUnstableRate: 0.7
 --- !u!114 &3643972405622277580 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5072429778172491493, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
