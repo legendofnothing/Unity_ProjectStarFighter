@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 
 namespace EnemyScript.Commander.Variation {
     public abstract class TroopCommander : Troop {
+        public List<Troop> troopsToSpawn = new();
         [ReadOnly] public List<Troop> troops = new();
         public int troopCount => troops.Count;
 

@@ -65,7 +65,7 @@ namespace EnemyScript.v2.BehaviorTree.Variations.EnemyTwin {
                                 new Selector(new List<Node> {
                                     new Sequence(new List<Node> {
                                         new Decorator(new Condition(() => stateMachine.enemy.GetDotToPoint(Player.Instance.PlayerPos) >= dotInFront)),
-                                        new Decorator(new Condition(() => stateMachine.enemy.GetDistanceToTarget(Player.Instance.PlayerPos) >= dangerDistance)),
+                                        new Decorator(new Condition(() => stateMachine.enemy.GetDistanceToTarget(Player.Instance.PlayerPos) <= dangerDistance)),
                                         new Decorator(new Actions(SwitchToReset))
                                     }),
                             

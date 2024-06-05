@@ -123,7 +123,7 @@ MonoBehaviour:
   stateMachine: {fileID: 2162989393930222951}
   canRun: 1
   dotInFront: 0.998
-  dangerDistance: 2.5
+  dangerDistance: 4
   minResetDistance: 12
   maxResetDistance: 18
 --- !u!114 &6368265136635532393 stripped

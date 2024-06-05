@@ -17,6 +17,7 @@ namespace EnemyScript.Commander {
         }
         
         public enum Commands {
+            None,
             LookForTroop,
             Attack,
             Command,
