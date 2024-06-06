@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using PlayerScript;
 using UnityEngine;
@@ -24,7 +25,13 @@ namespace Audio {
             _audioSource.clip = clip;
             _audioSource.Play();
             _audioSource.loop = looped;
-            if (!looped) Destroy(gameObject, clip.length);
+            try {
+                if (!looped) Destroy(gameObject, clip.length);
+            }
+            catch (Exception e) {
+                // ignored
+                Debug.Log(e);
+            }
             _ready = true;
         }
 

@@ -66,6 +66,10 @@ namespace EnemyScript {
             _ui.canvasGroup.alpha = Player.Instance.IsInCamera(transform.position) ? 1 : 0;
         }
 
+        private void Start() {
+            this.FireEvent(EventType.OnEnemySpawned);
+        }
+
         public void TakeDamage(float amount) {
             if (hasDied) return;
             if (!canDamage) return;
@@ -82,12 +86,15 @@ namespace EnemyScript {
             if (!_ui) return;
             if ((Player.Instance.IsInCamera(transform.position) && _ui.canvasGroup.alpha <= 0) && !stopUpdatingUI) {
                 _alphaUiTween?.Kill();
-                _alphaUiTween = DOVirtual.Float(0, 1, 0.5f, value => {
+                _alphaUiTween = DOVirtual.Float(0, 1, 2f, value => {
                     _ui.canvasGroup.alpha = value;
                 });
             }
             else if ((!Player.Instance.IsInCamera(transform.position) && _ui.canvasGroup.alpha > 0) || stopUpdatingUI) {
-                _ui.canvasGroup.alpha = 0;
+                _alphaUiTween?.Kill();
+                _alphaUiTween = DOVirtual.Float(1, 0, 0.5f, value => {
+                    _ui.canvasGroup.alpha = value;
+                });
             }
         }
 

@@ -49,14 +49,24 @@ namespace Level.Levels {
 
         private float _prevSpeed;
         private TutorialState _currentState = TutorialState.None;
-        
+
+        private int _enemyCount;
+
+        private void Awake() {
+            this.AddListener(EventType.OnEnemySpawned, _ => {
+                _enemyCount++;
+            });
+            this.AddListener(EventType.OnEnemyKilled, _ => {
+                _enemyCount--;
+            });
+        }
+
         private void Start() {
             this.FireEvent(EventType.OnDialoguesChange, startingDialogues);
             _prevSpeed = playerController.speed;
             playerController.speed = 0;
             combatManager.canFire = false;
             Player.Instance.overridesDie = true;
-            this.AddListener(EventType.OnEnemyKilled, param => OnTaskForceDown((Enemy)param));
 
             DOVirtual.DelayedCall(startingDialogues.dialogues.main.Sum(t => t.readingTime), () => {
                 tutorialDialogueUI.PlayDialogue(tutorialPrompts[0]);
@@ -102,6 +112,7 @@ namespace Level.Levels {
 
                             _currentState = TutorialState.Combat;
                             StartCoroutine(CameraCinematic());
+                            StartCoroutine(OnTaskForceDown());
                         });
                     }
                     break;
@@ -129,13 +140,10 @@ namespace Level.Levels {
             DOVirtual.DelayedCall(dialogues.dialogues.main.Sum(t => t.readingTime), callback);
         }
         
-        private void OnTaskForceDown(Enemy enemy) {
-            if (_enemies.Contains(enemy)) {
-                _enemies.Remove(enemy);
-                if (_enemies.Count <= 0) {
-                    _currentState = TutorialState.Finished;
-                }
-            }
+        private IEnumerator OnTaskForceDown() {
+            yield return new WaitForSeconds(1f);
+            yield return new WaitUntil(() =>_enemyCount <= 0);
+            _currentState = TutorialState.Finished;
         }
         
         private IEnumerator CameraCinematic() {

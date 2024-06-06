@@ -682,7 +682,7 @@ MonoBehaviour:
   pauseCanvas: {fileID: 6933813276548735304}
   deathCanvas: {fileID: 8929279437459649278}
   winCanvas: {fileID: 6999381937558387356}
-  winRaycaster: {fileID: 971652441688213215}
+  winRaycaster: {fileID: 0}
   pauseRaycaster: {fileID: 1111834880313093979}
   deathRaycaster: {fileID: 5319456646481284683}
   deathUI: {fileID: 4165172982080320148}
@@ -816,7 +816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1274,7 +1274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.6047526, g: 0.8490566, b: 0.60579675, a: 0.14901961}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3117,8 +3117,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7502504328438702058}
   - component: {fileID: 7765353556652338857}
-  - component: {fileID: 5975310732058427595}
-  - component: {fileID: 971652441688213215}
   m_Layer: 5
   m_Name: SortButtons
   m_TagString: Untagged
@@ -3174,44 +3172,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!223 &5975310732058427595
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4031371558268373099}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 3
-  m_TargetDisplay: 0
---- !u!114 &971652441688213215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4031371558268373099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 8191
 --- !u!1 &4075456771994534037
 GameObject:
   m_ObjectHideFlags: 0
@@ -4383,8 +4343,8 @@ CanvasGroup:
   m_GameObject: {fileID: 5331932160472955574}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &5374386671453199727
 GameObject:
@@ -6705,6 +6665,7 @@ GameObject:
   - component: {fileID: 1890932900017612117}
   - component: {fileID: 6999381937558387356}
   - component: {fileID: 6179343486490441271}
+  - component: {fileID: 2782247635773729786}
   m_Layer: 5
   m_Name: WinUI
   m_TagString: Untagged
@@ -6741,7 +6702,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8067104188208598281}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -6769,11 +6730,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backGroundGroup: {fileID: 1769066282559703494}
   mainGroup: {fileID: 2369857000367664565}
+  raycaster: {fileID: 2782247635773729786}
   randomAssImage: {fileID: 7280602668382703248}
   ditherImage: {fileID: 3202256091488485779}
   dialogueUI: {fileID: 5807763373251190058}
   DialoguesList:
   - {fileID: 11400000, guid: 27956f137dad20f439be06a6cf3a785f, type: 2}
+--- !u!114 &2782247635773729786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8067104188208598281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 32767
 --- !u!1 &8123612753443201469
 GameObject:
   m_ObjectHideFlags: 0

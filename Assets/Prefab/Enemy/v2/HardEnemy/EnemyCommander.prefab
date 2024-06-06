@@ -260,6 +260,30 @@ PrefabInstance:
       propertyPath: setting.speed
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 1195820786563179008, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 1195820786563179008, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: m_Color.g
+      value: 0.14509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 1195820786563179008, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: m_Color.r
+      value: 0.1829449
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222047562380294805, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: m_Color.b
+      value: 0.27450982
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222047562380294805, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: m_Color.g
+      value: 0.12156862
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222047562380294805, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: m_Color.r
+      value: 0.15647234
+      objectReference: {fileID: 0}
     - target: {fileID: 3290900426373983407, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.333
@@ -465,6 +489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackState: {fileID: 0}
   commandState: {fileID: 0}
+  powerValue: 0
   commander: {fileID: 0}
   currentState: 0
   troopsToSpawn: []
@@ -473,7 +498,13 @@ MonoBehaviour:
   attackBehavior: {fileID: 6004369473253077114}
   minTroopCountToCancelCommand: 1
   dangerPlayerDistance: 4
-  maximumTimeDamageTaken: 2
+  maximumTimeDamageTakenWhileObserving: 2
+  maximumTimeSpentAttack: 1.5
+  maximumTimeDamageTakenWhileAttack: 5
+  chanceToMakeDecisionOnPowerValue: 0.7
+  minSafeRatio: 0.1
+  maxSafeRatio: 0.6
+  commanderSuicidalTendencies: 0.1
   enemyRadar: {fileID: 8709699087971337873}
   rb: {fileID: 6441269145807948845}
 --- !u!114 &6004369473253077114

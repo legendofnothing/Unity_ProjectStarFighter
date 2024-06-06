@@ -791,9 +791,9 @@ MonoBehaviour:
   - {fileID: 1791955295}
   - {fileID: 720991802}
   commandersToSpawn:
-  - {fileID: 7394489358034142158, guid: 187a836ba1a9acf4897f14737487b301, type: 3}
-  - {fileID: 7394489358034142158, guid: 187a836ba1a9acf4897f14737487b301, type: 3}
-  - {fileID: 3539584249148712691, guid: 0c3fa720712bb5b4982b242511916752, type: 3}
+  - {fileID: 2832698962351065192, guid: 09d158478a2891a4dbd89ffe2b2e9c4f, type: 3}
+  - {fileID: 4539100119038445644, guid: e1a564cc048d7f449b693b6b1c0f5ca4, type: 3}
+  - {fileID: 4539100119038445644, guid: e1a564cc048d7f449b693b6b1c0f5ca4, type: 3}
 --- !u!1001 &1667911159
 PrefabInstance:
   m_ObjectHideFlags: 0

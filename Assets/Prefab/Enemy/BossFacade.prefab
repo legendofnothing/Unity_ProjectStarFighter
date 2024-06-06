@@ -442,6 +442,7 @@ MonoBehaviour:
   explosionEffect: {fileID: 5821283458576452533, guid: 527e35068c3a7214ea24ad3439880d72, type: 3}
   explosionSize: {x: 1, y: 1, z: 1}
   stopUpdatingUI: 0
+  canDamage: 1
 --- !u!114 &5645643778079875806
 MonoBehaviour:
   m_ObjectHideFlags: 0

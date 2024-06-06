@@ -8,6 +8,7 @@ namespace UI {
     public class WinScreenUI : MonoBehaviour {
         public CanvasGroup backGroundGroup;
         public CanvasGroup mainGroup;
+        public GraphicRaycaster raycaster;
         public CanvasGroup randomAssImage;
         public Image ditherImage;
         public DialogueUI dialogueUI;
@@ -20,6 +21,7 @@ namespace UI {
             ditherImage.DOFade(0, 0).SetUpdate(true);
             randomAssImage.alpha = 0;
             backGroundGroup.alpha = 0;
+            raycaster.enabled = false;
         }
 
         public void OpenWinScreen() {
@@ -42,6 +44,8 @@ namespace UI {
                     DOVirtual.DelayedCall(0.8f, () => {
                         randomAssImage.DOFade(1, 5).SetEase(Ease.Linear).SetUpdate(true);
                     }).SetUpdate(true);
+
+                    raycaster.enabled = true;
                 }))
                 .SetEase(Ease.Linear)
                 .SetUpdate(true);

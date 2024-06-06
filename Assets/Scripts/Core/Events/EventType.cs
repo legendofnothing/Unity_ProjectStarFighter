@@ -15,6 +15,7 @@ namespace Core.Events {
         SendCommand,
         OnPlayerOutOfBound,
         OnGameStateChange,
+        OnEnemySpawned,
         OnEnemyKilled,
 
         //Level1 Events

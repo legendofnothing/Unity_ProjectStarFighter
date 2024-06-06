@@ -431,7 +431,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 5673895144654707192}
   useTween: 1
   easeType: 15
-  duration: 0.2
+  duration: 3
 --- !u!1 &5463229297559472660
 GameObject:
   m_ObjectHideFlags: 0

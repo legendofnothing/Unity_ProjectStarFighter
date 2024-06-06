@@ -13,7 +13,6 @@ using EventType = Core.Events.EventType;
 
 namespace Level.Levels {
     public class LevelTwoManager : MonoBehaviour {
-        [ReadOnly] public List<TowerObjective> towerObjectives;
         public List<Dialogues> DialoguesList = new();
         public List<Dialogues> TaskForceDialogues = new();
         public Dialogues EndDialogues;
@@ -25,28 +24,60 @@ namespace Level.Levels {
         public CinemachineVirtualCamera playerCam;
 
         private int _spawnCount;
-        private List<Enemy> _enemies = new();
+        private List<Tower> _towers;
+        private GameObject _enemyToLook;
+        private int _enemyCount;
 
-        private void Start() {
-            towerObjectives = FindObjectsOfType<TowerObjective>().ToList();
+        private void Awake() {
+            _towers = FindObjectsOfType<Tower>().ToList();
+            this.AddListener(EventType.OnTowerDestroyed, param => OnTowerDestroy((Tower) param));
+            this.AddListener(EventType.OnEnemySpawned, _ => {
+                _enemyCount++;
+            });
+            this.AddListener(EventType.OnEnemyKilled, _ => {
+                _enemyCount--;
+            });
+            
             this.FireEvent(EventType.OnDialoguesChange, DialoguesList[0]);
-            this.AddListener(EventType.OnTowerDestroyed, param => OnTowerDestroy((TowerObjective)param));
-            this.AddListener(EventType.OnEnemyKilled, param => OnTaskForceDown((Enemy)param));
         }
         
-        private void OnTowerDestroy(TowerObjective tower) {
-            if (towerObjectives.Contains(tower)) {
-                towerObjectives.Remove(tower);
+        private void OnTowerDestroy(Tower tower) {
+            if (_towers.Contains(tower)) {
+                _towers.Remove(tower);
                 this.FireEvent(EventType.OnDialoguesChange, DialoguesList[1]);
-                if (towerObjectives.Count <= 0) {
-                    SpawnCommanders();
+                if (_towers.Count <= 0) {
+                    StartCoroutine(SpawnCommanders());
                 }
             }
         }
 
-        private void SpawnCommanders() {
-            this.FireEvent(EventType.ClearDialogues);
+        private IEnumerator OnTaskForceDown() {
+            yield return new WaitForSeconds(1f);
+            yield return new WaitUntil(() => _enemyCount <= 0);
+            yield return new WaitForSeconds(2.5f);
+            
+            if (_spawnCount >= 4) {
+                this.FireEvent(EventType.OnDialoguesChange, EndDialogues);
+                
+                var delay = EndDialogues.dialogues.main.Sum(t => t.readingTime);
+                DOVirtual.DelayedCall(2f, () => {
+                    this.FireEvent(EventType.OnGameStateChange, GameState.Win);
+                });
+                
+                DOVirtual.DelayedCall(delay, () => {
+                    this.FireEvent(EventType.OpenActualWinUI);
+                }); 
+            }
+                
+            else {
+                DOVirtual.DelayedCall(0.2f, () => {
+                    StartCoroutine(SpawnCommanders());
+                });
+            }
+        }
 
+        private void SpawnLogic() {
+            this.FireEvent(EventType.ClearDialogues);
             if (_spawnCount == 0) {
                 foreach (var dialogue in TaskForceDialogues) {
                     this.FireEvent(EventType.OnDialoguesChange, dialogue);
@@ -56,56 +87,31 @@ namespace Level.Levels {
                 this.FireEvent(EventType.OnDialoguesChange, DialoguesList[2]);
             }
             
-            Vector3 lastPos;
             var furthestPoint = commanderSpawnPoints
                 .OrderByDescending(x => Vector2.Distance(x.position, PlayerScript.Player.Instance.PlayerPos))
                 .ToArray()[0];
-            lastPos = furthestPoint.position;
-            
-            foreach (var e in commandersToSpawn) {
-                var inst = Instantiate(e, lastPos, Quaternion.identity);
-                _enemies.Add(inst.GetComponent<Enemy>());
-                lastPos += new Vector3(1.5f, 0);
-            }
 
-            _spawnCount++;
-            
+            var randomEnemy = commandersToSpawn[Random.Range(0, commandersToSpawn.Count)];
+            _enemyToLook = Instantiate(randomEnemy, furthestPoint.position, Quaternion.identity);
+
             StartCoroutine(CameraCinematic());
+            _spawnCount++;
         }
-        
-        private void OnTaskForceDown(Enemy enemy) {
-            if (towerObjectives.Count > 0) return;
-            if (_enemies.Contains(enemy)) {
-                _enemies.Remove(enemy);
-                if (_enemies.Count <= 0) {
 
-                    if (_spawnCount >= 4) {
-                        this.FireEvent(EventType.OnDialoguesChange, EndDialogues);
-                        
-                        var delay = EndDialogues.dialogues.main.Sum(t => t.readingTime);
-                        DOVirtual.DelayedCall(2f, () => {
-                            this.FireEvent(EventType.OnGameStateChange, GameState.Win);
-                        });
-                        
-                        DOVirtual.DelayedCall(delay, () => {
-                            this.FireEvent(EventType.OpenActualWinUI);
-                        }); 
-                    }
-
-                    else {
-                        DOVirtual.DelayedCall(0.2f, SpawnCommanders);
-                    }
-                }
-            }
+        private IEnumerator SpawnCommanders() {
+            yield return new WaitUntil(() => _enemyCount <= 0);
+            yield return new WaitForSeconds(2f);
+            SpawnLogic();
+            StartCoroutine(OnTaskForceDown());
         }
-        
+
         private IEnumerator CameraCinematic() {
-            enemyTrackingCam.LookAt = _enemies[0].transform;
-            enemyTrackingCam.Follow = _enemies[0].transform;
+            enemyTrackingCam.LookAt = _enemyToLook.transform;
+            enemyTrackingCam.Follow = _enemyToLook.transform;
             yield return new WaitForSeconds(2f);
             playerCam.enabled = false;
             yield return new WaitUntil(() =>
-                Vector2.Distance(Camera.main.transform.position, _enemies[0].transform.position) < 0.1f);
+                Vector2.Distance(Camera.main.transform.position, _enemyToLook.transform.position) < 0.1f);
             yield return new WaitForSeconds(3f);
             playerCam.enabled = true;
             enemyTrackingCam.LookAt = null;
