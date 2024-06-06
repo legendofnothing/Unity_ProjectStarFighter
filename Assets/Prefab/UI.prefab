@@ -682,7 +682,7 @@ MonoBehaviour:
   pauseCanvas: {fileID: 6933813276548735304}
   deathCanvas: {fileID: 8929279437459649278}
   winCanvas: {fileID: 6999381937558387356}
-  winRaycaster: {fileID: 0}
+  winRaycaster: {fileID: 2782247635773729786}
   pauseRaycaster: {fileID: 1111834880313093979}
   deathRaycaster: {fileID: 5319456646481284683}
   deathUI: {fileID: 4165172982080320148}
