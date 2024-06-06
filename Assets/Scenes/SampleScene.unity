@@ -365,20 +365,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5646433247093983489, guid: 19872bae5fde98246be3cc9dfe5606cd, type: 3}
       propertyPath: troopsToSpawn.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5646433247093983489, guid: 19872bae5fde98246be3cc9dfe5606cd, type: 3}
       propertyPath: troopsToSpawn.Array.data[0]
       value: 
-      objectReference: {fileID: 5453326253671772431, guid: 6cc0d33d3facfbc4da8560b2e20bc4f3, type: 3}
+      objectReference: {fileID: 3742233406980701337, guid: 536e86e7bfe14eb4186b4b1f05e1c34c, type: 3}
     - target: {fileID: 5646433247093983489, guid: 19872bae5fde98246be3cc9dfe5606cd, type: 3}
       propertyPath: troopsToSpawn.Array.data[1]
       value: 
-      objectReference: {fileID: 5453326253671772431, guid: 845dd72b892c2224583f70d2c3f025ec, type: 3}
+      objectReference: {fileID: 2182358386809344281, guid: ce7401f525650c04ebef041a8836286c, type: 3}
     - target: {fileID: 5646433247093983489, guid: 19872bae5fde98246be3cc9dfe5606cd, type: 3}
       propertyPath: troopsToSpawn.Array.data[2]
       value: 
-      objectReference: {fileID: 5453326253671772431, guid: 845dd72b892c2224583f70d2c3f025ec, type: 3}
+      objectReference: {fileID: 2182358386809344281, guid: ce7401f525650c04ebef041a8836286c, type: 3}
     - target: {fileID: 6441269145807948880, guid: 19872bae5fde98246be3cc9dfe5606cd, type: 3}
       propertyPath: m_Name
       value: EnemyCommander

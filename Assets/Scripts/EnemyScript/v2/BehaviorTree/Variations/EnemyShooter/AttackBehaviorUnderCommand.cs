@@ -1,15 +1,13 @@
 ﻿using System.Collections.Generic;
 using BehaviorTree;
 using Combat;
-using EnemyScript.Commander.Variation;
-using EnemyScript.v2.BehaviorTree.Variations.EnemyShooter;
 using EnemyScript.v2.StateMachine;
 using PlayerScript;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace EnemyScript.v2.BehaviorTree.Variations.EnemyTwin {
-    public class TwinAttackEnemyCommander : AttackBehaviorMedium {
+namespace EnemyScript.v2.BehaviorTree.Variations.EnemyShooter {
+    public class AttackBehaviorUnderCommand : AttackBehaviorMedium {
         [TitleGroup("Config")]
         public float maximumDistanceToCancelLure = 8f;
         public float minDistanceToCancelLure = 4f;
@@ -109,12 +107,14 @@ namespace EnemyScript.v2.BehaviorTree.Variations.EnemyTwin {
         }
         
         protected override void Update() {
-            if (enemyRadar.CurrentHit == null) {
-                _currentThreat = null;
-            }
-            else if (enemyRadar.CurrentHit.TryGetComponent<Projectile>(out var projectile)) {
-                if (projectile.owner == Player.Instance) {
-                    _currentThreat = projectile;
+            if (enemyRadar) {
+                if (enemyRadar.CurrentHit == null) {
+                    _currentThreat = null;
+                }
+                else if (enemyRadar.CurrentHit.TryGetComponent<Projectile>(out var projectile)) {
+                    if (projectile.owner == Player.Instance) {
+                        _currentThreat = projectile;
+                    }
                 }
             }
             
