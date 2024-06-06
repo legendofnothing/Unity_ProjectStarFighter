@@ -128,8 +128,17 @@ namespace EnemyScript.v2.BehaviorTree.Variations.EnemyCommander {
                             
                             new Sequence(new List<Node> {
                                 new Decorator(new Condition(() => stateMachine.CurrentState == EnemyStates.Circling)),
-                                new Decorator(new Condition(() => lastHP > stateMachine.enemy.currentHp)),
-                                new Decorator(new Actions(SwitchToReset))
+                                new Selector(new List<Node> {
+                                    new Sequence(new List<Node> {
+                                        new Decorator(new Condition(() => lastHP > stateMachine.enemy.currentHp)),
+                                        new Decorator(new Actions(SwitchToReset))
+                                    }),
+                                    
+                                    new Sequence(new List<Node> {
+                                        new Decorator(new Condition(() => stateMachine.enemy.GetDistanceToPlayer <= dangerDistance)),
+                                        new Decorator(new Actions(SwitchToReset))
+                                    }),
+                                })
                             }),
                             
                             new Sequence(new List<Node> {

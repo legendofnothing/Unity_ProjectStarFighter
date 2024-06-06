@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BehaviorTree;
+using Combat;
 using EnemyScript.Commander;
 using EnemyScript.Commander.Variation;
 using EnemyScript.TowerScript;
@@ -181,7 +182,7 @@ namespace EnemyScript.v2.TwinFighter {
                             new Sequence(new List<Node> {
                                 new Decorator(new Condition(() => !_currentlyOverride)),
                                 
-                                new Sequence(new List<Node> {
+                                new Selector(new List<Node> {
                                     new Sequence(new List<Node> {
                                         new Decorator(new Condition(() => _currentTimeTakenDamage >= maximumTimeDamageTaken)),
                                         new Decorator(new Actions(() => {
@@ -192,44 +193,32 @@ namespace EnemyScript.v2.TwinFighter {
                                             }
                                         }))
                                     }),
-                                }),
-                                
-                                new Selector(new List<Node> {
+                                    
                                     new Sequence(new List<Node> {
                                         new Decorator(new Condition(() => _currentCommand == Commands.Command)),
+                                        new Decorator(new Condition(() => !AttackYesCommanderBehavior.canRun)),
                                         new Decorator(new Actions(() => {
-                                            if (AttackYesCommanderBehavior.canRun) return;
-                                            AttackNoCommanderBehavior.MainTree.Reset();
-                                            AttackYesCommanderBehavior.MainTree.Reset();
-                                
+                                            
                                             AttackNoCommanderBehavior.canRun = false;
-                                            AttackYesCommanderBehavior.canRun = true;
                                     
                                             AttackYesCommanderBehavior.MainTree.Reset();
                                             AttackYesCommanderBehavior.stateMachine.SwitchState(EnemyStates.Idle);
-                                    
-                                            AttackYesCommanderBehavior.stateMachine.minCirclingDistance =
-                                                overrideCircleDistance;
+                                            AttackYesCommanderBehavior.canRun = true;
                                         }))
                                     }),
                                     
                                     new Sequence(new List<Node> {
                                         new Decorator(new Condition(() => _currentCommand == Commands.Attack)),
+                                        new Decorator(new Condition(() => !AttackNoCommanderBehavior.canRun)),
                                         new Decorator(new Actions(() => {
-                                            if (AttackNoCommanderBehavior.canRun) return;
-                                            AttackNoCommanderBehavior.MainTree.Reset();
-                                            AttackYesCommanderBehavior.MainTree.Reset();
-                                
-                                            AttackNoCommanderBehavior.canRun = true;
                                             AttackYesCommanderBehavior.canRun = false;
                                     
                                             AttackNoCommanderBehavior.MainTree.Reset();
                                             AttackNoCommanderBehavior.stateMachine.SwitchState(EnemyStates.Idle);
-                                    
-                                            AttackYesCommanderBehavior.stateMachine.minCirclingDistance = _lastCircleDistance;
+                                            AttackNoCommanderBehavior.canRun = true;
                                         }))
                                     }),
-                                })
+                                }),
                             }),
                             
                             new Sequence(new List<Node> {
@@ -247,14 +236,12 @@ namespace EnemyScript.v2.TwinFighter {
                             new Sequence(new List<Node> {
                                 new Decorator(new Condition(() => !AttackNoCommanderBehavior.canRun)),
                                 new Decorator(new Actions(() => {
-                                    AttackNoCommanderBehavior.MainTree.Reset();
-                                    AttackYesCommanderBehavior.MainTree.Reset();
-                                
-                                    AttackNoCommanderBehavior.canRun = true;
+                                    
                                     AttackYesCommanderBehavior.canRun = false;
+                                    AttackNoCommanderBehavior.canRun = true;
                                     
                                     AttackNoCommanderBehavior.MainTree.Reset();
-                                    AttackNoCommanderBehavior.stateMachine.SwitchState(EnemyStates.Idle);
+                                    AttackNoCommanderBehavior.stateMachine.SwitchState(EnemyStates.Strafing);
                                     
                                     AttackYesCommanderBehavior.stateMachine.minCirclingDistance = _lastCircleDistance;
                                     

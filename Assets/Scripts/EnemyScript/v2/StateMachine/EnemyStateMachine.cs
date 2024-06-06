@@ -13,6 +13,7 @@ namespace EnemyScript.v2.StateMachine {
         ResettingAccel,
         Luring,
         LuringAccel,
+        Observing,
     }
 
     public static class UniversalSetting {
@@ -38,6 +39,9 @@ namespace EnemyScript.v2.StateMachine {
         public float lureAccelTime = 3f;
         public float lurePercentAccelAdded = 0.2f;
 
+        [TitleGroup("Observing Config")] 
+        public float minObservingDistance;
+
         protected override EnemyStates SetupState() {
             states[EnemyStates.Idle] = new EnemyIdleState(EnemyStates.Idle, this);
             states[EnemyStates.Strafing] = new EnemyStrafeState(EnemyStates.Strafing, this);
@@ -48,6 +52,8 @@ namespace EnemyScript.v2.StateMachine {
             
             states[EnemyStates.Resetting] = new EnemyResetState(EnemyStates.Resetting, this);
             states[EnemyStates.ResettingAccel] = new EnemyResetAccelState(EnemyStates.ResettingAccel, this);
+
+            states[EnemyStates.Observing] = new EnemyObservingState(EnemyStates.Observing, this);
             return EnemyStates.Idle;
         }
 

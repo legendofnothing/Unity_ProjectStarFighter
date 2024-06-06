@@ -34,13 +34,13 @@ namespace EnemyScript.v2.BehaviorTree.Variations.EnemyTwin {
                         new Decorator(new Actions(() => {
                             lastHP = stateMachine.enemy.currentHp;
                             stateMachine.SwitchState(Random.Range(0, 2) < 1
-                                ? EnemyStates.Circling
+                                ? EnemyStates.Observing
                                 : EnemyStates.Luring);
                         }))
                     }),
                         
                     new Sequence(new List<Node> {
-                        new Decorator(new Condition(() => stateMachine.CurrentState is EnemyStates.Luring or EnemyStates.Circling or EnemyStates.LuringAccel)),
+                        new Decorator(new Condition(() => stateMachine.CurrentState is EnemyStates.Luring or EnemyStates.Observing or EnemyStates.LuringAccel)),
                         new Selector(new List<Node> {
                             new Sequence(new List<Node> {
                                 new Decorator(new Condition(() => _currentThreat)),
@@ -61,7 +61,7 @@ namespace EnemyScript.v2.BehaviorTree.Variations.EnemyTwin {
                             }),
                             
                             new Sequence(new List<Node> {
-                                new Decorator(new Condition(() => stateMachine.CurrentState == EnemyStates.Circling)),
+                                new Decorator(new Condition(() => stateMachine.CurrentState == EnemyStates.Observing)),
                                 new Decorator(new Condition(() => lastHP > stateMachine.enemy.currentHp)),
                                 new Decorator(new Actions(SwitchToReset))
                             }),

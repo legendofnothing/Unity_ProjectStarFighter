@@ -26,7 +26,8 @@ namespace EnemyScript.Commander {
 
         public MonoBehaviour attackState;
         public MonoBehaviour commandState;
-        
+        public float powerValue;
+        [Space]
         [ReadOnly] public Troop commander;
         protected Enemy self;
         [ReadOnly] public State currentState;

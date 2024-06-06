@@ -1,37 +1,35 @@
 ﻿using PlayerScript;
 using StateMachine;
-using UnityEngine;
 
 namespace EnemyScript.v2.StateMachine.States {
-    public class EnemyCircleState : EnemyState {
-        public EnemyCircleState(EnemyStates key, StateMachine<EnemyStates> stateMachine) : base(key, stateMachine) { }
-        
+    public class EnemyObservingState : EnemyState {
+        public EnemyObservingState(EnemyStates key, StateMachine<EnemyStates> stateMachine) : base(key, stateMachine) {
+        }
+
         public override void OnEnter() {
-            esm.enemy.currentSpeed = esm.enemy.speed;
+            esm.enemy.currentSpeed = 0.1f;
             esm.enemy.currentAngularSpeed = esm.enemy.angularSpeed;
         }
 
         public override void OnExit() {
-            
         }
 
         public override void OnUpdate() {
-
             var predictedPos = esm.GetPredictedPos();
             var predictedDot = esm.enemy.GetDotToPoint(predictedPos);
             
             esm.enemyBehaviors.LookAt(predictedPos, esm.enemy.angularSpeed); 
             
-            if (esm.enemy.GetDistanceToPlayer >= esm.minCirclingDistance) {
+            if (esm.enemy.GetDistanceToPlayer >= esm.minObservingDistance) {
                 esm.enemy.currentSpeed = esm.enemy.speed;
                 esm.enemyBehaviors.FlyForward(esm.enemy.currentSpeed);
-            }
-            else if (esm.enemy.GetDistanceToPlayer < esm.minCirclingDistance - 0.5f) {
+            } 
+            else if (esm.enemy.GetDistanceToPlayer < esm.minObservingDistance - 0.5f) {
                 esm.enemy.currentSpeed = esm.enemy.minimumSpeed;
                 esm.enemyBehaviors.Fly(esm.enemy.currentSpeed,-esm.transform.up);
             }
             else {
-                esm.enemy.currentSpeed = esm.enemy.minimumSpeed;
+                esm.enemy.currentSpeed = 0.1f;
                 esm.enemyBehaviors.Fly(esm.enemy.currentSpeed, esm.transform.right);
             }
 

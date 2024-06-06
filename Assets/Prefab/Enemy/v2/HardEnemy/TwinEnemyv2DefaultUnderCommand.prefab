@@ -59,6 +59,10 @@ PrefabInstance:
       propertyPath: minCirclingDistance
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 5072429778172491493, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: minObservingDistance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5717710664923358008, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -219,6 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackState: {fileID: 0}
   commandState: {fileID: 0}
+  powerValue: 1
   commander: {fileID: 0}
   currentState: 0
   AttackNoCommanderBehavior: {fileID: 10780188111737602}
@@ -228,6 +233,7 @@ MonoBehaviour:
   maximumTimeDamageTakenToSnapOut: 1
   suicidalTendenciesPercentIncrease: 0.4
   mentallyUnstableRate: 0.1
+  overrideCircleDistance: 12
 --- !u!114 &7770457857487665962
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: percentAccelAdded
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5072429778172491493, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: minObservingDistance
+      value: 19
+      objectReference: {fileID: 0}
     - target: {fileID: 5717710664923358008, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -215,6 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackState: {fileID: 0}
   commandState: {fileID: 0}
+  powerValue: 0.8
   commander: {fileID: 0}
   currentState: 0
   AttackNoCommanderBehavior: {fileID: 10780188111737602}

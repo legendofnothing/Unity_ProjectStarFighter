@@ -16,15 +16,25 @@ namespace EnemyScript.Commander.Variation {
             if (troops.Contains(troopToAdd)) return;
             troops.Add(troopToAdd);
             OnTroopAdded();
+            OnTroopAdded(troopToAdd);
         }
 
         public void RemoveTroop(Troop troopToRemove) {
             if (!troops.Contains(troopToRemove)) return;
             troops.Remove(troopToRemove);
             OnTroopRemoved();
+            OnTroopRemoved(troopToRemove);
         }
 
         protected abstract void OnTroopAdded();
         protected abstract void OnTroopRemoved();
+
+        protected virtual void OnTroopAdded(Troop troop) {
+            
+        }
+
+        protected virtual void OnTroopRemoved(Troop troop) {
+            
+        }
     }
 }

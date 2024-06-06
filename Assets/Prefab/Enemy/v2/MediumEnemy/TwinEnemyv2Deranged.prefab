@@ -224,6 +224,8 @@ MonoBehaviour:
   detectLayer:
     serializedVersion: 2
     m_Bits: 64
+  useAdvanced: 0
+  circleCollider: {fileID: 0}
 --- !u!114 &5453326253671772431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackState: {fileID: 0}
   commandState: {fileID: 0}
+  powerValue: 1
   commander: {fileID: 0}
   currentState: 0
   AttackNoCommanderBehavior: {fileID: 10780188111737602}
@@ -247,6 +250,7 @@ MonoBehaviour:
   maximumTimeDamageTakenToSnapOut: 1
   suicidalTendenciesPercentIncrease: 0.5
   mentallyUnstableRate: 0.7
+  overrideCircleDistance: 12
 --- !u!114 &3643972405622277580 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5072429778172491493, guid: f98b27035abc89040aeea548bc4ff287, type: 3}

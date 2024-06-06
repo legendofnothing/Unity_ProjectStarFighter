@@ -301,6 +301,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5072429778172491493, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+      propertyPath: minObservingDistance
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 5072429778172491493, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
       propertyPath: lurePercentAccelAdded
       value: 0.6
       objectReference: {fileID: 0}
@@ -416,11 +420,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888475d16bc9f544bab0615d4f131c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &6441269145807948845 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 7394489358034142131, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
+  m_PrefabInstance: {fileID: 4610978815883677598}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6441269145807948880 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7394489358034142158, guid: f98b27035abc89040aeea548bc4ff287, type: 3}
   m_PrefabInstance: {fileID: 4610978815883677598}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1637941747735634262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441269145807948880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e479e0604d09447ca3e2d60c911820f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateMachine: {fileID: 8762202567931115899}
+  canRun: 1
+  dotInFront: 0.998
+  dangerDistance: 4
+  minResetDistance: 12
+  maxResetDistance: 20
+  minTimeBeingChased: 1
+  minThreatDistance: 3
+  enemyRadar: {fileID: 8709699087971337873}
 --- !u!114 &5646433247093983489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +469,13 @@ MonoBehaviour:
   currentState: 0
   troopsToSpawn: []
   troops: []
+  observeBehavior: {fileID: 1637941747735634262}
+  attackBehavior: {fileID: 6004369473253077114}
+  minTroopCountToCancelCommand: 1
+  dangerPlayerDistance: 4
+  maximumTimeDamageTaken: 2
+  enemyRadar: {fileID: 8709699087971337873}
+  rb: {fileID: 6441269145807948845}
 --- !u!114 &6004369473253077114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,6 +497,7 @@ MonoBehaviour:
   shieldEffectClip: {fileID: 7400000, guid: c668061b9a206934f9a222e75bde3ec5, type: 2}
   shieldCooldownDuration: 4.5
   minThreatDistance: 1.2
+  minTimeBeingChased: 1
   maximumDistanceToCancelLure: 13
   minDistanceToCancelLure: 2
   chanceToReset: 0.4
