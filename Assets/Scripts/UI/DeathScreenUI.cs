@@ -24,7 +24,7 @@ namespace UI {
             mainGroup.alpha = 0;
             ditherImage.DOFade(0, 0).SetUpdate(true);
             reiGroup.alpha = 0;
-            AudioManager.Instance.SetOutsideVolume(0);
+            AudioManager.Instance.PauseAllSound();
             
             _sequence = DOTween.Sequence();
             _sequence

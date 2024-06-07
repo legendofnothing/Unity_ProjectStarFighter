@@ -32,7 +32,6 @@ namespace Audio {
             _mainMixer = Resources.Load<AudioMixer>("Audio/MainAudioController");
         
             _musicGroup = _mainMixer.FindMatchingGroups("Music")[0];
-            _mainMixer.SetFloat("OutsideVolume", 0);
 
             var sfxGroups = _mainMixer.FindMatchingGroups("SFX");
             _sfxInsideGroup = sfxGroups[1];
@@ -119,15 +118,7 @@ namespace Audio {
                 }
             }
         }
-
-        public void SetOutsideVolume(float volume) {
-            _mainMixer.SetFloat("OutsideVolume", Mathf.Lerp(-80, 0, volume));
-        }
         
-        public void SetInsideVolume(float volume) {
-            _mainMixer.SetFloat("InsideVolume", Mathf.Lerp(-80, 0, volume));
-        }
-
         public void PauseAllSound() {
             var temp = new List<AudioSource>(_sfxSources);
             foreach (var t in temp.Where(t => t)) {
@@ -148,6 +139,22 @@ namespace Audio {
 
         public void RemoveFromSource(AudioSource source) {
             if (_sfxSources.Contains(source)) _sfxSources.Remove(source);
+        }
+
+        public void SetMusicVolume(float volume) {
+            var temp = volume;
+            if (temp <= 0) {
+                temp = 0.0001f;
+            }
+            _mainMixer.SetFloat("MusicVolume", Mathf.Log10(temp) * 20);
+        }
+        
+        public void SetSFXVolume(float volume) {
+            var temp = volume;
+            if (temp <= 0) {
+                temp = 0.0001f;
+            }
+            _mainMixer.SetFloat("SFXVolume", Mathf.Log10(temp) * 20);
         }
     }
 }

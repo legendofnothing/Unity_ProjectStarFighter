@@ -110,7 +110,7 @@ AudioMixerGroupController:
   - {fileID: 8431398526594551606}
   - {fileID: -7716785098187805101}
   - {fileID: -4439321376217095137}
-  m_UserColorIndex: 0
+  m_UserColorIndex: 7
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
@@ -228,10 +228,10 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
-  - guid: a0a9bf2f0c96e4a4da5e411c569f9eb0
-    name: InsideVolume
-  - guid: 98d45bbfa8c383343b253e717eb23e5a
-    name: OutsideVolume
+  - guid: d0b37ad9b382b4048a3b4cdaf0cfcef0
+    name: MusicVolume
+  - guid: 63f78db4409bfb0408a0009917a87133
+    name: SFXVolume
   m_AudioMixerGroupViews:
   - guids:
     - ff7c50481021e2c4b88653b29b72c7fb
@@ -365,7 +365,7 @@ AudioMixerGroupController:
   - {fileID: 6011501362999615496}
   - {fileID: -7291179940817375583}
   - {fileID: -973281983648048551}
-  m_UserColorIndex: 0
+  m_UserColorIndex: 2
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
