@@ -22,6 +22,7 @@ namespace Effect {
             audioSource.loop = true;
             audioSource.volume = 0;
             audioSource.Play();
+            AudioManager.Instance.AddToSfxSource(audioSource);
         }
 
         private void Update() {
@@ -43,6 +44,10 @@ namespace Effect {
                     audioSource.volume = value;
                 }
             }
+        }
+
+        private void OnDestroy() {
+            if (AudioManager.Instance) AudioManager.Instance.RemoveFromSource(audioSource);
         }
     }
 }

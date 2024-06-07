@@ -96,8 +96,7 @@ namespace UI {
             pauseCanvas.enabled = true;
             mainCanvas.enabled = false;
             _isPausing = false;
-            AudioManager.Instance.SetInsideVolume(0);
-            AudioManager.Instance.SetOutsideVolume(0);
+            AudioManager.Instance.PauseAllSound();
         }
 
         public void UnPause() {
@@ -108,8 +107,7 @@ namespace UI {
             pauseCanvas.enabled = false;
             mainCanvas.enabled = true;
             _isPausing = false;
-            AudioManager.Instance.SetInsideVolume(1);
-            AudioManager.Instance.SetOutsideVolume(1);
+            AudioManager.Instance.ResumeAllSound();
         }
 
         public void Retry() {

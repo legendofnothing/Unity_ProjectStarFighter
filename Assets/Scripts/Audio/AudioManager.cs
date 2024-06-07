@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Core.Patterns;
 using DG.Tweening;
 using UnityEngine;
@@ -22,6 +23,8 @@ namespace Audio {
         private AudioMixerGroup _musicGroup;
         private AudioMixerGroup _sfxInsideGroup;
         private AudioMixerGroup _sfxOutsideGroup;
+
+        private List<AudioSource> _sfxSources = new();
 
         private bool _isFadingMusic;
 
@@ -68,7 +71,12 @@ namespace Audio {
             outAudio.outputAudioMixerGroup = _sfxInsideGroup;
             outAudio.clip = clip;
             outAudio.Play();
-            Destroy(inst, clip.length);
+            _sfxSources.Add(outAudio);
+            
+            DOVirtual.DelayedCall(clip.length, () => {
+                _sfxSources.Remove(outAudio);
+                Destroy(inst);
+            });
         }
 
         public void PlaySFX(AudioClip clip, Transform transform, bool looped = false, bool attached = false, float minDist = 1) {
@@ -76,7 +84,10 @@ namespace Audio {
             var outAudio = inst.GetComponent<AudioSource>();
             var distance = inst.GetComponent<AudioDistance>();
             outAudio.outputAudioMixerGroup = _sfxOutsideGroup;
-            distance.Init(clip, transform, looped, attached, minDist);
+            _sfxSources.Add(outAudio);
+            distance.Init(clip, transform, () => {
+                _sfxSources.Remove(outAudio);
+            } , looped, attached, minDist);
         }
 
         public void PlayMusic(AudioClip clip, float delay = 0) {
@@ -115,6 +126,28 @@ namespace Audio {
         
         public void SetInsideVolume(float volume) {
             _mainMixer.SetFloat("InsideVolume", Mathf.Lerp(-80, 0, volume));
+        }
+
+        public void PauseAllSound() {
+            var temp = new List<AudioSource>(_sfxSources);
+            foreach (var t in temp.Where(t => t)) {
+                t.Pause();
+            }
+        }
+
+        public void ResumeAllSound() {
+            var temp = new List<AudioSource>(_sfxSources);
+            foreach (var t in temp.Where(t => t)) {
+                t.UnPause();
+            }
+        }
+
+        public void AddToSfxSource(AudioSource source) {
+            _sfxSources.Add(source);
+        }
+
+        public void RemoveFromSource(AudioSource source) {
+            if (_sfxSources.Contains(source)) _sfxSources.Remove(source);
         }
     }
 }

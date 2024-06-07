@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using PlayerScript;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace Audio {
 
         private float _minDist;
 
-        public void Init(AudioClip clip, Transform targetTransform, bool looped = false, bool attachedToTransform = false, float minDist = 1) {
+        public void Init(AudioClip clip, Transform targetTransform, Action destroyCallback, bool looped = false, bool attachedToTransform = false, float minDist = 1) {
             _audioSource = GetComponent<AudioSource>();
             _target = targetTransform;
             _minDist = minDist;
@@ -26,7 +27,12 @@ namespace Audio {
             _audioSource.Play();
             _audioSource.loop = looped;
             try {
-                if (!looped) Destroy(gameObject, clip.length);
+                if (!looped) {
+                    DOVirtual.DelayedCall(clip.length, () => {
+                        destroyCallback?.Invoke();
+                        Destroy(gameObject);
+                    });
+                }
             }
             catch (Exception e) {
                 // ignored

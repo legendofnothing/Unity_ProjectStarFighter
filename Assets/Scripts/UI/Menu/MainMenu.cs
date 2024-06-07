@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using UI.Menu.Setting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -65,7 +66,7 @@ namespace UI.Menu {
         public List<Image> blinks = new();
 
         [TitleGroup("Menu Refs")] 
-        public SettingMenu settingMenu;
+        public SettingMenuFrontEnd settingMenuFrontEnd;
         [Space]
         public MenuItem homeMenu;
 
@@ -82,7 +83,7 @@ namespace UI.Menu {
 
         public void OpenSetting() {
             homeMenu.CloseMenu(0.5f, () => {
-                settingMenu.OpenSetting();
+                settingMenuFrontEnd.OpenSetting();
             });
         }
 
