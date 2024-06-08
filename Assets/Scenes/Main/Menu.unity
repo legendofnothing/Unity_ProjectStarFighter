@@ -4187,6 +4187,18 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4285756275
       objectReference: {fileID: 0}
+    - target: {fileID: 5728451647144367688, guid: d47ba307b5170ef4c8fd92518814d843, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2074117842}
+    - target: {fileID: 5728451647144367688, guid: d47ba307b5170ef4c8fd92518814d843, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenLevelSelector
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728451647144367688, guid: d47ba307b5170ef4c8fd92518814d843, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI.Menu.MainMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d47ba307b5170ef4c8fd92518814d843, type: 3}
 --- !u!224 &624347492 stripped
@@ -5652,7 +5664,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813322329}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -7864,7 +7876,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194953313}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -7911,6 +7923,7 @@ MonoBehaviour:
     canvasGroup: {fileID: 0}
     canvas: {fileID: 1194953315}
     raycaster: {fileID: 1194953316}
+  volume: {fileID: 2091796701}
   backdrop: {fileID: 1188656540}
   ditherScreen: {fileID: 1145485883}
   mainRect: {fileID: 2138171728}
@@ -13339,6 +13352,7 @@ MonoBehaviour:
   - {fileID: 215917995}
   - {fileID: 883355354}
   settingMenuFrontEnd: {fileID: 1257711679}
+  missionSelectorMenu: {fileID: 1194953317}
   homeMenu:
     canvasGroup: {fileID: 813322331}
     canvas: {fileID: 813322332}

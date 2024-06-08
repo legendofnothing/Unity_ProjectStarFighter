@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using UI.Menu.MissionSelector;
 using UI.Menu.Setting;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 namespace UI.Menu {
@@ -67,6 +69,7 @@ namespace UI.Menu {
 
         [TitleGroup("Menu Refs")] 
         public SettingMenuFrontEnd settingMenuFrontEnd;
+        public MissionSelectorFrontEnd missionSelectorMenu;
         [Space]
         public MenuItem homeMenu;
 
@@ -79,6 +82,12 @@ namespace UI.Menu {
 
         public void OpenMenu() {
             homeMenu.OpenMenu(1f);
+        }
+
+        public void OpenLevelSelector() {
+            homeMenu.CloseMenu(0.8f, () => {
+                missionSelectorMenu.Open();
+            });
         }
 
         public void OpenSetting() {

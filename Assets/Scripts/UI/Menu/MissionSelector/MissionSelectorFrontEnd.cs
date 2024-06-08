@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UI.Components;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 namespace UI.Menu.MissionSelector {
@@ -22,6 +23,7 @@ namespace UI.Menu.MissionSelector {
         }
         
         public MenuItem mainItem;
+        public PostProcessVolume volume;
 
         [TitleGroup("Image Refs")] 
         public Image backdrop;
@@ -96,14 +98,18 @@ namespace UI.Menu.MissionSelector {
 
                 button.isDisabled = false;
             }
-            
-            Open();
         }
 
         public void Open() {
             _sequence?.Kill();
             _sequence = DOTween.Sequence();
             mainItem.canvas.enabled = true;
+            
+            if (volume.profile.TryGetSettings(out LensDistortion t)) {
+                DOVirtual.Float(0, 40, 1, value => {
+                    t.intensity.value = value;
+                });
+            }
             
             //Start
             mainRect.sizeDelta = Vector2.zero;

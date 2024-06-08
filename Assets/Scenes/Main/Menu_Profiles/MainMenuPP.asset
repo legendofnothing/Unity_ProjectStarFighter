@@ -15,16 +15,16 @@ MonoBehaviour:
   active: 1
   enabled:
     overrideState: 1
-    value: 0
+    value: 1
   intensity:
     overrideState: 1
-    value: 40
+    value: 0
   intensityX:
     overrideState: 1
-    value: 0.742
+    value: 0.646
   intensityY:
     overrideState: 1
-    value: 1
+    value: 0.478
   centerX:
     overrideState: 0
     value: 0
