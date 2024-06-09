@@ -94,6 +94,12 @@ namespace UI.Menu.Setting {
 
         public void OnButtonPressed() {
             var s = DOTween.Sequence();
+            
+            foreach (var item in settingItems) {
+                item.canvas.enabled = false;
+                item.raycaster.enabled = false;
+            }
+            
             foreach (var canvas in optionCanvases) {
                 if (optionCanvases.IndexOf(canvas) == 0) {
                     canvas.enabled = false;
