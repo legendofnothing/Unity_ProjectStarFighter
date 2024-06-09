@@ -135,6 +135,7 @@ namespace UI {
             DoBlink182(0.5f, 1.5f, () => {
                 SceneManager.LoadScene("Menu");
                 DOTween.Clear(true);
+                Time.timeScale = 1;
             });
         }
 

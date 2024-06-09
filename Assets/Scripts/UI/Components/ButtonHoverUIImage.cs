@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,20 +24,20 @@ namespace UI.Components {
                 }
                 else {
                     _tween?.Kill();
-                    _tween = image.DOColor(_defaultColor, duration).SetEase(easeType).SetUpdate(true);
+                    _tween = image.DOColor(defaultColor, duration).SetEase(easeType).SetUpdate(true);
                 }
 
                 _isDisabled = value;
             }
         }
 
-        private Color _defaultColor;
+        [ReadOnly] public Color defaultColor;
         private Tween _tween;
         private bool _canDisable;
 
         private void Start() {
-            _defaultColor = image.color;
-            image.color = _defaultColor;
+            defaultColor = image.color;
+            image.color = defaultColor;
             _canDisable = true;
         }
 
@@ -49,7 +50,7 @@ namespace UI.Components {
         public void OnUnHover() {
             if (isDisabled) return;
             _tween?.Kill();
-            _tween = image.DOColor(_defaultColor, duration).SetEase(easeType).SetUpdate(true);
+            _tween = image.DOColor(defaultColor, duration).SetEase(easeType).SetUpdate(true);
         }
     }
 }

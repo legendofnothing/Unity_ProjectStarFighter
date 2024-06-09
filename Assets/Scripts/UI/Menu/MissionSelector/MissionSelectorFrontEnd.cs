@@ -23,6 +23,8 @@ namespace UI.Menu.MissionSelector {
         }
         
         public MenuItem mainItem;
+        public MainMenu mainMenu;
+        public MissionSelectorLoading missionLoading;
         public PostProcessVolume volume;
 
         [TitleGroup("Image Refs")] 
@@ -58,12 +60,21 @@ namespace UI.Menu.MissionSelector {
         [Title("Duration")] 
         public float openingScreenDuration = 1f;
 
+        [Title("Start Mission Button")] 
+        public ButtonHoverUIImage startButton;
+        public CanvasGroup loadingGroup;
+
         private Vector2 _originalMainSize;
-        private int _currentLevel = 0;
         private Sequence _sequence;
         private Sequence _switchMissionSequence;
+        
+        public int currentLevel { get; private set; }
 
         private void Start() {
+            if (volume.profile.TryGetSettings(out LensDistortion t)) {
+                t.intensity.value = 0;
+            }
+            
             _peopleCards.Add(People.Overseer, new PeopleCard {
                 name = "Overseer",
                 image = handlerSprites[0]
@@ -89,6 +100,8 @@ namespace UI.Menu.MissionSelector {
             missionBriefText.text = missionBriefs[0].text;
             missionDiffText.text = "SAFE";
             missionTitleText.text = missionNames[0];
+
+            currentLevel = 0;
             
             foreach (var button in buttonSelectors) {
                 if (buttonSelectors.IndexOf(button) == 0) {
@@ -98,6 +111,8 @@ namespace UI.Menu.MissionSelector {
 
                 button.isDisabled = false;
             }
+            
+            loadingGroup.alpha = 0;
         }
 
         public void Open() {
@@ -133,6 +148,36 @@ namespace UI.Menu.MissionSelector {
                 .Append(selectorGroup.DOFade(1, 1.5f).SetEase(selectorCurve))
                 .OnComplete(() => {
                     mainItem.raycaster.enabled = true;
+                });
+        }
+
+        public void Close() {
+            _sequence?.Kill();
+            _sequence = DOTween.Sequence();
+            mainItem.raycaster.enabled = false;
+            volume.profile.TryGetSettings(out LensDistortion t);
+            
+            //Play
+            _sequence
+                .Append(ditherScreen.DOFade(0f, 0.8f))
+                .Append(selectorGroup.DOFade(0, 1.5f).SetEase(selectorCurve))
+                .Append(DOVirtual.DelayedCall(1.5f, () => { }))
+                .Append(DOVirtual.Float(t.intensity.value, 0, 1, value => {
+                    t.intensity.value = value;
+                }))
+                .Append(DOVirtual.DelayedCall(0, () => {
+                    DOVirtual.Float(_originalMainSize.x, 0, openingScreenDuration, value => {
+                        mainRect.sizeDelta = new Vector2(value, mainRect.sizeDelta.y);
+                    }).SetEase(Ease.InQuint);
+
+                    DOVirtual.Float(_originalMainSize.y, 0, openingScreenDuration, value => {
+                        mainRect.sizeDelta = new Vector2(mainRect.sizeDelta.x, value);
+                    });
+                }))
+                .Append(backdrop.DOFade(0, openingScreenDuration).SetEase(Ease.InBounce))
+                .OnComplete(() => {
+                    mainItem.canvas.enabled = false;
+                    mainMenu.OpenMenu();
                 });
         }
 
@@ -199,7 +244,27 @@ namespace UI.Menu.MissionSelector {
                     handlerImage.DOFade(1, 1.5f);
                 }));
 
-            _currentLevel = mission;
+            currentLevel = mission;
+        }
+
+        public void StartGame() {
+            _sequence?.Kill();
+            _sequence = DOTween.Sequence();
+            loadingGroup.alpha = 0;
+            mainItem.raycaster.enabled = false;
+            var dur = 0.2f;
+            _sequence
+                .Append(startButton.image.DOColor(startButton.defaultColor, dur))
+                .Append(startButton.image.DOColor(startButton.onHoverColor, dur))
+                .Append(startButton.image.DOColor(startButton.defaultColor, dur))
+                .Append(startButton.image.DOColor(startButton.onHoverColor, dur))
+                .Append(startButton.image.DOColor(startButton.defaultColor, dur))
+                .Append(startButton.image.DOColor(startButton.onHoverColor, dur))
+                .Append(selectorGroup.DOFade(0, 0.8f).SetEase(selectorCurve))
+                .Append(loadingGroup.DOFade(1, 1.5f).SetEase(selectorCurve))
+                .OnComplete(() => {
+                    missionLoading.StartLoading(currentLevel);
+                });
         }
     }
 }
