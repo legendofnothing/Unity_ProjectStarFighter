@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Audio;
 using Core.Events;
@@ -18,27 +19,36 @@ namespace UI {
         private bool _isPlayingDialogues;
         private List<Dialogues> _queue = new();
 
+        private Action<object> _action1;
+        private Action<object> _action2;
+
         private void Awake() {
             canvasGroup.alpha = 0;
             if (doManually) return;
-            this.AddListener(EventType.OnDialoguesChange, param => {
+
+            _action1 = param => {
                 if (_isPlayingDialogues) {
                     _queue.Add((Dialogues)param);
                 }
                 else {
-                    StartCoroutine(PlayDialogues((Dialogues)param));
+                    PlayDialogue((Dialogues)param);
                 }
-            });
+            };
+
+            _action2 = _ => StopDialogue();
             
-            this.AddListener(EventType.ClearDialogues, _ => StopDialogue());
+            this.AddListener(EventType.OnDialoguesChange, _action1);
+            this.AddListener(EventType.ClearDialogues, _action2);
         }
 
         public void PlayDialogue(Dialogues dialogues, bool realTime = false) {
+            Debug.Log("Played Dialogues - Inner");
+            Debug.Log($"{dialogues}");
             if (_isPlayingDialogues) {
                 _queue.Add(dialogues);
             }
             else {
-                StartCoroutine(PlayDialogues(dialogues, realTime));
+                StartCoroutine(PlayDialoguesRoutine(dialogues, realTime));
             }
         }
 
@@ -53,7 +63,7 @@ namespace UI {
             messageText.color = color;
         }
 
-        private IEnumerator PlayDialogues(Dialogues dialogues, bool realTime = false) {
+        private IEnumerator PlayDialoguesRoutine(Dialogues dialogues, bool realTime = false) {
             _isPlayingDialogues = true;
             canvasGroup.alpha = 1;
             
@@ -75,7 +85,7 @@ namespace UI {
             }
 
             if (_queue.Count > 0) {
-                StartCoroutine(PlayDialogues(_queue[0], realTime));
+                StartCoroutine(PlayDialoguesRoutine(_queue[0], realTime));
                 _queue.RemoveAt(0);
                 yield break;
             }

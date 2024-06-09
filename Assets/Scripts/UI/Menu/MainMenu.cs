@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Audio;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UI.Menu.MissionSelector;
@@ -73,6 +74,10 @@ namespace UI.Menu {
         [Space]
         public MenuItem homeMenu;
 
+        [Space] 
+        public AudioClip startMenuAudio;
+        public AudioClip selectedAudio;
+
         private void Start() {
             homeMenu.DisableAllItems();
             foreach (var blink in blinks) {
@@ -82,15 +87,18 @@ namespace UI.Menu {
 
         public void OpenMenu() {
             homeMenu.OpenMenu(1f);
+            AudioManager.Instance.PlaySFXOneShot(startMenuAudio);
         }
 
         public void OpenLevelSelector() {
+            AudioManager.Instance.PlaySFXOneShot(selectedAudio);
             homeMenu.CloseMenu(0.8f, () => {
                 missionSelectorMenu.Open();
             });
         }
 
         public void OpenSetting() {
+            AudioManager.Instance.PlaySFXOneShot(selectedAudio);
             homeMenu.CloseMenu(0.5f, () => {
                 settingMenuFrontEnd.OpenSetting();
             });

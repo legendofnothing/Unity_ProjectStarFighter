@@ -12,7 +12,7 @@ using UnityEngine;
 using EventType = Core.Events.EventType;
 
 namespace Level.Levels {
-    public class LevelTwoManager : MonoBehaviour {
+    public class LevelTwoManager : Levels.Level {
         public List<Dialogues> DialoguesList = new();
         public List<Dialogues> TaskForceDialogues = new();
         public Dialogues EndDialogues;
@@ -38,9 +38,12 @@ namespace Level.Levels {
                 _enemyCount--;
             });
             
+        }
+
+        private void Start() {
             this.FireEvent(EventType.OnDialoguesChange, DialoguesList[0]);
         }
-        
+
         private void OnTowerDestroy(Tower tower) {
             if (_towers.Contains(tower)) {
                 _towers.Remove(tower);

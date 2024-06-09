@@ -13,7 +13,7 @@ using UnityEngine;
 using EventType = Core.Events.EventType;
 
 namespace Level.Level1 {
-    public class LevelOneManager : MonoBehaviour {
+    public class LevelOneManager : Levels.Level {
         [TitleGroup("Spawning")] 
         public List<Transform> commanderSpawnPoints = new();
         public List<GameObject> commandersToSpawn = new();
@@ -37,7 +37,9 @@ namespace Level.Level1 {
             this.AddListener(EventType.OnEnemyKilled, _ => {
                 _enemyCount--;
             });
-            
+        }
+
+        private void Start() {
             this.FireEvent(EventType.OnDialoguesChange, DialoguesList[0]);
         }
 

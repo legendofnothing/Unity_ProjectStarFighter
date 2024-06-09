@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Audio;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -64,6 +65,11 @@ namespace UI.Menu.MissionSelector {
         public ButtonHoverUIImage startButton;
         public CanvasGroup loadingGroup;
 
+        [TitleGroup("Audio Sources")] 
+        public AudioSource startupSource;
+        public AudioSource loopSource;
+        public AudioClip mouseClickSound;
+
         private Vector2 _originalMainSize;
         private Sequence _sequence;
         private Sequence _switchMissionSequence;
@@ -120,6 +126,14 @@ namespace UI.Menu.MissionSelector {
             _sequence = DOTween.Sequence();
             mainItem.canvas.enabled = true;
             
+            startupSource.Play();
+            DOVirtual.DelayedCall(startupSource.clip.length, () => {
+                loopSource.Play();
+                DOVirtual.Float(1, 0.2f, 5f, value => {
+                    loopSource.volume = value;
+                });
+            });
+            
             if (volume.profile.TryGetSettings(out LensDistortion t)) {
                 DOVirtual.Float(0, 40, 1, value => {
                     t.intensity.value = value;
@@ -153,9 +167,18 @@ namespace UI.Menu.MissionSelector {
 
         public void Close() {
             _sequence?.Kill();
+            AudioManager.Instance.PlaySFXOneShot(mouseClickSound);
             _sequence = DOTween.Sequence();
             mainItem.raycaster.enabled = false;
             volume.profile.TryGetSettings(out LensDistortion t);
+
+            var ogVolume = loopSource.volume;
+            DOVirtual.Float(ogVolume, 0, 0.8f + 1.5f, value => {
+                loopSource.volume = value;
+            }).OnComplete(() => {
+                loopSource.Stop();
+                loopSource.volume = 1;
+            });
             
             //Play
             _sequence
@@ -190,7 +213,9 @@ namespace UI.Menu.MissionSelector {
         }
 
         public void SelectMission(int mission) {
+            if (currentLevel == mission) return;
             _switchMissionSequence?.Kill();
+            AudioManager.Instance.PlaySFXOneShot(mouseClickSound);
             
             foreach (var button in buttonSelectors) {
                 if (buttonSelectors.IndexOf(button) == mission) {
@@ -249,6 +274,7 @@ namespace UI.Menu.MissionSelector {
 
         public void StartGame() {
             _sequence?.Kill();
+            AudioManager.Instance.PlaySFXOneShot(mouseClickSound);
             _sequence = DOTween.Sequence();
             loadingGroup.alpha = 0;
             mainItem.raycaster.enabled = false;

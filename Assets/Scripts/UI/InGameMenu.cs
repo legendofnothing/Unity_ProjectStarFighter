@@ -50,15 +50,17 @@ namespace UI {
 
             Time.timeScale = 0;
             Player.Instance.ManipulateInput(false);
-            foreach (var image in images) {
-                image.fillAmount = 0.5f;
-            }
-            
-            DoBlink182(0, 2.5f, () => {
-                Time.timeScale = 1;
-                introCanvas.enabled = false;
-                Player.Instance.ManipulateInput();
-            });
+            DOVirtual.DelayedCall(1.5f, () => {
+                foreach (var image in images) {
+                    image.fillAmount = 0.5f;
+                }
+
+                DoBlink182(0, 2.5f, () => {
+                    Time.timeScale = 1;
+                    introCanvas.enabled = false;
+                    Player.Instance.ManipulateInput();
+                });
+            }).SetUpdate(true);
             
             this.AddListener(EventType.OpenDeathUI, _ => OpenDeathUI());
             this.AddListener(EventType.OpenWinUI, _ => OpenWinUI());

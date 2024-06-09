@@ -15,7 +15,7 @@ using UnityEngine;
 using EventType = Core.Events.EventType;
 
 namespace Level.Levels {
-    public class Tutorial : MonoBehaviour {
+    public class Tutorial : Levels.Level {
         public enum TutorialState {
             None,
             Moving,

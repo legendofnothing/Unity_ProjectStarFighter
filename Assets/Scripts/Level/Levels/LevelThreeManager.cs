@@ -11,7 +11,7 @@ using UnityEngine;
 using EventType = Core.Events.EventType;
 
 namespace Level.Levels {
-    public class LevelThreeManager : MonoBehaviour {
+    public class LevelThreeManager : Levels.Level {
         [ReadOnly] public Enemy boss;
         public List<Dialogues> startingDialogues = new();
         public Dialogues mainDialogues;

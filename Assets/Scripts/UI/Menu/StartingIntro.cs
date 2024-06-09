@@ -26,6 +26,8 @@ namespace UI.Menu {
             GetComponent<Canvas>().enabled = true;
             
             uiDialogue.PlayDialogue(dialogue, true);
+            Debug.Log("Played Dialogues");
+            
             var delay = dialogue.dialogues.main.Sum(t => t.readingTime);
             _delayTween = DOVirtual.DelayedCall(delay, () => {
                 _isStarting = true;
