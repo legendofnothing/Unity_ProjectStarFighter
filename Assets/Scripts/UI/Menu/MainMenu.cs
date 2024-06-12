@@ -77,6 +77,7 @@ namespace UI.Menu {
         [Space] 
         public AudioClip startMenuAudio;
         public AudioClip selectedAudio;
+        public AudioClip mainMenuMusic;
 
         private void Start() {
             homeMenu.DisableAllItems();
@@ -88,6 +89,9 @@ namespace UI.Menu {
         public void OpenMenu() {
             homeMenu.OpenMenu(1f);
             AudioManager.Instance.PlaySFXOneShot(startMenuAudio);
+            DOVirtual.DelayedCall(0.5f, () => {
+                if (!AudioManager.Instance.IsMusicPlaying) AudioManager.Instance.PlayMusic(mainMenuMusic);
+            });
         }
 
         public void OpenLevelSelector() {

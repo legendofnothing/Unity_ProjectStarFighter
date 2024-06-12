@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Audio;
 using Core;
 using DG.Tweening;
 using Sirenix.OdinInspector;
@@ -110,7 +111,8 @@ namespace UI.Menu.Setting {
                     canvas.enabled = false;
                 }));
             }
-            s.Append(DOVirtual.DelayedCall(0.5f, (() => { })));
+            s.Append(DOVirtual.DelayedCall(0.5f, (() => {
+            })));
             s.Append(DOVirtual.Vector3(backgroundImageTransform.sizeDelta, Vector2.zero, 1f, value => {
                 backgroundImageTransform.sizeDelta = value;
             })).OnComplete(() => {

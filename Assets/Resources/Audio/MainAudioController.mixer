@@ -110,6 +110,7 @@ AudioMixerGroupController:
   - {fileID: 8431398526594551606}
   - {fileID: -7716785098187805101}
   - {fileID: -4439321376217095137}
+  - {fileID: 8993468794325375798}
   m_UserColorIndex: 7
   m_Mute: 0
   m_Solo: 0
@@ -230,6 +231,8 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: d0b37ad9b382b4048a3b4cdaf0cfcef0
     name: MusicVolume
+  - guid: 0789667eef736e14d8932f6cdd086306
+    name: MusicHighPass
   - guid: 63f78db4409bfb0408a0009917a87133
     name: SFXVolume
   m_AudioMixerGroupViews:
@@ -485,10 +488,14 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: babb987685452ba4183cfc4a7224e431
   m_FloatValues:
+    3cd683d0f819a86489e10dfad4722530: 5502
     4eceb822ea8fd22489dd05f6e2d09ce2: 0.05
     02dafd22b8f56b8488ef8abf7588e642: 1
     14c29c521abf75b4f821d975cf09e99d: -0
+    5f60e082488ec0e478ce610f9bd6044d: 0
+    853d16e44a2d784498ab15d0b759eca6: 22000
     47ecb0a5b5f617142a26a228c9df5a0a: -10
+    bb042cc58c86262408d0da4456059a3a: 10
     026b89e5622ae894cb5e4858de927d0b: 1.38
     24826e3627034f04899d0beee5a08087: 20
     3ee7a0661d1ea2542897447b906e2ca8: 1
@@ -503,6 +510,7 @@ AudioMixerSnapshotController:
     073227ebeee326f4a9f2a8915abcfa70: 24.9
     037087cdc1389dc40bbd9ac67ed34c45: 200
     3c05866e2c2dea340823bb9bc587de71: 4
+    0789667eef736e14d8932f6cdd086306: 10
     de7f6aee70592d7478817d960306dfe8: 179
     a0a9bf2f0c96e4a4da5e411c569f9eb0: 0
     98d45bbfa8c383343b253e717eb23e5a: 0
@@ -533,6 +541,22 @@ AudioMixerEffectController:
   m_EffectName: Send
   m_MixLevel: 99dc3b347490e0b45a8082c28e49cba6
   m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &8993468794325375798
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 1bdf3cb33c70378409eb18ca64f7191c
+  m_EffectName: Highpass Simple
+  m_MixLevel: ae4e8dd8b778455489b9380587608276
+  m_Parameters:
+  - m_ParameterName: Cutoff freq
+    m_GUID: 0789667eef736e14d8932f6cdd086306
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0

@@ -126,6 +126,8 @@ namespace UI.Menu.MissionSelector {
             _sequence = DOTween.Sequence();
             mainItem.canvas.enabled = true;
             
+            AudioManager.Instance.SetMusicParam("MusicHighPass", 0.4f, true, 1.5f);
+            
             startupSource.Play();
             DOVirtual.DelayedCall(startupSource.clip.length, () => {
                 loopSource.Play();
@@ -197,7 +199,9 @@ namespace UI.Menu.MissionSelector {
                         mainRect.sizeDelta = new Vector2(mainRect.sizeDelta.x, value);
                     });
                 }))
-                .Append(backdrop.DOFade(0, openingScreenDuration).SetEase(Ease.InBounce))
+                .Append(backdrop.DOFade(0, openingScreenDuration).SetEase(Ease.InBounce).OnStart(() => {
+                    AudioManager.Instance.SetMusicParam("MusicHighPass", 0f, true, 1.5f);
+                }))
                 .OnComplete(() => {
                     mainItem.canvas.enabled = false;
                     mainMenu.OpenMenu();
@@ -290,6 +294,7 @@ namespace UI.Menu.MissionSelector {
                 .Append(loadingGroup.DOFade(1, 1.5f).SetEase(selectorCurve))
                 .OnComplete(() => {
                     missionLoading.StartLoading(currentLevel);
+                    AudioManager.Instance.StopMusic(true, 3f);
                 });
         }
     }

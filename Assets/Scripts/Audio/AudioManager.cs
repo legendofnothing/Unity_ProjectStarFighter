@@ -23,7 +23,6 @@ namespace Audio {
         private AudioMixerGroup _musicGroup;
         private AudioMixerGroup _sfxInsideGroup;
         private AudioMixerGroup _sfxOutsideGroup;
-
         private List<AudioSource> _sfxSources = new();
 
         private bool _isFadingMusic;
@@ -102,6 +101,26 @@ namespace Audio {
             else source.Play();
         }
 
+        private Tween _currentParamTween;
+        public void SetMusicParam(string key, float value, bool doFade = true, float fadeDuration = 0) {
+            if (!_mainMixer.GetFloat(key, out var v)) return;
+            
+            if (key == "MusicHighPass") {
+                if (doFade) {
+                    _currentParamTween?.Kill();
+                    var currentValue = (v - 10) / 22000f;
+                    _currentParamTween = DOVirtual.Float(currentValue, value, fadeDuration, v2 => {
+                        _mainMixer.SetFloat(key, Mathf.Lerp(10f, 22000f, v2));
+                    });
+                    return;
+                }
+                _mainMixer.SetFloat(key, Mathf.Lerp(10f, 22000f, value));
+                return;
+            }
+                
+            _mainMixer.SetFloat(key, value);
+        }
+
         public void StopMusic(bool doFade = true, float fadeDuration = 0) {
             if (_audioSources[AudioType.Music].isPlaying && !_isFadingMusic) {
                 _isFadingMusic = true;
@@ -118,6 +137,8 @@ namespace Audio {
                 }
             }
         }
+
+        public bool IsMusicPlaying => _audioSources[AudioType.Music].isPlaying;
         
         public void PauseAllSound() {
             var temp = new List<AudioSource>(_sfxSources);
