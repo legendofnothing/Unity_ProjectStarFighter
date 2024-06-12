@@ -102,13 +102,13 @@ namespace Audio {
         }
 
         private Tween _currentParamTween;
-        public void SetMusicParam(string key, float value, bool doFade = true, float fadeDuration = 0) {
+        public void SetMusicParam(string key, float value, bool doFade = false, float fadeDuration = 0) {
             if (!_mainMixer.GetFloat(key, out var v)) return;
             
-            if (key == "MusicHighPass") {
+            if (key is "MusicHighPass") {
                 if (doFade) {
                     _currentParamTween?.Kill();
-                    var currentValue = (v - 10) / 22000f;
+                    var currentValue = v / 22000f;
                     _currentParamTween = DOVirtual.Float(currentValue, value, fadeDuration, v2 => {
                         _mainMixer.SetFloat(key, Mathf.Lerp(10f, 22000f, v2));
                     });
@@ -117,11 +117,24 @@ namespace Audio {
                 _mainMixer.SetFloat(key, Mathf.Lerp(10f, 22000f, value));
                 return;
             }
+
+            if (key is "MusicLowPass") {
+                if (doFade) {
+                    _currentParamTween?.Kill();
+                    var currentValue = 1 - v / 22000f;
+                    _currentParamTween = DOVirtual.Float(currentValue, value, fadeDuration, v2 => {
+                        _mainMixer.SetFloat(key, Mathf.Lerp(22000f, 10f, v2));
+                    });
+                    return;
+                }
+                _mainMixer.SetFloat(key, Mathf.Lerp(22000f, 10f, value));
+                return;
+            }
                 
             _mainMixer.SetFloat(key, value);
         }
 
-        public void StopMusic(bool doFade = true, float fadeDuration = 0) {
+        public void StopMusic(bool doFade = false, float fadeDuration = 0) {
             if (_audioSources[AudioType.Music].isPlaying && !_isFadingMusic) {
                 _isFadingMusic = true;
                 var source = _audioSources[AudioType.Music];

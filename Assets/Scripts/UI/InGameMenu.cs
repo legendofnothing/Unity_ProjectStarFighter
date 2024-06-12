@@ -41,7 +41,6 @@ namespace UI {
         private bool _paused;
         private bool _hasGameEnded;
         
-        
         private void Start() {
             pauseCanvas.enabled = false;
             deathCanvas.enabled = false;
@@ -98,6 +97,7 @@ namespace UI {
             pauseCanvas.enabled = true;
             mainCanvas.enabled = false;
             _isPausing = false;
+            this.FireEvent(EventType.OnPause);
             AudioManager.Instance.PauseAllSound();
         }
 
@@ -109,6 +109,7 @@ namespace UI {
             pauseCanvas.enabled = false;
             mainCanvas.enabled = true;
             _isPausing = false;
+            this.FireEvent(EventType.OnPause);
             AudioManager.Instance.ResumeAllSound();
         }
 

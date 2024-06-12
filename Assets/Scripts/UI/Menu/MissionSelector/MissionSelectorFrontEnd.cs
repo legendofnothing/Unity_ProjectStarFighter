@@ -295,6 +295,7 @@ namespace UI.Menu.MissionSelector {
                 .OnComplete(() => {
                     missionLoading.StartLoading(currentLevel);
                     AudioManager.Instance.StopMusic(true, 3f);
+                    AudioManager.Instance.SetMusicParam("MusicHighPass", 0f, true, 1.5f);
                 });
         }
     }

@@ -11,6 +11,7 @@ namespace Core.Events {
         OpenDeathUI,
         OpenWinUI,
         OpenActualWinUI,
+        OnPause,
         
         SendCommand,
         OnPlayerOutOfBound,
